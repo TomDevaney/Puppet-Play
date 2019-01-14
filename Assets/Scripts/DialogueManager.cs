@@ -107,6 +107,13 @@ public class DialogueManager : MonoBehaviour
     // Image for input prompt
     Image inputPrompt;
 
+    // Audio source that is used for mumbling sound
+    AudioSource audioSource;
+
+    // The voices of every person
+    [SerializeField]
+    List<AudioClip> mumblingClips = null;
+
     // Awake is called before Start
     void Awake()
     {
@@ -194,6 +201,9 @@ public class DialogueManager : MonoBehaviour
 
         // Disable input prompt image
         inputPrompt.enabled = false;
+
+        // Set audio source
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -234,6 +244,9 @@ public class DialogueManager : MonoBehaviour
 
                 // Enable input prompt image
                 inputPrompt.enabled = true;
+
+                // Stop the mumbling
+                audioSource.Stop();
             }
 
         }
@@ -241,6 +254,9 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(int numDialogues)
     {
+        // Init some variables needed
+        DialogueInitialization();
+
         // Store number of dialogues
         numberOfDialoguesToDisplay = numDialogues;
 
@@ -248,44 +264,25 @@ public class DialogueManager : MonoBehaviour
 
         // Set enabled so it is visible
         canvas.enabled = true;
-
-        // Clear text
-        text.text = "";
-
-        // Set text to the respective color
-        text.color = mAllDialogue[mCurrentDialogueIndex].GetPerson().GetColor();
-
-        // Spit out dialogue time
-        doDialogue = true;
     }
 
+    // Start the next piece of dialogue
     public void NextDialogue()
     {
+        // Init some variables needed
+        DialogueInitialization();
+
         // Update number of dialogues that have been displayed in a row
         ++numberOfDialoguesThatHaveBeenDisplayed;
 
         // Update overall dialogue index
         ++mCurrentDialogueIndex;
 
-        // Clear text
-        text.text = "";
-
-        // Set text to the respective color
-        text.color = mAllDialogue[mCurrentDialogueIndex].GetPerson().GetColor();
-
-        // Disable input prompt image
-        inputPrompt.enabled = false;
-
         // Unsubscribe from event
         InputManager.OnLeftMouseReleased -= NextDialogue;
 
-        // TODO: Check if it's a change in person. If so, change Avatar and whatever else needs to be changed. Maybe animation.
-
         // Reset char index
         currentCharIndexForDialogue = 0;
-
-        // Spit out more dialogue again
-        doDialogue = true;
     }
 
     void EndDialogue()
@@ -309,5 +306,29 @@ public class DialogueManager : MonoBehaviour
 
         // Tell event manager all the dialogue is done
         EventManager.instance.MarkEventAsDone();
+    }
+
+    // Some basic initialization that both StartDialogue and NextDialogue use
+    void DialogueInitialization()
+    {
+        // Disable input prompt image
+        inputPrompt.enabled = false;
+
+        // Clear text
+        text.text = "";
+
+        // Set text to the respective color
+        text.color = mAllDialogue[mCurrentDialogueIndex].GetPerson().GetColor();
+
+        // Set audio clip to the correct person
+        audioSource.clip = mumblingClips[0];
+
+        // Play the audio
+        audioSource.Play();
+
+        // TODO: Check if it's a change in person. If so, change Avatar and whatever else needs to be changed. Maybe animation.
+
+        // Spit out dialogue time
+        doDialogue = true;
     }
 }
