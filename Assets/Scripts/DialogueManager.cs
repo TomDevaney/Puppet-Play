@@ -83,6 +83,9 @@ public class DialogueManager : MonoBehaviour
     // Used to notify Update when to display dialogue
     bool doDialogue;
 
+    // Used to take every nth frame off for display text
+    int everyNthFrame;
+
     // List of all the people who do dialogue
     Person[] mPeople = new Person[]
     {
@@ -125,6 +128,7 @@ public class DialogueManager : MonoBehaviour
         numberOfDialoguesToDisplay = 0;
         currentCharIndexForDialogue = 0;
         numberOfDialoguesThatHaveBeenDisplayed = 0;
+        everyNthFrame = 0;
         doDialogue = false;
 
         // Initialize all dialogue list
@@ -198,27 +202,25 @@ public class DialogueManager : MonoBehaviour
         // Only do if it's been told to
         if (doDialogue)
         {
-            // Start displaying the text to the screen n characters at a time
-            const int numOfCharsToDisplay = 1;
+            // Number of frames til text can be added
+            const int nFrames = 3;
 
             // Only do if all the text isn't there
             if (text.text.Length != mAllDialogue[mCurrentDialogueIndex].GetWords().Length)
             {
-                for (int i = 0; i < numOfCharsToDisplay; ++i)
+                // Is it the nth frame?
+                if (everyNthFrame++ % nFrames == 0)
                 {
                     text.text += mAllDialogue[mCurrentDialogueIndex].GetWords()[currentCharIndexForDialogue];
-                }
 
-                currentCharIndexForDialogue += numOfCharsToDisplay;
+                    ++currentCharIndexForDialogue;
+                }
             }
             else
             {
                 // Only do if we haven't met requested number of dialogues
                 if (numberOfDialoguesThatHaveBeenDisplayed + 1 < numberOfDialoguesToDisplay)
                 {
-                    // Enable input prompt image
-                    inputPrompt.enabled = true;
-
                     // Then subscribe to input manager for left mouse click event using NextDialogue
                     InputManager.OnLeftMouseReleased += NextDialogue;
 
@@ -229,6 +231,9 @@ public class DialogueManager : MonoBehaviour
                 {
                     InputManager.OnLeftMouseReleased += EndDialogue;
                 }
+
+                // Enable input prompt image
+                inputPrompt.enabled = true;
             }
 
         }
@@ -264,6 +269,9 @@ public class DialogueManager : MonoBehaviour
 
         // Clear text
         text.text = "";
+
+        // Set text to the respective color
+        text.color = mAllDialogue[mCurrentDialogueIndex].GetPerson().GetColor();
 
         // Disable input prompt image
         inputPrompt.enabled = false;
