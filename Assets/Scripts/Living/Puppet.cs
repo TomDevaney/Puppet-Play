@@ -9,6 +9,8 @@ public class Puppet : Living
 
     public bool IsStandingOnSurface = true;
 
+    public float FootSpread = 0.1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,11 +25,17 @@ public class Puppet : Living
 
     void CheckStandingOnSurface()
     {
+        //Ignore the Player Layer
         int LayerMask = 1 << 9;
         LayerMask = ~LayerMask;
+
         float MaxRayDistance = 0.2f;
         RaycastHit HitInfo;
-        if (Physics.Raycast(transform.position, transform.up * -1, out HitInfo, MaxRayDistance, LayerMask))
+        Vector3 FootSpreadOffset = new Vector3(FootSpread, 0, 0);
+        if (Physics.Raycast(transform.position, transform.up * -1, out HitInfo, MaxRayDistance, LayerMask)
+            || Physics.Raycast(transform.position + FootSpreadOffset, transform.up * -1, out HitInfo, MaxRayDistance, LayerMask)
+            || Physics.Raycast(transform.position - FootSpreadOffset, transform.up * -1, out HitInfo, MaxRayDistance, LayerMask)
+            )
         {
             IsStandingOnSurface = true;
             //print(HitInfo.distance + "");
@@ -36,6 +44,8 @@ public class Puppet : Living
         {
             IsStandingOnSurface = false;
         }
+        
+        
     }
 
     public void Jump(float force)
