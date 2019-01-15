@@ -60,7 +60,7 @@ public class EventManager : MonoBehaviour
     }
 
     /* Events */
-    public void PlayAnimation(string stateName, int tacobell)
+    public void PlayAnimation(string stateName)
     {
         MarkEventAsDone();
     }
@@ -86,6 +86,11 @@ public class EventManager : MonoBehaviour
     }
 
     public void PanCamera(string panValue)
+    {
+
+    }
+
+    public void MovePlayer(string location)
     {
 
     }
