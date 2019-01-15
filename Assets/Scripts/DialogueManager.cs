@@ -212,6 +212,13 @@ public class DialogueManager : MonoBehaviour
         // Only do if it's been told to
         if (doDialogue)
         {
+            //
+            if (!audioSource.isPlaying)
+            {
+                audioSource.pitch = Random.Range(0.75f, 1.25f);
+                audioSource.Play();
+            }
+
             // Number of frames til text can be added
             const int nFrames = 3;
 
@@ -233,9 +240,6 @@ public class DialogueManager : MonoBehaviour
                 {
                     // Then subscribe to input manager for left mouse click event using NextDialogue
                     InputManager.OnLeftMouseReleased += NextDialogue;
-
-                    // Stop dialog from updating
-                    doDialogue = false;
                 }
                 else
                 {
@@ -245,8 +249,8 @@ public class DialogueManager : MonoBehaviour
                 // Enable input prompt image
                 inputPrompt.enabled = true;
 
-                // Stop the mumbling
-                audioSource.Stop();
+                // Stop dialog from updating
+                doDialogue = false;
             }
 
         }
@@ -254,9 +258,6 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(int numDialogues)
     {
-        // Init some variables needed
-        DialogueInitialization();
-
         // Store number of dialogues
         numberOfDialoguesToDisplay = numDialogues;
 
@@ -264,14 +265,14 @@ public class DialogueManager : MonoBehaviour
 
         // Set enabled so it is visible
         canvas.enabled = true;
+
+        // Init some variables needed
+        DialogueInitialization();
     }
 
     // Start the next piece of dialogue
     public void NextDialogue()
     {
-        // Init some variables needed
-        DialogueInitialization();
-
         // Update number of dialogues that have been displayed in a row
         ++numberOfDialoguesThatHaveBeenDisplayed;
 
@@ -283,6 +284,9 @@ public class DialogueManager : MonoBehaviour
 
         // Reset char index
         currentCharIndexForDialogue = 0;
+
+        // Init some variables needed
+        DialogueInitialization();
     }
 
     void EndDialogue()
@@ -321,7 +325,8 @@ public class DialogueManager : MonoBehaviour
         text.color = mAllDialogue[mCurrentDialogueIndex].GetPerson().GetColor();
 
         // Set audio clip to the correct person
-        audioSource.clip = mumblingClips[0];
+        audioSource.clip = mumblingClips[1];
+        //audioSource.clip = MakeMumblingClip(mAllDialogue[mCurrentDialogueIndex].GetWords());
 
         // Play the audio
         audioSource.Play();
@@ -331,4 +336,33 @@ public class DialogueManager : MonoBehaviour
         // Spit out dialogue time
         doDialogue = true;
     }
+
+    //AudioClip MakeMumblingClip(string words)
+    //{
+    //    // Figure out how many words there are
+    //    int numOfWords = words.Split(' ').Length;
+
+    //    // TODO: If doing multiple clips, loop around number of clips and count their accumlative length
+
+    //    // Set up data
+    //    int length = mumblingClips[1].samples * numOfWords;
+    //    float[] allData = new float[length];
+    //    length = 0;
+
+    //    // Transfer data from sounds to final buffer
+    //    for (int i = 0; i < numOfWords; ++i)
+    //    {
+    //        float[] tempBuffer = new float[mumblingClips[1].samples];
+    //        mumblingClips[1].GetData(tempBuffer, 0);
+
+    //        tempBuffer.CopyTo(allData, length);
+    //        length += tempBuffer.Length;
+    //    }
+
+    //    // Create final clip
+    //    AudioClip finalClip = AudioClip.Create("MumblingClip", length, mumblingClips[1].channels, mumblingClips[1].frequency, false);
+    //    finalClip.SetData(allData, 0);
+
+    //    return finalClip;
+    //}
 }
