@@ -90,6 +90,8 @@ public class EventManager : MonoBehaviour
 
     }
 
+    // Could also make it where if they sent in one number, it's just an offset
+    // If it's two numbers, it's a coordinate
     public void MovePlayer(string location)
     {
 
