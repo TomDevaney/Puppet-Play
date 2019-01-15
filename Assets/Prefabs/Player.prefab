@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4539915925584521255}
   - component: {fileID: 4539915925584521254}
   - component: {fileID: 4539915925584521275}
+  - component: {fileID: 7831678747005741812}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -92,6 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd9636864645455418f25581fa5b2a28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ThePuppet: {fileID: 0}
 --- !u!65 &4539915925584521254
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -121,3 +123,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7831678747005741812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4539915925584521272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3327e2ff4d5073a4783a8d21976cbec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 0.01
+  TheRigidBody: {fileID: 0}
+  IsStandingOnSurface: 1

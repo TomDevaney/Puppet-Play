@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public Puppet ThePuppet;
+
+    
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        ThePuppet = GetComponent<Puppet>();
     }
 
     // Update is called once per frame
@@ -15,10 +19,32 @@ public class Player : MonoBehaviour
     {
         if (InputManager.instance.CanPlayerMove())
         {
+			//A Left D Right
             float xAxis = Input.GetAxis("Horizontal");
-
-            //transform.Translate(new Vector2(xAxis * 5.0f, 0.0f));
-            transform.Translate(new Vector2(xAxis * 0.01f, 0.0f));
+            ThePuppet.Move(xAxis);
         }
-    }
+
+		if(InputManager.instance.CanPlayerJump())
+		{
+			if(Input.GetButtonUp("Jump"))
+			{
+				ThePuppet.Jump(150);
+			}
+		}
+
+
+	}
+
+	public void OnCollisionEnter(Collision Col)
+	{
+		//print("OnCollisionEnter");
+
+	}
+
+	public void OnCollisionExit()
+	{
+		//print("OnCollisionExit");
+	}
+
+	
 }
