@@ -9,7 +9,7 @@ public class Living : MonoBehaviour
 
     // Movement speed
     // Set to 0 if you don't want to move
-    float moveSpeed;
+    public float moveSpeed = 0.01f;
 
     // How much damage it will deal to the puppet
     int damage;
