@@ -12,7 +12,7 @@ public class Living : MonoBehaviour
     public float moveSpeed = 0.01f;
 
     // How much damage it will deal to the puppet
-    int damage;
+    int attackDamage;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +28,7 @@ public class Living : MonoBehaviour
 
     public void DoDamage(Living living)
     {
-        living.TakeDamage(damage);
+        living.TakeDamage(attackDamage);
     }
 
     public void TakeDamage(int damage)
@@ -55,9 +55,9 @@ public class Living : MonoBehaviour
         moveSpeed = speed;
     }
 
-    public void SetDamage(int dam)
+    public void SetAttackDamage(int dam)
     {
-        damage = dam;
+        attackDamage = dam;
     }
 
     /* Getters */
@@ -66,8 +66,8 @@ public class Living : MonoBehaviour
         return moveSpeed;
     }
 
-    public float GetDamage()
+    public float GetAttackDamage()
     {
-        return moveSpeed;
+        return attackDamage;
     }
 }
