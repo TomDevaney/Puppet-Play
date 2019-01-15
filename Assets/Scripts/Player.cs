@@ -17,7 +17,8 @@ public class Player : MonoBehaviour
         {
             float xAxis = Input.GetAxis("Horizontal");
 
-            transform.Translate(new Vector2(xAxis * 5.0f, 0.0f));
+            //transform.Translate(new Vector2(xAxis * 5.0f, 0.0f));
+            transform.Translate(new Vector2(xAxis * 0.01f, 0.0f));
         }
     }
 }
