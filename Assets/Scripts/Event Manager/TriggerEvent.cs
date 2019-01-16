@@ -19,7 +19,7 @@ public class TriggerEvent : MonoBehaviour
         mHasBeenTriggeredAlready = false;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public virtual void OnTriggerEnter(Collider other)
     {
         // Only do if it hasn't been triggered already and if OnTrigger has been set
         if (!mHasBeenTriggeredAlready && OnTrigger != null)
