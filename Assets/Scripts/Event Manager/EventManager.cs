@@ -14,6 +14,8 @@ public class EventManager : MonoBehaviour
     public delegate void EventDone();
     public static event EventDone OnEventDone;
 
+    
+
     // Awake is called before Start
     void Awake()
     {
@@ -30,7 +32,7 @@ public class EventManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -92,8 +94,19 @@ public class EventManager : MonoBehaviour
 
     // Could also make it where if they sent in one number, it's just an offset
     // If it's two numbers, it's a coordinate
-    public void MovePlayer(string location)
-    {
 
+    // PathToPuppet WorldXCoordinate
+    public void MovePuppet(string PuppetPathAndLocation)
+    {
+        string[] args = PuppetPathAndLocation.Split(' ');
+        Puppet puppet = GameObject.Find(args[0]).GetComponent<Puppet>();
+        puppet.MoveToLocation(float.Parse(args[1]));
+    }
+
+    public void MakePuppetJump(string PathToPuppet)
+    {
+        Puppet puppet = GameObject.Find(PathToPuppet).GetComponent<Puppet>();
+        puppet.Jump();
+        MarkEventAsDone();
     }
 }

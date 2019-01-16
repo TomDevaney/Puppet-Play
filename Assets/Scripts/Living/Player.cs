@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
 		{
 			if(Input.GetButtonDown("Jump"))
 			{
-				ThePuppet.Jump(150);
+				ThePuppet.Jump();
 			}
 		}
 
