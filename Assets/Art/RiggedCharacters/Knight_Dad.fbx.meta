@@ -5,12 +5,61 @@ ModelImporter:
   fileIDToRecycleName:
     100000: group1_Head
     100002: //RootNode
+    100004: group3
+    100006: Hip
+    100008: LeftArm
+    100010: LeftFingers
+    100012: LeftFoot
+    100014: LeftHand
+    100016: LeftHeel
+    100018: LeftLeg
+    100020: LeftShoulder
+    100022: LeftThigh
+    100024: Neck
+    100026: RightArm
+    100028: RightFingers
+    100030: RightFoot
+    100032: RightHand
+    100034: RightHeel
+    100036: RightLeg
+    100038: RightShoulder
+    100040: RightThigh
+    100042: Root
+    100044: SKM_Knight
+    100046: Spine
+    100048: Visor
     400000: group1_Head
     400002: //RootNode
+    400004: group3
+    400006: Hip
+    400008: LeftArm
+    400010: LeftFingers
+    400012: LeftFoot
+    400014: LeftHand
+    400016: LeftHeel
+    400018: LeftLeg
+    400020: LeftShoulder
+    400022: LeftThigh
+    400024: Neck
+    400026: RightArm
+    400028: RightFingers
+    400030: RightFoot
+    400032: RightHand
+    400034: RightHeel
+    400036: RightLeg
+    400038: RightShoulder
+    400040: RightThigh
+    400042: Root
+    400044: SKM_Knight
+    400046: Spine
+    400048: Visor
     2100000: lambert1
     2300000: group1_Head
+    2300002: SKM_Knight
     3300000: group1_Head
+    3300002: SKM_Knight
     4300000: group1_Head
+    4300002: SKM_Knight
     2186277476908879412: ImportLogs
   externalObjects: {}
   materials:

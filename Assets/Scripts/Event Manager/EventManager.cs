@@ -60,7 +60,7 @@ public class EventManager : MonoBehaviour
     }
 
     /* Events */
-    public void PlayAnimation(string stateName, int tacobell)
+    public void PlayAnimation(string stateName)
     {
         MarkEventAsDone();
     }
@@ -86,6 +86,13 @@ public class EventManager : MonoBehaviour
     }
 
     public void PanCamera(string panValue)
+    {
+
+    }
+
+    // Could also make it where if they sent in one number, it's just an offset
+    // If it's two numbers, it's a coordinate
+    public void MovePlayer(string location)
     {
 
     }
