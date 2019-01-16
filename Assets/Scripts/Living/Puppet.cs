@@ -21,6 +21,9 @@ public class Puppet : Living
     void Start()
     {
         TheRigidBody = GetComponent<Rigidbody>();
+
+        // Initialize parent variables
+        SetHealthPoints(1);
     }
 
     // Update is called once per frame
@@ -66,5 +69,13 @@ public class Puppet : Living
     public void Move(float xAxis)
     {
         transform.Translate(new Vector2(xAxis * moveSpeed, 0.0f));
+    }
+
+    public override void Respawn()
+    {
+        base.Respawn();
+
+        // Reinitialize parent variables
+        SetHealthPoints(1);
     }
 }

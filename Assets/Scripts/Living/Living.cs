@@ -14,13 +14,20 @@ public class Living : MonoBehaviour
     // How much damage it will deal to the puppet
     int attackDamage;
 
+    // hp is 0
+    bool isDead;
+
+    // Where the living will spawn if they respawn after dying
+    Vector3 spawnPoint;
+
     // 
     // Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        // Initialize variables
+
     }
 
     // Update is called once per frame
@@ -53,7 +60,12 @@ public class Living : MonoBehaviour
     {
         // TODO: Do a fancy animation before destroying it
 
+        isDead = true;
+    }
 
+    public virtual void Respawn()
+    {
+        transform.position = spawnPoint;
     }
 
     /* Setters */
@@ -67,6 +79,16 @@ public class Living : MonoBehaviour
         attackDamage = dam;
     }
 
+    public void SetSpawnPoint(Vector3 point)
+    {
+        spawnPoint = point;
+    }
+
+    public void SetHealthPoints(int hp)
+    {
+        healthPoints = hp;
+    }
+
     /* Getters */
     public float GetMoveSpeed()
     {
@@ -76,5 +98,20 @@ public class Living : MonoBehaviour
     public float GetAttackDamage()
     {
         return attackDamage;
+    }
+
+    public bool IsDead()
+    {
+        return isDead;
+    }
+
+    public Vector3 GetSpawnPoint()
+    {
+        return spawnPoint;
+    }
+
+    public Vector3 GetHealthPoints()
+    {
+        return healthPoints;
     }
 }
