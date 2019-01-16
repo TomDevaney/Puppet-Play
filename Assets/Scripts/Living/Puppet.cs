@@ -17,6 +17,8 @@ public class Puppet : Living
 
     public float FootSpread = 0.1f;
 
+    public float JumpForce = 150;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,17 +56,51 @@ public class Puppet : Living
         
     }
 
-    public void Jump(float force)
+    public void Jump()
     {
         //print("Jumped");
         if (IsStandingOnSurface)
         {
-            TheRigidBody.AddForce(0, force, 0);
+            TheRigidBody.AddForce(0, JumpForce, 0);
         }
     }
 
     public void Move(float xAxis)
     {
         transform.Translate(new Vector2(xAxis * moveSpeed, 0.0f));
+    }
+
+    public void MoveToLocation(float Loc)
+    {
+        MovingToLocation(Loc);
+    }
+
+    IEnumerator MovingToLocation(float Loc)
+    {
+        float axis = 0.5f;
+        if(transform.position.x > Loc)
+        {
+            axis *= -1;
+        }
+        
+        float range = 0.1f;
+
+        while (true)
+        {
+            float distance = transform.position.x - Loc;
+            if (axis > 0 && (Mathf.Abs(distance) < range || distance > 0))
+            {
+                break;
+            }
+            if(axis < 0 && (Mathf.Abs(distance) < range || distance < 0))
+            {
+                break;
+            }
+
+
+            Move(axis);
+            yield return new WaitForSeconds(.1f);
+        }
+        EventManager.instance.MarkEventAsDone();
     }
 }
