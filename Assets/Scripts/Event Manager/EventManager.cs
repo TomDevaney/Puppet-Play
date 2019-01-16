@@ -107,5 +107,6 @@ public class EventManager : MonoBehaviour
     {
         Puppet puppet = GameObject.Find(PathToPuppet).GetComponent<Puppet>();
         puppet.Jump();
+        MarkEventAsDone();
     }
 }
