@@ -35,7 +35,6 @@ public class TimerEvent : MonoBehaviour
         // Initialize variables
         doCountdown = false;
         currentTimer = 0.0f;
-        desiredTimer = 0.0f;
     }
 
     // Update is called once per frame

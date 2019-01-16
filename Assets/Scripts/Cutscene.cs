@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine;
 
+// How to use:
+// Make a game object with a cutscene in the editor
+// Attach a gameobject with timerevent to the cutscene
+// The cutscene will play every single one of those events
+
 public class Cutscene : MonoBehaviour
 {
     // This is all the events that need to be played
-    public List<TimerEvent> events = new List<TimerEvent>();
+    TimerEvent[] events = null;
 
     // Which event are we on?
     int currentEventIndex;
@@ -16,6 +21,9 @@ public class Cutscene : MonoBehaviour
     {
         // Iniitialize variables
         currentEventIndex = 0;
+
+        // Fill in the list of event through children
+        events = GetComponentsInChildren<TimerEvent>();
     }
 
     // Handles start up logic for cutscene
@@ -32,7 +40,7 @@ public class Cutscene : MonoBehaviour
         events[currentEventIndex].StartCountdown();
 
         // There's an event after this one
-        if (currentEventIndex + 1 != events.Count)
+        if (currentEventIndex + 1 != events.Length)
         {
             EventManager.OnEventDone += NextCutscene;
         }
@@ -51,7 +59,7 @@ public class Cutscene : MonoBehaviour
         events[currentEventIndex].StartCountdown();
 
         // There's an event after this one
-        if (currentEventIndex + 1 != events.Count)
+        if (currentEventIndex + 1 != events.Length)
         {
             EventManager.OnEventDone += NextCutscene;
         }
