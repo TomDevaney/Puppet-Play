@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
 
 		if(InputManager.instance.CanPlayerJump())
 		{
-			if(Input.GetButtonUp("Jump"))
+			if(Input.GetButtonDown("Jump"))
 			{
 				ThePuppet.Jump();
 			}
