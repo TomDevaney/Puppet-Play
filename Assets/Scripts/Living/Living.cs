@@ -14,6 +14,9 @@ public class Living : MonoBehaviour
     // How much damage it will deal to the puppet
     int attackDamage;
 
+    // 
+    // Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +39,8 @@ public class Living : MonoBehaviour
         // Apply damage
         healthPoints -= damage;
 
+        Debug.Log("Ouch");
+
         // Check if dead
         if (healthPoints <= 0)
         {
@@ -47,6 +52,8 @@ public class Living : MonoBehaviour
     public virtual void JustDied()
     {
         // TODO: Do a fancy animation before destroying it
+
+
     }
 
     /* Setters */

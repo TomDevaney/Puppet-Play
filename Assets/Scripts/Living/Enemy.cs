@@ -20,8 +20,16 @@ public class Enemy : Living
     // React to them dying
     public override void JustDied()
     {
+        // Make disappear happen when the animation is over. So hook it up with animationTime
+        //Invoke("Disappear", 1.0f);
+
         // Get rid of the object
         GameObject.Destroy(gameObject);
+    }
+
+    public void Disappear()
+    {
+
     }
 
     // Check if it has hurt someone
