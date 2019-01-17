@@ -32,7 +32,7 @@ public class Cutscene : MonoBehaviour
         // Do any graphical things wanted
 
         // Don't allow any player movement anymore
-        InputManager.instance.SetCanPlayerMove(false);
+        InputManager.instance.DisablePlayerActions();
 
         // TODO: Tell AI to stop doing its thing
 
@@ -80,7 +80,7 @@ public class Cutscene : MonoBehaviour
         // Undo those graphical things
 
         // Allow any player movement anymore
-        InputManager.instance.SetCanPlayerMove(true);
+        InputManager.instance.EnablePlayerActions();
 
         // TODO: Tell AI to start doing its thing
 
