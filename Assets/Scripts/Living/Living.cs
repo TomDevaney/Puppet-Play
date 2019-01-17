@@ -24,10 +24,10 @@ public class Living : MonoBehaviour
     // Animator animator;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         // Initialize variables
-
+        spawnPoint = transform.position;
     }
 
     // Update is called once per frame

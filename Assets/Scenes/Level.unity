@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.450675, g: 0.5006381, b: 0.5749238, a: 1}
+  m_IndirectSpecularColor: {r: 0.45067495, g: 0.5006379, b: 0.5749239, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -420,6 +420,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 535227317}
+  - component: {fileID: 535227318}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -443,6 +444,18 @@ Transform:
   m_Father: {fileID: 4094735641528479122}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &535227318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535227316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3e0b5dad7c8d2d4e93fa3775e886e40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &586881520 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: ebd28a98511d81c49b9631fc2982418f,
@@ -1345,7 +1358,7 @@ PrefabInstance:
     - target: {fileID: 2158742748975830221, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.419
+      value: -6.66
       objectReference: {fileID: 0}
     - target: {fileID: 2158742748975830221, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
@@ -1944,7 +1957,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &4094735642982183872
 GameObject:
   m_ObjectHideFlags: 0
@@ -2426,7 +2439,7 @@ PrefabInstance:
     - target: {fileID: 5310612247922802740, guid: 8e19a92a506ace2419b7da6f90d5f284,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.903
+      value: -0.631
       objectReference: {fileID: 0}
     - target: {fileID: 5310612247922802740, guid: 8e19a92a506ace2419b7da6f90d5f284,
         type: 3}
