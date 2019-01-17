@@ -19,6 +19,8 @@ public class Puppet : Living
 
     public float JumpForce = 150;
 
+    public float LastMoveDirection = 1.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,15 @@ public class Puppet : Living
     void Update()
     {
         CheckStandingOnSurface();
+    }
+
+    public override void JustDied()
+    {
+        // Call parent function
+        base.JustDied();
+
+        // Tell the manager it's game over
+        GameManager.instance.EndGame();
     }
 
     void CheckStandingOnSurface()
@@ -71,6 +82,18 @@ public class Puppet : Living
     public void Move(float xAxis)
     {
         transform.Translate(new Vector2(xAxis * moveSpeed, 0.0f));
+        if(xAxis != 0)
+        {
+            LastMoveDirection = xAxis;
+        }
+    }
+
+    public void Attack()
+    {
+        if(IsStandingOnSurface)
+        {
+            print("attack");
+        }
     }
 
     public void MoveToLocation(float Loc)
@@ -109,6 +132,8 @@ public class Puppet : Living
 
     public override void Respawn()
     {
+        // Respawn player at recent checkpoint
+        SetSpawnPoint(GameManager.instance.GetRecentCheckpoint().GetLocation());
         base.Respawn();
 
         // Reinitialize parent variables
