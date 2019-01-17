@@ -55,6 +55,7 @@ ModelImporter:
     400048: Visor
     2100000: lambert1
     2100002: lambert2
+    2100004: Head
     2300000: group1_Head
     2300002: SKM_Knight
     3300000: group1_Head
@@ -66,7 +67,17 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Head
+    second: {fileID: 2100000, guid: 1eeb4597dff5ba0469d20cf95e70c93c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: lambert1
+    second: {fileID: 2100000, guid: ee48fc55026eba347b135efbb07f9c8f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert2
     second: {fileID: 2100000, guid: ee48fc55026eba347b135efbb07f9c8f, type: 2}
   materials:
     importMaterials: 1
