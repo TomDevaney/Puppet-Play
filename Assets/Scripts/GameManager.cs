@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     //
     Living[] livingBeings;
 
+    // Even though it's a part of the livingBeings array, I want direct access to it sometimes
+    Puppet playerPuppet;
+
     // Awake is called before Start
     void Awake()
     {
@@ -31,6 +34,7 @@ public class GameManager : MonoBehaviour
     {
         // Retrieve references for everything game manager cares about
         livingBeings = GetComponentsInChildren<Living>();
+        playerPuppet = GetComponentInChildren<Puppet>();
     }
 
     // Update is called once per frame
@@ -64,6 +68,11 @@ public class GameManager : MonoBehaviour
     public Checkpoint GetRecentCheckpoint()
     {
         return recentCheckpoint;
+    }
+
+    public Puppet GetPlayerPuppet()
+    {
+        return playerPuppet;
     }
 
     /* Setters */

@@ -65,7 +65,7 @@ public class Living : MonoBehaviour
 
     public virtual void Respawn()
     {
-        transform.position = spawnPoint;
+        transform.position = new Vector3(spawnPoint.x, spawnPoint.y, transform.position.z);
     }
 
     /* Setters */
