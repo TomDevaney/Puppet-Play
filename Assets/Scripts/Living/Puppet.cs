@@ -23,6 +23,9 @@ public class Puppet : Living
     void Start()
     {
         TheRigidBody = GetComponent<Rigidbody>();
+
+        // Initialize parent variables
+        SetHealthPoints(1);
     }
 
     // Update is called once per frame
@@ -72,12 +75,12 @@ public class Puppet : Living
 
     public void MoveToLocation(float Loc)
     {
-        MovingToLocation(Loc);
+        StartCoroutine(MovingToLocation(Loc));
     }
 
     IEnumerator MovingToLocation(float Loc)
     {
-        float axis = 0.5f;
+        float axis = 1.0f;
         if(transform.position.x > Loc)
         {
             axis *= -1;
@@ -99,8 +102,16 @@ public class Puppet : Living
 
 
             Move(axis);
-            yield return new WaitForSeconds(.1f);
+            yield return new WaitForSeconds(.01f);
         }
         EventManager.instance.MarkEventAsDone();
+    }
+
+    public override void Respawn()
+    {
+        base.Respawn();
+
+        // Reinitialize parent variables
+        SetHealthPoints(1);
     }
 }

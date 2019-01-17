@@ -32,7 +32,7 @@ public class Cutscene : MonoBehaviour
         // Do any graphical things wanted
 
         // Don't allow any player movement anymore
-        InputManager.instance.SetCanPlayerMove(false);
+        InputManager.instance.DisablePlayerActions();
 
         // TODO: Tell AI to stop doing its thing
 
@@ -52,6 +52,9 @@ public class Cutscene : MonoBehaviour
 
     public void NextCutscene()
     {
+        // Get rid of event that just called this
+        EventManager.OnEventDone -= NextCutscene;
+
         // Increment index 
         ++currentEventIndex;
 
@@ -71,10 +74,13 @@ public class Cutscene : MonoBehaviour
 
     public void StopCutscene()
     {
+        // Get rid of event that just called this
+        EventManager.OnEventDone -= StopCutscene;
+
         // Undo those graphical things
 
         // Allow any player movement anymore
-        InputManager.instance.SetCanPlayerMove(true);
+        InputManager.instance.EnablePlayerActions();
 
         // TODO: Tell AI to start doing its thing
 
