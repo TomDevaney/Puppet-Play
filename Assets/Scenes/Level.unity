@@ -1509,6 +1509,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97cebed4649ed8c4fb192a0a2458d6db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerPuppet: {fileID: 0}
+  LevelBoundLeft: -7
+  LevelBoundRight: 1
+  TargetY: 0.619
 --- !u!1 &2091980625
 GameObject:
   m_ObjectHideFlags: 0
