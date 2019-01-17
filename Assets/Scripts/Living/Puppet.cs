@@ -75,12 +75,12 @@ public class Puppet : Living
 
     public void MoveToLocation(float Loc)
     {
-        MovingToLocation(Loc);
+        StartCoroutine(MovingToLocation(Loc));
     }
 
     IEnumerator MovingToLocation(float Loc)
     {
-        float axis = 0.5f;
+        float axis = 1.0f;
         if(transform.position.x > Loc)
         {
             axis *= -1;
@@ -102,7 +102,7 @@ public class Puppet : Living
 
 
             Move(axis);
-            yield return new WaitForSeconds(.1f);
+            yield return new WaitForSeconds(.01f);
         }
         EventManager.instance.MarkEventAsDone();
     }

@@ -52,6 +52,9 @@ public class Cutscene : MonoBehaviour
 
     public void NextCutscene()
     {
+        // Get rid of event that just called this
+        EventManager.OnEventDone -= NextCutscene;
+
         // Increment index 
         ++currentEventIndex;
 
@@ -71,6 +74,9 @@ public class Cutscene : MonoBehaviour
 
     public void StopCutscene()
     {
+        // Get rid of event that just called this
+        EventManager.OnEventDone -= StopCutscene;
+
         // Undo those graphical things
 
         // Allow any player movement anymore

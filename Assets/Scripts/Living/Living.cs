@@ -110,7 +110,7 @@ public class Living : MonoBehaviour
         return spawnPoint;
     }
 
-    public Vector3 GetHealthPoints()
+    public int GetHealthPoints()
     {
         return healthPoints;
     }
