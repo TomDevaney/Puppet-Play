@@ -6,10 +6,21 @@ ModelImporter:
     100000: //RootNode
     400000: //RootNode
     2100000: lambert1
+    2100002: House
+    2100004: Door
+    2100006: Background
+    2100008: Roof
+    2100010: Ground
+    2100012: Brick
     2300000: //RootNode
     3300000: //RootNode
     4300000: SM_LV1_Plat5
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Background
+    second: {fileID: 2100000, guid: af3b259ff3e480b44b8af3141b233476, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
