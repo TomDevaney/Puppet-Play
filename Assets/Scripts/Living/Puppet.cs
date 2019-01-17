@@ -93,6 +93,22 @@ public class Puppet : Living
         if (IsStandingOnSurface)
         {
             print("attack");
+
+            int LayerMask = 0xFF;
+            
+
+            float MaxRayDistance = 0.2f;
+            
+            RaycastHit HitInfo;
+            if(Physics.Raycast(transform.position, transform.right, out HitInfo, MaxRayDistance, LayerMask))
+            {
+                if(HitInfo.transform.tag.Equals("Enemy"))
+                {
+                    DoDamage(HitInfo.transform.GetComponent<Living>());
+
+                }
+
+            }
         }
     }
 
