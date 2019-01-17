@@ -23,10 +23,22 @@ public class FollowCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float nextX = LevelBoundLeft;
+        float TargetX = LevelBoundLeft;
+        if(PlayerPuppet.transform.position.x > LevelBoundRight)
+        {
+            TargetX = LevelBoundRight;
+        }
+        else if(PlayerPuppet.transform.position.x < LevelBoundLeft)
+        {
+            TargetX = LevelBoundLeft;
+        }
+        else
+        {
+            TargetX = PlayerPuppet.transform.position.x;
+        }
 
+        float nextX = Mathf.Lerp(transform.position.x, TargetX , Time.deltaTime);
 
-        nextX = Mathf.Lerp(transform.position.x, PlayerPuppet.transform.position.x, Time.deltaTime);
         transform.position = new Vector3(nextX, TargetY, transform.position.z);
     }
 

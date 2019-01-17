@@ -1510,7 +1510,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerPuppet: {fileID: 0}
-  LevelBoundLeft: -7
+  LevelBoundLeft: -8
   LevelBoundRight: 1
   TargetY: 0.619
 --- !u!1 &2091980625
