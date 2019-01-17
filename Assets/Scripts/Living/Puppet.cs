@@ -17,7 +17,9 @@ public class Puppet : Living
 
     public float FootSpread = 0.1f;
 
-    public float JumpForce = 150;
+    public float JumpForce = 300;
+
+    public float LastMoveDirection = 1.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -49,7 +51,7 @@ public class Puppet : Living
         int LayerMask = 1 << 9;
         LayerMask = ~LayerMask;
 
-        float MaxRayDistance = 0.2f;
+        float MaxRayDistance = 2.0f;
         RaycastHit HitInfo;
         Vector3 FootSpreadOffset = new Vector3(FootSpread, 0, 0);
         if (Physics.Raycast(transform.position, transform.up * -1, out HitInfo, MaxRayDistance, LayerMask)
@@ -80,6 +82,44 @@ public class Puppet : Living
     public void Move(float xAxis)
     {
         transform.Translate(new Vector2(xAxis * moveSpeed, 0.0f));
+        if (xAxis != 0)
+        {
+            LastMoveDirection = xAxis;
+        }
+    }
+
+    public void Attack()
+    {
+        if (true)
+        {
+            print("attack");
+
+            //Ignore the Player Layer
+            int LayerMask = 1 << 9 | 1 << 10;
+            //int LayerMask = 0;
+            LayerMask = ~LayerMask;
+
+
+            float MaxRayDistance = 1.5f;
+            print("transform.right : " + transform.right);
+            RaycastHit HitInfo;
+            if(Physics.Raycast(new Vector3(transform.position.x - 1, transform.position.y, transform.position.z),
+                transform.right, out HitInfo, MaxRayDistance, LayerMask) 
+                || Physics.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z),
+                transform.right, out HitInfo, MaxRayDistance, LayerMask)
+
+                )
+            {
+                print("hit " + HitInfo.transform.tag);
+                if(HitInfo.transform.tag.Equals("Enemy"))
+                {
+                    print("dodamage");
+                    DoDamage(HitInfo.transform.GetComponent<Living>());
+
+                }
+
+            }
+        }
     }
 
     public void MoveToLocation(float Loc)
