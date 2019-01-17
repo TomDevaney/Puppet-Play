@@ -13,6 +13,9 @@ public class InputManager : MonoBehaviour
     public delegate void LeftMouseReleased();
     public static event LeftMouseReleased OnLeftMouseReleased;
 
+    //
+    bool disablePlayerActions;
+
     // 
     bool canPlayerMove;
 
@@ -41,6 +44,7 @@ public class InputManager : MonoBehaviour
         canPlayerMove = true;
         canPlayerJump = true;
         canPlayerAttack = true;
+        disablePlayerActions = false;
     }
 
     void Update()
@@ -53,6 +57,20 @@ public class InputManager : MonoBehaviour
                 OnLeftMouseReleased();
             }
         }
+    }
+
+    public void DisablePlayerActions()
+    {
+        canPlayerAttack = false;
+        canPlayerJump = false;
+        canPlayerMove = false;
+    }
+
+    public void EnablePlayerActions()
+    {
+        canPlayerAttack = true;
+        canPlayerJump = true;
+        canPlayerMove = true;
     }
 
     /* Getters */
