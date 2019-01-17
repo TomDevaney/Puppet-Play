@@ -32,14 +32,6 @@ public class Player : MonoBehaviour
 			}
 		}
 
-        if(InputManager.instance.CanPlayerAttack())
-        {
-            if (Input.GetButtonDown("Fire1"))
-            {
-                ThePuppet.Attack();
-            }
-        }
-
 
 	}
 
