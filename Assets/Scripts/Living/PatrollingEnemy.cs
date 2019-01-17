@@ -27,6 +27,8 @@ public class PatrollingEnemy : Enemy
     void Start()
     {
         // Initialize parent variables
+        base.Start();
+
         SetMoveSpeed(0.005f);
         SetAttackDamage(1);
 
@@ -108,5 +110,13 @@ public class PatrollingEnemy : Enemy
                 goToEnd = true;
             }
         }
+    }
+
+    public override void Respawn()
+    {
+        base.Respawn();
+
+        // Reinitialize parent variables
+        SetHealthPoints(1);
     }
 }

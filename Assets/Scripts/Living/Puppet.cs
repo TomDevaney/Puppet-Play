@@ -34,6 +34,15 @@ public class Puppet : Living
         CheckStandingOnSurface();
     }
 
+    public override void JustDied()
+    {
+        // Call parent function
+        base.JustDied();
+
+        // Tell the manager it's game over
+        GameManager.instance.EndGame();
+    }
+
     void CheckStandingOnSurface()
     {
         //Ignore the Player Layer
@@ -109,6 +118,8 @@ public class Puppet : Living
 
     public override void Respawn()
     {
+        // Respawn player at recent checkpoint
+        SetSpawnPoint(GameManager.instance.GetRecentCheckpoint().GetLocation());
         base.Respawn();
 
         // Reinitialize parent variables

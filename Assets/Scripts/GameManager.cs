@@ -44,14 +44,19 @@ public class GameManager : MonoBehaviour
         // TODO: pull curtains in
 
         // Respawn everything that was killed
-        RespawnAllLiving();
+        RespawnAllDead();
+
+        // TODO: Because I'm only respawning dead, might have to handle special logic for puppet that is still alive
     }
 
-    void RespawnAllLiving()
+    void RespawnAllDead()
     {
         for (int i = 0; i < livingBeings.Length; ++i)
         {
-            livingBeings[i].Respawn();
+            if (livingBeings[i].IsDead())
+            {
+                livingBeings[i].Respawn();
+            }
         }
     }
 
