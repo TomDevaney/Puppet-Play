@@ -19,8 +19,11 @@ public class TriggerEvent : MonoBehaviour
         mHasBeenTriggeredAlready = false;
     }
 
-    public virtual void OnTriggerEnter(Collider other)
+    // Return: returns true if the event was triggered
+    public virtual bool OnTriggerEnter(Collider other)
     {
+        bool result = false;
+
         // Only do if it hasn't been triggered already and if OnTrigger has been set
         if (!mHasBeenTriggeredAlready && OnTrigger != null)
         {
@@ -29,6 +32,10 @@ public class TriggerEvent : MonoBehaviour
 
             // To make sure it cannot be triggered again
             mHasBeenTriggeredAlready = true;
+
+            result = true;
         }
+
+        return result;
     }
 }
