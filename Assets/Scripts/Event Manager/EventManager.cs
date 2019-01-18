@@ -109,4 +109,10 @@ public class EventManager : MonoBehaviour
         puppet.Jump();
         MarkEventAsDone();
     }
+
+    public void OpenCurtains()
+    {
+        StageController stageController = GameObject.Find("Stage").GetComponent<StageController>();
+        stageController.OpenCurtains();
+    }
 }

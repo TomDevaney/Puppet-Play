@@ -13,7 +13,7 @@ public class StageController : MonoBehaviour
         LeftCurtain = GameObject.Find("CurtainLeftParent");
         RightCurtain = GameObject.Find("CurtainRightParent");
 
-        OpenCurtains();
+        //OpenCurtains();
 
     }
 
