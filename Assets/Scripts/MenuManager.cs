@@ -2,8 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Menu : MonoBehaviour
+public class MenuManager : MonoBehaviour
 {
+
+    // Singleton so classes can reference without reference
+    public static MenuManager instance = null;
+
+    void Awake()
+    {
+        // Set up singleton
+        if (!instance)
+        {
+            instance = this;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +27,10 @@ public class Menu : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void MainMenuSetActive( bool active)
+    {
+        GameObject.Find("MainMenuCanvas").GetComponent<Canvas>().enabled = active;
     }
 }

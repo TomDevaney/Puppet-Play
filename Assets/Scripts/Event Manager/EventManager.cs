@@ -110,9 +110,21 @@ public class EventManager : MonoBehaviour
         MarkEventAsDone();
     }
 
-    public void OpenCurtains()
+    public void OpenCurtains(string unused)
     {
         StageController stageController = GameObject.Find("Stage").GetComponent<StageController>();
         stageController.OpenCurtains();
+    }
+
+    public void CloseCurtains(string unused)
+    {
+        StageController stageController = GameObject.Find("Stage").GetComponent<StageController>();
+        stageController.CloseCurtains();
+    }
+
+    public void SetMainMenuVisible(string visible)
+    {
+        MenuManager.instance.MainMenuSetActive(visible == "y");
+        MarkEventAsDone();
     }
 }

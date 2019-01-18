@@ -65,7 +65,7 @@ public class StageController : MonoBehaviour
             yield return new WaitForSeconds(TimeBetween);
         }
 
-        
+        EventManager.instance.MarkEventAsDone();
     }
 
     public void CloseCurtains()
@@ -102,5 +102,6 @@ public class StageController : MonoBehaviour
 
             yield return new WaitForSeconds(TimeBetween);
         }
+        EventManager.instance.MarkEventAsDone();
     }
 }
