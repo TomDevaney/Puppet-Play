@@ -10,10 +10,11 @@ public class StageController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        LeftCurtain = GameObject.Find("CurtainLeft");
-        RightCurtain = GameObject.Find("CurtainRight");
+        LeftCurtain = GameObject.Find("CurtainLeftParent");
+        RightCurtain = GameObject.Find("CurtainRightParent");
 
         OpenCurtains();
+
     }
 
     // Update is called once per frame
@@ -30,16 +31,76 @@ public class StageController : MonoBehaviour
             print("null");
         }
 
+        StartCoroutine(OpeningCurtains());
+
     }
 
     IEnumerator OpeningCurtains()
     {
+        float TimeBetween = 0.015f;
+        float FullyOpenScale = 0.1f;
+        float CloseEnoughRange = 0.09f;
 
-        yield return new WaitForSeconds(.01f);
+        while (true)
+        {
+            float NextZ = Mathf.Lerp(LeftCurtain.transform.localScale.z, FullyOpenScale, TimeBetween);
+
+            LeftCurtain.transform.localScale = new Vector3(
+                LeftCurtain.transform.localScale.x,
+                LeftCurtain.transform.localScale.y,
+                NextZ);
+
+            RightCurtain.transform.localScale = new Vector3(
+                RightCurtain.transform.localScale.x,
+                RightCurtain.transform.localScale.y,
+                NextZ);
+
+
+            if(Mathf.Abs(NextZ - FullyOpenScale) <= CloseEnoughRange)
+            {
+                break;
+            }
+
+
+            yield return new WaitForSeconds(TimeBetween);
+        }
+
+        
     }
 
     public void CloseCurtains()
     {
+        StartCoroutine(ClosingCurtains());
+    }
 
+    IEnumerator ClosingCurtains()
+    {
+        float TimeBetween = 0.015f;
+        float FullyClosedScale = 1.1f;
+        float CloseEnoughRange = 0.09f;
+
+        while (true)
+        {
+            float NextZ = Mathf.Lerp(LeftCurtain.transform.localScale.z, FullyClosedScale, TimeBetween);
+
+            LeftCurtain.transform.localScale = new Vector3(
+                LeftCurtain.transform.localScale.x,
+                LeftCurtain.transform.localScale.y,
+                NextZ);
+
+            RightCurtain.transform.localScale = new Vector3(
+                RightCurtain.transform.localScale.x,
+                RightCurtain.transform.localScale.y,
+                NextZ);
+
+
+            if (Mathf.Abs(NextZ - FullyClosedScale) <= CloseEnoughRange)
+            {
+                break;
+            }
+
+
+            yield return new WaitForSeconds(TimeBetween);
+        }
     }
 }
