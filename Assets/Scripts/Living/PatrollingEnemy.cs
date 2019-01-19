@@ -24,12 +24,12 @@ public class PatrollingEnemy : Enemy
     bool goToEnd;
 
     // Start is called before the first frame update
-    void Start()
+    override public void Start()
     {
         // Initialize parent variables
         base.Start();
 
-        SetMoveSpeed(0.005f);
+        SetMoveSpeed(0.01f);
         SetAttackDamage(1);
 
         // Initialize variables

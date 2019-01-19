@@ -6,7 +6,10 @@ using UnityEngine;
 public class Checkpoint : TriggerEvent
 {
     [SerializeField]
-    Material activeMaterial;
+    Material activeMaterial = null;
+
+    [SerializeField]
+    AudioSource audioSource = null;
 
     MeshRenderer meshRenderer;
 

@@ -27,14 +27,16 @@ public class GameManager : MonoBehaviour
 
         //Sets this to not be destroyed when reloading scene... Not sure it's needed for this game
         //DontDestroyOnLoad(gameObject);
+
+        // Retrieve references for everything game manager cares about
+        livingBeings = GetComponentsInChildren<Living>();
+        playerPuppet = GetComponentInChildren<Puppet>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        // Retrieve references for everything game manager cares about
-        livingBeings = GetComponentsInChildren<Living>();
-        playerPuppet = GetComponentInChildren<Puppet>();
+
     }
 
     // Update is called once per frame

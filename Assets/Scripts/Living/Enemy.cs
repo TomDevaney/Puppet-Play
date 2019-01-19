@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : Living
 {
     // Start is called before the first frame update
-    void Start()
+    override public void Start()
     {
         // All enemies will deal 1 damage as of now
         SetAttackDamage(1); 

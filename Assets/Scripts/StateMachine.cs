@@ -20,7 +20,7 @@ public class State
         return null;
     }
 
-    // 
+    // Have to store references here sometimes because the constructors are called before Awake()
     virtual public void OnStateEnter()
     {
 
@@ -65,7 +65,13 @@ public class StateMachine : MonoBehaviour
     /* Setters */
     public void SetCurrentState(State state)
     {
+        if (currentState != null)
+        {
+            currentState.OnStateExit();
+        }
+
         currentState = state;
+        currentState.OnStateEnter();
     }
 
     /* Getters */

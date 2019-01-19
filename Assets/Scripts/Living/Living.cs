@@ -8,7 +8,6 @@ public class Living : MonoBehaviour
     int healthPoints;
 
     // Movement speed
-    // Set to 0 if you don't want to move
     public float moveSpeed = 0.01f;
 
     // How much damage it will deal to the puppet
@@ -23,8 +22,15 @@ public class Living : MonoBehaviour
     // 
     // Animator animator;
 
+    // Clips of all the sounds needed for a living being
+    AudioClip deathSound;
+    AudioClip footstepsSound;
+    AudioClip gotHitSound;
+
+
+
     // Start is called before the first frame update
-    public void Start()
+    virtual public void Start()
     {
         // Initialize variables
         spawnPoint = transform.position;

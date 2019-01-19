@@ -8,7 +8,12 @@ public class AIContoller : StateMachine
     {
         AIContoller aiController;
 
-        public AIState(AIContoller controller)
+        public AIState(AIContoller controller) : base()
+        {
+            aiController = controller;
+        }
+
+        public void SetAIController(AIContoller controller)
         {
             aiController = controller;
         }
@@ -21,19 +26,26 @@ public class AIContoller : StateMachine
 
     public class IdleState : AIState
     {
-        FollowState followState;
-
         // Dad's variables
         Puppet dadPuppet;
-        Vector3 dadInitialPosition;
+        float dadInitialPosition;
+
+        // AI variables
+        Transform aiTransform;
+
+        // How much the dad needs to move before you start following
+        //const float dadNeedsTomove = 0.3f;
+
+        // Don't start following until this distance is reached
+        const float maxDistanceBetweenDad = 4.0f;
 
         public IdleState(AIContoller controller) : base(controller)
         {
-            // Retrieve references
+            // Get references
             dadPuppet = GameManager.instance.GetPlayerPuppet();
+            aiTransform = GetAIController().transform;
 
-            // Set up states
-            followState = new FollowState(controller);
+            print("IdleState");
         }
 
         override public State Update()
@@ -49,11 +61,10 @@ public class AIContoller : StateMachine
         {
             State state = null;
 
-            // Did the player move. Only look at x so she doesn't try to follow base on jump
-            if (dadPuppet.transform.position.x != dadInitialPosition.x)
+            // Regardless of which side dad is on, start following him when he gets far
+            if (Mathf.Abs(dadPuppet.transform.position.x - aiTransform.position.x) >= maxDistanceBetweenDad)
             {
-                // If so, do the follow state
-                state = followState;
+                state = new FollowState(GetAIController());
             }
 
             return state;
@@ -62,9 +73,11 @@ public class AIContoller : StateMachine
         // 
         override public void OnStateEnter()
         {
-            GetAIController().GetAnimator().SetTrigger("idle");
+            // TODO: Uncomment animation
+            // Go to idle animation
+            //GetAIController().GetAnimator().SetTrigger("idle");
 
-            dadInitialPosition = dadPuppet.transform.position;
+            dadInitialPosition = dadPuppet.transform.position.x;
         }
 
         // 
@@ -74,10 +87,12 @@ public class AIContoller : StateMachine
         }
     }
 
+    // Could've even done a copy state of some sorts
+    // Whatever the player does, this player does as well
+
+
     public class FollowState : AIState
     {
-        IdleState idleState;
-
         Transform aiTransform;
 
         // Dad variables
@@ -87,19 +102,24 @@ public class AIContoller : StateMachine
         float positionToGoTo;
 
         // Give him some breathing room
-        const float offsetFromDad = 1.0f;
+        const float offsetFromDad = 3.0f;
+
+        // Stop when you're within this range to the dad
+        const float closeEnough = 0.09f;
 
         //
-        const float moveSpeed = 0.1f;
+        //const float heMoved = 0.3f;
+
+        //
+        const float moveSpeed = 0.05f;
 
         public FollowState(AIContoller controller) : base(controller)
         {
             // Retrieve references
             dadTransform = GameManager.instance.GetPlayerPuppet().transform;
-            aiTransform = controller.transform;
+            aiTransform = GetAIController().transform;
 
-            // Set up states
-            idleState = new IdleState(controller);
+            print("FollowState");
         }
 
         override public State Update()
@@ -108,7 +128,7 @@ public class AIContoller : StateMachine
             int direction = -1;
 
             // Position is to the right
-            if (positionToGoTo > aiTransform.position.x)
+            if (dadTransform.position.x > aiTransform.position.x)
             {
                 direction = 1;
             }
@@ -124,18 +144,25 @@ public class AIContoller : StateMachine
         {
             State state = null;
 
-            // Did we reach the position we wanted to reach?
-            if (positionToGoTo == aiTransform.position.x)
+            // How far away from our ideal distance are we?
+            float distance = Mathf.Abs(aiTransform.position.x - dadTransform.position.x) - offsetFromDad;
+
+            // Are we within a threshold
+            if (distance <= closeEnough)
             {
-                // Did the player stop moving?
-                if (positionToGoTo == dadTransform.position.x)
+                // Did the player move since?
+                //if (Mathf.Abs(positionToGoTo - dadTransform.position.x) >= offsetFromDad)
+                //{
+                //    positionToGoTo = dadTransform.position.x;
+                //    positionToGoTo -= offsetFromDad;
+                //}
+                //else
                 {
-                    // Do the idle state
-                    state = idleState;
-                }
-                else
-                {
-                    positionToGoTo = dadTransform.position.x;
+                    // Move them the rest of the threshold
+                    aiTransform.Translate(new Vector3(distance, 0.0f, 0.0f));
+
+                    // He didn't move so do idle
+                    state = new IdleState(GetAIController());
                 }
             }
 
@@ -145,10 +172,98 @@ public class AIContoller : StateMachine
         // 
         override public void OnStateEnter()
         {
-            GetAIController().GetAnimator().SetTrigger("Walk");
+            // TODO: Uncomment animation
+            // Do walk animation
+            //GetAIController().GetAnimator().SetTrigger("Walk");
 
-            positionToGoTo = dadTransform.position.x;
-            positionToGoTo -= offsetFromDad;
+            // Go to dad's position but offset
+            //positionToGoTo = dadTransform.position.x;
+            //positionToGoTo -= offsetFromDad;
+        }
+
+        // 
+        override public void OnStateExit()
+        {
+
+        }
+    }
+
+    // For when she needs to platform around
+    // Raycast for walls
+    // Raycast in front of her for jumps
+    public class ParkourState : AIState
+    {
+        Transform aiTransform;
+
+        // Dad variables
+        Transform dadTransform;
+
+        // Only focus on x for now
+        float positionToGoTo;
+
+        // Give him some breathing room
+        const float offsetFromDad = 3.0f;
+
+        // Stop when you're within this range to the dad
+        const float closeEnough = 0.09f;
+
+        //
+        //const float heMoved = 0.3f;
+
+        //
+        const float moveSpeed = 0.05f;
+
+        public ParkourState(AIContoller controller) : base(controller)
+        {
+            // Retrieve references
+            dadTransform = GameManager.instance.GetPlayerPuppet().transform;
+            aiTransform = GetAIController().transform;
+
+            print("FollowState");
+        }
+
+        override public State Update()
+        {
+            // Do follow stuff
+            int direction = -1;
+
+            // Position is to the right
+            if (dadTransform.position.x > aiTransform.position.x)
+            {
+                direction = 1;
+            }
+
+            // Move them closer to dad
+            aiTransform.Translate(new Vector3(direction * moveSpeed, 0.0f, 0.0f));
+
+            // Check if you're in the desired spot
+            return CheckForTransition();
+        }
+
+        override public State CheckForTransition()
+        {
+            State state = null;
+
+            // How far away from our ideal distance are we?
+            float distance = Mathf.Abs(aiTransform.position.x - dadTransform.position.x) - offsetFromDad;
+
+            // Are we within a threshold
+            if (distance <= closeEnough)
+            {
+                // Move them the rest of the threshold
+                aiTransform.Translate(new Vector3(distance, 0.0f, 0.0f));
+
+                // He didn't move so do idle
+                state = new IdleState(GetAIController());
+            }
+
+            return state;
+        }
+
+        // 
+        override public void OnStateEnter()
+        {
+
         }
 
         // 

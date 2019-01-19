@@ -21,8 +21,10 @@ public class Puppet : Living
 
     public float LastMoveDirection = 1.0f;
 
+
+
     // Start is called before the first frame update
-    void Start()
+    override public void Start()
     {
         TheRigidBody = GetComponent<Rigidbody>();
 
