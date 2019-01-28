@@ -8,9 +8,7 @@ public class Checkpoint : TriggerEvent
     [SerializeField]
     Material activeMaterial = null;
 
-    [SerializeField]
     AudioSource audioSource = null;
-
     MeshRenderer meshRenderer;
 
     // Start is called before the first frame update
@@ -18,6 +16,8 @@ public class Checkpoint : TriggerEvent
     {
         // Grab references to components
         meshRenderer = GetComponent<MeshRenderer>();
+        audioSource = GetComponent<AudioSource>();
+
 
         // This will happen when someone goes through the trigger
         OnTrigger.AddListener(SetMostRecentCheckpoint);
@@ -36,10 +36,10 @@ public class Checkpoint : TriggerEvent
             {
                 // Change the material of the object indicating that the checkpoint has been hit
                 meshRenderer.material = activeMaterial;
+
+                // Play the sound
+                audioSource.Play();
             }
-
-            // TODO: Play a checkpoint sound
-
             result = true;
         }
 
