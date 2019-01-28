@@ -19,27 +19,61 @@ public class Living : MonoBehaviour
     // Where the living will spawn if they respawn after dying
     Vector3 spawnPoint;
 
-    // 
-    // Animator animator;
+    // Usage: Only use PlayOneShot with this because we need to play multiple sounds through one AudioSource and that function allows this
+    AudioSource audioSource = null;
+
+    // Only to be used for footsteps
+    // Make sure it's the second audiosource in the object
+    AudioSource footstepsAudioSource = null;
 
     // Clips of all the sounds needed for a living being
-    AudioClip deathSound;
-    AudioClip footstepsSound;
-    AudioClip gotHitSound;
+    [SerializeField]
+    AudioClip deathSound = null;
 
+    [SerializeField]
+    AudioClip footstepsSound = null;
 
+    [SerializeField]
+    AudioClip gotHitSound = null;
 
     // Start is called before the first frame update
-    virtual public void Start()
+    public virtual void Start()
     {
         // Initialize variables
         spawnPoint = transform.position;
+
+        // Get references
+        audioSource = GetComponents<AudioSource>()[0];
+        footstepsAudioSource = GetComponents<AudioSource>()[1];
+
+        // Set clip to footsteps source because that's the only sound it'll play
+        footstepsAudioSource.clip = footstepsSound;
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void Move(float xAxis)
+    {
+        transform.Translate(new Vector2(xAxis * moveSpeed, 0.0f));
+
+        // Only play footsteps if they're actually moving and it's not playing already
+        const float walkingThreshold = 0.15f;
+
+        if (Mathf.Abs(xAxis) >= walkingThreshold)
+        {
+            if (!footstepsAudioSource.isPlaying)
+            {
+                footstepsAudioSource.Play();
+            }
+            else
+            {
+                print("still playing");
+            }
+        }
     }
 
     public void DoDamage(Living living)
@@ -52,7 +86,8 @@ public class Living : MonoBehaviour
         // Apply damage
         healthPoints -= damage;
 
-        Debug.Log("Ouch");
+        // Play got hit sound
+        audioSource.PlayOneShot(gotHitSound);
 
         // Check if dead
         if (healthPoints <= 0)
@@ -65,6 +100,10 @@ public class Living : MonoBehaviour
     public virtual void JustDied()
     {
         // TODO: Do a fancy animation before destroying it
+
+        // Play death sound
+        // TODO: might have to delay it somehow depending on how it sounds being played exactly same time 
+        audioSource.PlayOneShot(deathSound);
 
         isDead = true;
     }
@@ -119,5 +158,10 @@ public class Living : MonoBehaviour
     public int GetHealthPoints()
     {
         return healthPoints;
+    }
+
+    AudioClip GetFootstepsSound()
+    {
+        return footstepsSound;
     }
 }

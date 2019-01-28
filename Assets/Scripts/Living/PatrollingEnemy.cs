@@ -22,9 +22,9 @@ public class PatrollingEnemy : Enemy
 
     // If true, it will go to the end position. If false, it will go to the false position
     bool goToEnd;
-
+    
     // Start is called before the first frame update
-    override public void Start()
+    public override void Start()
     {
         // Initialize parent variables
         base.Start();
@@ -81,7 +81,7 @@ public class PatrollingEnemy : Enemy
         }
 
         // Apply movement in the desired direction
-        transform.Translate(new Vector3(GetMoveSpeed() * direction, 0.0f));
+        Move(direction);
 
         // TODO: I don't think this takes into consideration endPosition being on the left
 

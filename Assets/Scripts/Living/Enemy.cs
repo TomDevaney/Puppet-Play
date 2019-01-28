@@ -5,8 +5,10 @@ using UnityEngine;
 public class Enemy : Living
 {
     // Start is called before the first frame update
-    override public void Start()
+    public override void Start()
     {
+        base.Start();
+
         // All enemies will deal 1 damage as of now
         SetAttackDamage(1); 
     }
@@ -18,7 +20,7 @@ public class Enemy : Living
     }
 
     // React to them dying
-    public override void JustDied()
+    override public void JustDied()
     {
         // Make disappear happen when the animation is over. So hook it up with animationTime
         //Invoke("Disappear", 1.0f);

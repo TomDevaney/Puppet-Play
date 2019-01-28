@@ -19,13 +19,11 @@ public class Puppet : Living
 
     public float JumpForce = 300;
 
-    public float LastMoveDirection = 1.0f;
-
-
-
     // Start is called before the first frame update
-    override public void Start()
+    public override void Start()
     {
+        base.Start();
+
         TheRigidBody = GetComponent<Rigidbody>();
 
         // Initialize parent variables
@@ -78,15 +76,6 @@ public class Puppet : Living
         if (IsStandingOnSurface)
         {
             TheRigidBody.AddForce(0, JumpForce, 0);
-        }
-    }
-
-    public void Move(float xAxis)
-    {
-        transform.Translate(new Vector2(xAxis * moveSpeed, 0.0f));
-        if (xAxis != 0)
-        {
-            LastMoveDirection = xAxis;
         }
     }
 
