@@ -22,9 +22,6 @@ public class Living : MonoBehaviour
     // Where the living will spawn if they respawn after dying
     Vector3 spawnPoint;
 
-    // Usage: Only use PlayOneShot with this because we need to play multiple sounds through one AudioSource and that function allows this
-    //AudioSource audioSource = null;
-
     // Only to be used for footsteps
     // Make sure it's the second audiosource in the object
     AudioSource footstepsAudioSource = null;
@@ -46,8 +43,7 @@ public class Living : MonoBehaviour
         spawnPoint = transform.position;
 
         // Get references
-        //audioSource = GetComponents<AudioSource>()[0];
-        footstepsAudioSource = GetComponents<AudioSource>()[1];
+        footstepsAudioSource = GetComponents<AudioSource>()[0];
 
         // Set clip to footsteps source because that's the only sound it'll play
         footstepsAudioSource.clip = footstepsSound;
@@ -56,18 +52,7 @@ public class Living : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Only destroy object if dead and the sounds are done
-        //if (isDead)
-        //{
-        //    if (!audioSource.isPlaying)
-        //    {
-        //        Destroy(gameObject);
-        //    }
-        //    else
-        //    {
-        //        print("still playing");
-        //    }
-        //}
+
     }
 
     public void Move(float xAxis)
@@ -84,10 +69,6 @@ public class Living : MonoBehaviour
             {
                 footstepsAudioSource.Play();
             }
-            //else
-            //{
-            //    print("still playing");
-            //}
         }
     }
 
@@ -105,11 +86,6 @@ public class Living : MonoBehaviour
         if (gotHitSound != null)
         {
             AudioManager.instance.PlaySoundFXAtPosition(gotHitSound, transform.position);
-            //audioSource.PlayOneShot(gotHitSound);
-            //audioSource.clip = gotHitSound;
-            //audioSource.Play();
-
-            print("ouch");
         }
 
         // Check if dead
@@ -129,17 +105,12 @@ public class Living : MonoBehaviour
         if (deathSound != null)
         {
             AudioManager.instance.PlaySoundFXAtPosition(deathSound, transform.position);
-            //audioSource.PlayOneShot(deathSound);
         }
 
-        // Disable so it can finish playing sounds but so that it disappears
-        //gameObject.SetActive(false);
-        //audioSource.enabled = true;
+        // Disable so it can be respawned later if needed
+        gameObject.SetActive(false);
 
-        Destroy(gameObject);
-
-        // Destroy once the sounds are done
-        //Invoke("DestroyThis", Mathf.Max(deathSound.length, gotHitSound.length) + 0.5f);
+        //Destroy(gameObject);
 
         // Mark as dead
         isDead = true;
@@ -147,13 +118,13 @@ public class Living : MonoBehaviour
 
     public virtual void Respawn()
     {
+        // Spawn the object at the spawn point
         transform.position = new Vector3(spawnPoint.x, spawnPoint.y, transform.position.z);
-    }
 
-    //public void DestroyThis()
-    //{
-    //    Destroy(gameObject);
-    //}
+        // Reset variables
+        gameObject.SetActive(true);
+        isDead = false;
+    }
 
     /* Setters */
     public void SetMoveSpeed(float speed)
