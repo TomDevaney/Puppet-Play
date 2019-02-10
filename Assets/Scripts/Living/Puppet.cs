@@ -13,11 +13,18 @@ public class Puppet : Living
 
     public Rigidbody TheRigidBody;
 
-    public bool IsStandingOnSurface = true;
-
     public float FootSpread = 0.1f;
 
     public float JumpForce = 300;
+
+    [SerializeField]
+    AudioClip jumpClip;
+
+    [SerializeField]
+    AudioClip landClip;
+
+    [SerializeField]
+    AudioClip attackClip;
 
     // Start is called before the first frame update
     public override void Start()
@@ -51,7 +58,7 @@ public class Puppet : Living
         int LayerMask = 1 << 9;
         LayerMask = ~LayerMask;
 
-        float MaxRayDistance = 2.0f;
+        float MaxRayDistance = 0.1f;
         RaycastHit HitInfo;
         Vector3 FootSpreadOffset = new Vector3(FootSpread, 0, 0);
         if (Physics.Raycast(transform.position, transform.up * -1, out HitInfo, MaxRayDistance, LayerMask)
@@ -59,23 +66,32 @@ public class Puppet : Living
             || Physics.Raycast(transform.position - FootSpreadOffset, transform.up * -1, out HitInfo, MaxRayDistance, LayerMask)
             )
         {
-            IsStandingOnSurface = true;
+            // Only play landing sound if they were just in the air
+            if (!IsStandingOnSurface())
+            {
+                AudioManager.instance.PlaySoundFXAtPosition(landClip, gameObject.transform.position);
+            }
+
+            SetStandingOnSurface(true);
             //print(HitInfo.distance + "");
         }
         else
         {
-            IsStandingOnSurface = false;
+            SetStandingOnSurface(false);
         }
-        
-        
+
+
     }
 
     public void Jump()
     {
         //print("Jumped");
-        if (IsStandingOnSurface)
+        if (IsStandingOnSurface())
         {
             TheRigidBody.AddForce(0, JumpForce, 0);
+
+            // Play jump sound
+            AudioManager.instance.PlaySoundFXAtPosition(jumpClip, gameObject.transform.position);
         }
     }
 
@@ -90,6 +106,8 @@ public class Puppet : Living
             //int LayerMask = 0;
             LayerMask = ~LayerMask;
 
+            // Play sword swinging sound
+            AudioManager.instance.PlaySoundFXAtPosition(attackClip, gameObject.transform.position);
 
             float MaxRayDistance = 1.5f;
             print("transform.right : " + transform.right);
