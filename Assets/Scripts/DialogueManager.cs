@@ -69,7 +69,7 @@ public class DialogueManager : MonoBehaviour
     int mCurrentDialogueIndex;
 
     // Relative path to the dialogue file
-    const string mDialogueFilePath = "/Files/Test Dialogue.txt";
+    const string mDialogueFilePath = "/Files/Dialogue.txt";
 
     // Used to display multiple dialogues per one event call
     int numberOfDialoguesToDisplay;
