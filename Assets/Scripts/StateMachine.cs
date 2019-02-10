@@ -49,6 +49,8 @@ public class StateMachine : MonoBehaviour
     void Update()
     {
         // Update returning a state means that's the next state
+        if (currentState == null)
+            return;
         State tempState = currentState.Update();
 
         if (tempState != null)

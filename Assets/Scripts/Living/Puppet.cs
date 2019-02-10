@@ -97,6 +97,9 @@ public class Puppet : Living
 
     public void Attack()
     {
+        //invoke("",3)
+
+        //standing
         if (true)
         {
             print("attack");

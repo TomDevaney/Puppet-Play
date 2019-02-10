@@ -591,6 +591,7 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
+    Collab: 1
     UNet: 1
   luminIcon:
     m_Name: 
@@ -611,10 +612,10 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: de2d3a34-bb01-46c9-9ec9-de15f82a7e42
+  cloudProjectId: 43ccead8-9710-4081-a9a5-1903956ec49a
   framebufferDepthMemorylessMode: 0
   projectName: Puppet Play
-  organizationId: thyasianman
+  organizationId: andrew-hollist
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

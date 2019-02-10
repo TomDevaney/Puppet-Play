@@ -133,6 +133,7 @@ public class AIContoller : StateMachine
                 direction = 1;
             }
 
+            // TODO: use puppet move function instead
             // Move them closer to dad
             aiTransform.Translate(new Vector3(direction * moveSpeed, 0.0f, 0.0f));
 
