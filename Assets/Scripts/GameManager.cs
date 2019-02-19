@@ -13,8 +13,10 @@ public class GameManager : MonoBehaviour
     //
     Living[] livingBeings;
 
-    // Even though it's a part of the livingBeings array, I want direct access to it sometimes
+    // Even though it's a part of the livingBeings array, I want direct access to both puppets
     Puppet playerPuppet;
+    Puppet daughterPuppet;
+
 
     // Awake is called before Start
     void Awake()
@@ -30,7 +32,11 @@ public class GameManager : MonoBehaviour
 
         // Retrieve references for everything game manager cares about
         livingBeings = GetComponentsInChildren<Living>();
-        playerPuppet = GetComponentInChildren<Puppet>();
+
+        Puppet[] puppets = GetComponentsInChildren<Puppet>();
+        playerPuppet = puppets[0];
+        daughterPuppet = puppets[1];
+
     }
 
     // Start is called before the first frame update
@@ -75,6 +81,11 @@ public class GameManager : MonoBehaviour
     public Puppet GetPlayerPuppet()
     {
         return playerPuppet;
+    }
+
+    public Puppet GetDaughterPuppet()
+    {
+        return daughterPuppet;
     }
 
     /* Setters */

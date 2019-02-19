@@ -127,4 +127,17 @@ public class EventManager : MonoBehaviour
         MenuManager.instance.MainMenuSetActive(visible == "y");
         MarkEventAsDone();
     }
+
+    // Will tell daughter to stop checking for other states
+    // Might have problems as this will retain state that it was in
+    // Might want to set current state to idle?
+    //
+    // Also this might not give the desired effect
+    // She wont follow once she hits the trigger even if you go the other way
+    // Might just want to use the trigger as a do not go past this section
+    //
+    public void SetDaughterUpdateMachine(string doUpdate)
+    {
+        GameManager.instance.GetDaughterPuppet().GetComponent<AIContoller>().SetUpdateMachine(int.Parse(doUpdate) == 1);
+    }
 }

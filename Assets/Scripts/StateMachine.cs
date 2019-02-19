@@ -40,6 +40,8 @@ public class StateMachine : MonoBehaviour
     State currentState;
     //State nextState;
 
+    bool updateMachine = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,16 +53,21 @@ public class StateMachine : MonoBehaviour
         // Update returning a state means that's the next state
         if (currentState == null)
             return;
-        State tempState = currentState.Update();
 
-        if (tempState != null)
+        // Don't update if it's been told not to
+        if (updateMachine)
         {
-            currentState.OnStateExit();
+            State tempState = currentState.Update();
 
-            currentState = tempState;
+            if (tempState != null)
+            {
+                currentState.OnStateExit();
 
-            currentState.OnStateEnter();
-            //nextState = tempState;
+                currentState = tempState;
+
+                currentState.OnStateEnter();
+                //nextState = tempState;
+            }
         }
     }
 
@@ -74,6 +81,11 @@ public class StateMachine : MonoBehaviour
 
         currentState = state;
         currentState.OnStateEnter();
+    }
+
+    public void SetUpdateMachine(bool doUpdate)
+    {
+        updateMachine = doUpdate;
     }
 
     /* Getters */
