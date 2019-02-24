@@ -114,6 +114,10 @@ public class DialogueManager : MonoBehaviour
     [SerializeField]
     List<AudioClip> mumblingClips = null;
 
+    // TODO: Check that this is disabled for real bbuild
+    [SerializeField]
+    bool skipDialogue = true;
+
     // Awake is called before Start
     void Awake()
     {
@@ -293,6 +297,9 @@ public class DialogueManager : MonoBehaviour
     {
         // TODO: Do cool animation to put away canvas
 
+        // Unsubscribe from event
+        InputManager.OnLeftMouseReleased -= EndDialogue;
+
         // Set enabled so it isn't visible
         canvas.enabled = false;
 
@@ -335,6 +342,13 @@ public class DialogueManager : MonoBehaviour
 
         // Spit out dialogue time
         doDialogue = true;
+
+        // Development tool to skip dialogue
+        if (skipDialogue)
+        {
+            text.text = mAllDialogue[mCurrentDialogueIndex].GetWords();
+            currentCharIndexForDialogue = text.text.Length;
+        }
     }
 
     //AudioClip MakeMumblingClip(string words)
