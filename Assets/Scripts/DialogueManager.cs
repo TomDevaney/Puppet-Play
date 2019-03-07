@@ -239,8 +239,20 @@ public class DialogueManager : MonoBehaviour
             }
             else
             {
+                // Enable input prompt image
+                inputPrompt.enabled = true;
+
+                // Stop dialog from updating
+                doDialogue = false;
+
+                // Update overall dialogue index
+                ++mCurrentDialogueIndex;
+
+                // Update number of dialogues that have been displayed in a row
+                ++numberOfDialoguesThatHaveBeenDisplayed;
+
                 // Only do if we haven't met requested number of dialogues
-                if (numberOfDialoguesThatHaveBeenDisplayed + 1 < numberOfDialoguesToDisplay)
+                if (numberOfDialoguesThatHaveBeenDisplayed < numberOfDialoguesToDisplay)
                 {
                     // Then subscribe to input manager for left mouse click event using NextDialogue
                     InputManager.OnLeftMouseReleased += NextDialogue;
@@ -249,12 +261,6 @@ public class DialogueManager : MonoBehaviour
                 {
                     InputManager.OnLeftMouseReleased += EndDialogue;
                 }
-
-                // Enable input prompt image
-                inputPrompt.enabled = true;
-
-                // Stop dialog from updating
-                doDialogue = false;
             }
 
         }
@@ -277,12 +283,6 @@ public class DialogueManager : MonoBehaviour
     // Start the next piece of dialogue
     public void NextDialogue()
     {
-        // Update number of dialogues that have been displayed in a row
-        ++numberOfDialoguesThatHaveBeenDisplayed;
-
-        // Update overall dialogue index
-        ++mCurrentDialogueIndex;
-
         // Unsubscribe from event
         InputManager.OnLeftMouseReleased -= NextDialogue;
 
