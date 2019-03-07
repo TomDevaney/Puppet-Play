@@ -106,7 +106,12 @@ public class EventManager : MonoBehaviour
     public void MakePuppetJump(string PathToPuppet)
     {
         Puppet puppet = GameObject.Find(PathToPuppet).GetComponent<Puppet>();
+
+        // Regardless of whether they can jump, mark them as being able to
+        // Little hack for daughter who is never standing on surface because her origin is in the middle whereas the knight is at his fight
+        puppet.SetStandingOnSurface(true);
         puppet.Jump();
+
         MarkEventAsDone();
     }
 
