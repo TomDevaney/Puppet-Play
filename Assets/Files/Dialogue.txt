@@ -50,13 +50,16 @@ Daughter
 I did it!
 
 Knight
-That you did your majesty.
+That you did your majesty. It only gets harder from here though.
 
 Princess
 Sir knight! How am I supposed to get up there? It’s too high!
 
 Knight
-You have to jump on to these platforms to get up there.
+You have to jump on to these platforms to get up there. Watch and learn!
+
+Knight
+See? Easy!
 
 Princess
 That looks hard! I’m not sure my little princess body can handle that.
