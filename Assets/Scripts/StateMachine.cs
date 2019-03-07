@@ -71,6 +71,11 @@ public class StateMachine : MonoBehaviour
         }
     }
 
+    public virtual void Reset()
+    {
+
+    }
+
     /* Setters */
     public void SetCurrentState(State state)
     {
@@ -86,6 +91,9 @@ public class StateMachine : MonoBehaviour
     public void SetUpdateMachine(bool doUpdate)
     {
         updateMachine = doUpdate;
+
+        // Reset to base state
+        Reset();
     }
 
     /* Getters */
