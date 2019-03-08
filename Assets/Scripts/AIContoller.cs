@@ -107,41 +107,75 @@ public class AIContoller : StateMachine
         // Stop when you're within this range to the dad
         const float closeEnough = 0.09f;
 
-        //
-        //const float heMoved = 0.3f;
+		// Reference to daughter
+		Puppet daughterPuppet;
 
-        //
-        const float moveSpeed = 0.05f;
+		// To prevent double or even triple jumping
+		bool bJustJumped = false;
+		int framesSinceJumped = 0;
+
+		//
+		const float moveSpeed = 0.05f;
 
         public FollowState(AIContoller controller) : base(controller)
         {
             // Retrieve references
             dadTransform = GameManager.instance.GetPlayerPuppet().transform;
             aiTransform = GetAIController().transform;
+			daughterPuppet = GameManager.instance.GetDaughterPuppet();
 
-            print("FollowState");
+			print("FollowState");
         }
 
-        override public State Update()
-        {
-            // Do follow stuff
-            int direction = -1;
+		override public State Update()
+		{
+			// Do follow stuff
+			int direction = -1;
 
-            // Position is to the right
-            if (dadTransform.position.x > aiTransform.position.x)
-            {
-                direction = 1;
-            }
+			// Position is to the right
+			if (dadTransform.position.x > aiTransform.position.x)
+			{
+				direction = 1;
+			}
 
-            // TODO: use puppet move function instead
-            // Move them closer to dad
-            aiTransform.Translate(new Vector3(direction * moveSpeed, 0.0f, 0.0f));
+			// TODO: use puppet move function instead
+			// Move them closer to dad
+			aiTransform.Translate(new Vector3(direction * moveSpeed, 0.0f, 0.0f));
 
-            // Check if you're in the desired spot
-            return CheckForTransition();
-        }
+			// Check to see if somethings in the way
+			if (!bJustJumped)
+			{
+				float MaxRayDistance = 2.5f;
+				Vector3 position = aiTransform.position;
 
-        override public State CheckForTransition()
+				// Ignore the Player Layer
+				int LayerMask = 1 << 9;
+				LayerMask = ~LayerMask;
+
+				RaycastHit hitInfo;
+				if (Physics.Raycast(new Vector3(position.x, position.y, position.z), aiTransform.right, out hitInfo, MaxRayDistance, LayerMask))
+				{
+					daughterPuppet.Jump();
+					print("daughter jump!");
+
+					bJustJumped = true;
+					framesSinceJumped = 0;
+				}
+			}
+			else
+			{
+				++framesSinceJumped;
+
+				if (framesSinceJumped == 60)
+				{
+					bJustJumped = false;
+				}
+			}
+
+			return CheckForTransition();
+		}
+
+		override public State CheckForTransition()
         {
             State state = null;
 
@@ -192,87 +226,81 @@ public class AIContoller : StateMachine
     // For when she needs to platform around
     // Raycast for walls
     // Raycast in front of her for jumps
-    public class ParkourState : AIState
-    {
-        Transform aiTransform;
+    //public class ParkourState : AIState
+ //   public class JumpState : AIState
+	//{
+	//	Transform aiTransform;
 
-        // Dad variables
-        Transform dadTransform;
+	//	// Reference to daughter
+	//	Puppet daughterPuppet;
 
-        // Only focus on x for now
-        float positionToGoTo;
+	//	//
+	//	bool justJumped = false;
 
-        // Give him some breathing room
-        const float offsetFromDad = 3.0f;
+	//	//
+	//	const float moveSpeed = 0.05f;
 
-        // Stop when you're within this range to the dad
-        const float closeEnough = 0.09f;
+ //       public JumpState(AIContoller controller) : base(controller)
+ //       {
+ //           // Retrieve references
+ //           aiTransform = GetAIController().transform;
+	//		daughterPuppet = GameManager.instance.GetDaughterPuppet();
 
-        //
-        //const float heMoved = 0.3f;
+	//		print("FollowState");
+ //       }
 
-        //
-        const float moveSpeed = 0.05f;
+ //       override public State Update()
+ //       {
+	//		// Check to see if somethings in the way
+	//		float MaxRayDistance = 2.5f;
+	//		Vector3 position = aiTransform.position;
 
-        public ParkourState(AIContoller controller) : base(controller)
-        {
-            // Retrieve references
-            dadTransform = GameManager.instance.GetPlayerPuppet().transform;
-            aiTransform = GetAIController().transform;
+	//		// Ignore the Player Layer
+	//		int LayerMask = 1 << 9;
+	//		LayerMask = ~LayerMask;
 
-            print("FollowState");
-        }
+	//		RaycastHit hitInfo;
+	//		if (Physics.Raycast(new Vector3(position.x, position.y, position.z), aiTransform.right, out hitInfo, MaxRayDistance, LayerMask))
+	//		{
+	//			daughterPuppet.Jump();
+	//			justJumped = true;
+	//			print("daughter jump!");
+	//		}
 
-        override public State Update()
-        {
-            // Do follow stuff
-            int direction = -1;
 
-            // Position is to the right
-            if (dadTransform.position.x > aiTransform.position.x)
-            {
-                direction = 1;
-            }
+	//		// Check if you're in the desired spot
+	//		return CheckForTransition();
+ //       }
 
-            // Move them closer to dad
-            aiTransform.Translate(new Vector3(direction * moveSpeed, 0.0f, 0.0f));
+ //       override public State CheckForTransition()
+ //       {
+ //           State state = null;
 
-            // Check if you're in the desired spot
-            return CheckForTransition();
-        }
+ //           // Did we already jump
+ //           if (distance <= closeEnough)
+ //           {
+ //               // Move them the rest of the threshold
+ //               aiTransform.Translate(new Vector3(distance, 0.0f, 0.0f));
 
-        override public State CheckForTransition()
-        {
-            State state = null;
+ //               // He didn't move so do idle
+ //               state = new IdleState(GetAIController());
+ //           }
 
-            // How far away from our ideal distance are we?
-            float distance = Mathf.Abs(aiTransform.position.x - dadTransform.position.x) - offsetFromDad;
+ //           return state;
+ //       }
 
-            // Are we within a threshold
-            if (distance <= closeEnough)
-            {
-                // Move them the rest of the threshold
-                aiTransform.Translate(new Vector3(distance, 0.0f, 0.0f));
+ //       // 
+ //       override public void OnStateEnter()
+ //       {
 
-                // He didn't move so do idle
-                state = new IdleState(GetAIController());
-            }
+ //       }
 
-            return state;
-        }
+ //       // 
+ //       override public void OnStateExit()
+ //       {
 
-        // 
-        override public void OnStateEnter()
-        {
-
-        }
-
-        // 
-        override public void OnStateExit()
-        {
-
-        }
-    }
+ //       }
+ //   }
 
     Animator animator;
 

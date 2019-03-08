@@ -17,6 +17,9 @@ public class Puppet : Living
 
     public float JumpForce = 300;
 
+	// Different puppets have different origins so need to customize this
+	public float checkStandingRayDistance;
+
     [SerializeField]
     AudioClip jumpClip;
 
@@ -58,12 +61,11 @@ public class Puppet : Living
         int LayerMask = 1 << 9;
         LayerMask = ~LayerMask;
 
-        float MaxRayDistance = 0.1f;
         RaycastHit HitInfo;
         Vector3 FootSpreadOffset = new Vector3(FootSpread, 0, 0);
-        if (Physics.Raycast(transform.position, transform.up * -1, out HitInfo, MaxRayDistance, LayerMask)
-            || Physics.Raycast(transform.position + FootSpreadOffset, transform.up * -1, out HitInfo, MaxRayDistance, LayerMask)
-            || Physics.Raycast(transform.position - FootSpreadOffset, transform.up * -1, out HitInfo, MaxRayDistance, LayerMask)
+        if (Physics.Raycast(transform.position, transform.up * -1, out HitInfo, checkStandingRayDistance, LayerMask)
+            || Physics.Raycast(transform.position + FootSpreadOffset, transform.up * -1, out HitInfo, checkStandingRayDistance, LayerMask)
+            || Physics.Raycast(transform.position - FootSpreadOffset, transform.up * -1, out HitInfo, checkStandingRayDistance, LayerMask)
             )
         {
             // Only play landing sound if they were just in the air
