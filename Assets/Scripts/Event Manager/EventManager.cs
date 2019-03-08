@@ -144,5 +144,6 @@ public class EventManager : MonoBehaviour
     public void SetDaughterUpdateMachine(string doUpdate)
     {
         GameManager.instance.GetDaughterPuppet().GetComponent<AIContoller>().SetUpdateMachine(int.Parse(doUpdate) == 1);
+        MarkEventAsDone();
     }
 }

@@ -286,6 +286,11 @@ public class AIContoller : StateMachine
         SetCurrentState(new IdleState(this));
     }
 
+    public override void Reset()
+    {
+        SetCurrentState(new IdleState(this));
+    }
+
     /* Getters */
     Animator GetAnimator()
     {
