@@ -29,8 +29,13 @@ public class Player : MonoBehaviour
 			if(Input.GetButtonDown("Jump"))
 			{
 				ThePuppet.Jump();
+                print("Jumped");
 			}
 		}
+        else
+        {
+            //print("Cant Jump!");
+        }
 
         if (InputManager.instance.CanPlayerAttack())
         {

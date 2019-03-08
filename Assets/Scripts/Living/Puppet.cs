@@ -94,6 +94,12 @@ public class Puppet : Living
 
             // Play jump sound
             AudioManager.instance.PlaySoundFXAtPosition(jumpClip, gameObject.transform.position);
+
+            animator.SetTrigger("Jump");
+        }
+        else
+        {
+            print("not standing on surface");
         }
     }
 
@@ -133,6 +139,8 @@ public class Puppet : Living
                 }
 
             }
+
+            animator.SetTrigger("Attack");
         }
     }
 
