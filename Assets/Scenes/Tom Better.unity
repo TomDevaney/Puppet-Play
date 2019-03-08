@@ -3200,6 +3200,7 @@ GameObject:
   - component: {fileID: 1349176993}
   - component: {fileID: 1349176994}
   - component: {fileID: 1349176995}
+  - component: {fileID: 1349176996}
   m_Layer: 11
   m_Name: Daughter
   m_TagString: Puppet
@@ -3214,8 +3215,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1349176986}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.24, y: -2.47, z: -2.8400002}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 19.51, y: -2.08, z: -2.8400002}
   m_LocalScale: {x: 0.3, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 305981350}
@@ -3252,6 +3253,7 @@ MonoBehaviour:
   TheRigidBody: {fileID: 0}
   FootSpread: 0.1
   JumpForce: 325
+  checkStandingRayDistance: 0.55
   jumpClip: {fileID: 0}
   landClip: {fileID: 0}
   attackClip: {fileID: 0}
@@ -3269,7 +3271,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!23 &1349176991
 MeshRenderer:
@@ -3444,6 +3446,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1349176996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349176986}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd9636864645455418f25581fa5b2a28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ThePuppet: {fileID: 0}
 --- !u!1 &1502463165
 GameObject:
   m_ObjectHideFlags: 0
@@ -5214,7 +5229,7 @@ PrefabInstance:
     - target: {fileID: 3132816840013331959, guid: 6df70fe9091129c47be11dbe00357681,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3132816840013331952, guid: 6df70fe9091129c47be11dbe00357681,
         type: 3}
@@ -5291,7 +5306,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3965591716952137809}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.57, y: -2.95, z: -2.98}
+  m_LocalPosition: {x: 46.08, y: -2.95, z: -2.98}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 305981350}
@@ -5542,6 +5557,7 @@ MonoBehaviour:
   TheRigidBody: {fileID: 0}
   FootSpread: 0.1
   JumpForce: 325
+  checkStandingRayDistance: 0.1
   jumpClip: {fileID: 8300000, guid: 103970729c9cacb499906a8b51388c6e, type: 3}
   landClip: {fileID: 8300000, guid: 1f7912cb3b0fede428d286c602595a1d, type: 3}
   attackClip: {fileID: 8300000, guid: f2f95c3b83f51ce4f9267fa20c6fefe8, type: 3}
@@ -6087,7 +6103,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &8596271291597759384
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6212,7 +6228,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8596271291892892994
 Transform:
   m_ObjectHideFlags: 0
