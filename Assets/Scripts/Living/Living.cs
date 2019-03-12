@@ -36,6 +36,12 @@ public class Living : MonoBehaviour
     [SerializeField]
     AudioClip gotHitSound = null;
 
+    public Animator animator;
+
+    bool isFacingRight = true;
+
+    bool isStandingStill = true;
+
     // Start is called before the first frame update
     public virtual void Start()
     {
@@ -47,6 +53,8 @@ public class Living : MonoBehaviour
 
         // Set clip to footsteps source because that's the only sound it'll play
         footstepsAudioSource.clip = footstepsSound;
+
+        animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -57,7 +65,20 @@ public class Living : MonoBehaviour
 
     public void Move(float xAxis)
     {
-        transform.Translate(new Vector2(xAxis * moveSpeed, 0.0f));
+        isFacingRight = xAxis > 0;
+        if(standingOnSurface && Mathf.Abs(xAxis) < 0.05f)
+        {
+            isStandingStill = true;
+        }
+        else
+        {
+            isStandingStill = false;
+        }
+
+        //if(transform != null)
+        {
+            transform.Translate(new Vector2(xAxis * moveSpeed, 0.0f));
+        }
 
         // Only play footsteps if they're actually moving and it's not playing already
         const float walkingThreshold = 0.15f;
@@ -69,6 +90,16 @@ public class Living : MonoBehaviour
             {
                 footstepsAudioSource.Play();
             }
+        }
+
+        if(isStandingStill)
+        {
+            animator.SetTrigger("Idle");
+            animator.ResetTrigger("Walk");
+        }
+        else
+        {
+            animator.SetTrigger("Walk");
         }
     }
 
