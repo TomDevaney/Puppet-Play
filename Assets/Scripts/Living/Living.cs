@@ -110,7 +110,7 @@ public class Living : MonoBehaviour
         // Disable so it can be respawned later if needed
         gameObject.SetActive(false);
 
-        //Destroy(gameObject);
+		EventManager.instance.NotifyOfDeath(this);
 
         // Mark as dead
         isDead = true;

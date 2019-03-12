@@ -14,7 +14,9 @@ public class EventManager : MonoBehaviour
     public delegate void EventDone();
     public static event EventDone OnEventDone;
 
-    
+	KillEvent[] killEvents;
+
+	GameObject patrollingEnemy;
 
     // Awake is called before Start
     void Awake()
@@ -32,8 +34,9 @@ public class EventManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-    }
+		// Set up list of kill events
+		killEvents = GetComponentsInChildren<KillEvent>();
+	}
 
     // Update is called once per frame
     void Update()
@@ -61,7 +64,16 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    /* Events */
+	/* Event Manager functionality */
+	public void NotifyOfDeath(Living living)
+	{
+		for (int i = 0; i < killEvents.Length; ++i)
+		{
+			killEvents[i].NotifyOfDeath(living);
+		}
+		}
+
+    /* Custom Events */
     public void PlayAnimation(string stateName)
     {
         MarkEventAsDone();
@@ -91,6 +103,21 @@ public class EventManager : MonoBehaviour
     {
 
     }
+
+	public void DaughterDoAttack(string nothing)
+	{
+		GameManager.instance.GetDaughterPuppet().Attack();
+	}
+
+	// TODO: Make it dynamic where it can spawn other types of enemies
+	// For now just do patrolling to finish the game up
+	public void SpawnEnemy(string location)
+	{
+        string[] args = location.Split(' ');
+		Vector3 vectorLocation = new Vector3(float.Parse(args[0]), float.Parse(args[0]), float.Parse(args[0]));
+
+		Instantiate(patrollingEnemy, vectorLocation, new Quaternion());
+	}
 
     // Could also make it where if they sent in one number, it's just an offset
     // If it's two numbers, it's a coordinate
