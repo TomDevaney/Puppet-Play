@@ -4694,6 +4694,7 @@ MonoBehaviour:
   deathSound: {fileID: 0}
   footstepsSound: {fileID: 0}
   gotHitSound: {fileID: 0}
+  animator: {fileID: 0}
   TheRigidBody: {fileID: 0}
   FootSpread: 0.1
   JumpForce: 325
@@ -7911,13 +7912,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3965591716952137809}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 86.1, y: -2.95, z: -3.268}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 305981350}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &3965591716952137806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8160,6 +8161,7 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: dfa0786cee745244cba1b233847fcb6b, type: 3}
   footstepsSound: {fileID: 8300000, guid: 6dc04de928bb6704d855d5bba4e70218, type: 3}
   gotHitSound: {fileID: 8300000, guid: acf4264e290a64546a51c43e841b5b8e, type: 3}
+  animator: {fileID: 0}
   TheRigidBody: {fileID: 0}
   FootSpread: 0.1
   JumpForce: 325

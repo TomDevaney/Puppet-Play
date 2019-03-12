@@ -45,7 +45,15 @@ public class Living : MonoBehaviour
 
     public Animator animator;
 
+	/* Facing variables */
 	Direction facingDirection = Direction.FORWARD;
+
+	const float LEFT_DEGREE = 0.0f;
+	const float FORWARD_DEGREE = -90.0f;
+	const float RIGHT_DEGREE = -180.0f;
+	const float FACING_SPEED = 360.0f;
+	float currentFacingDegree = 0.0f;
+	float desiredFacingDegree = 0.0f;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -53,8 +61,8 @@ public class Living : MonoBehaviour
         // Initialize variables
         spawnPoint = transform.position;
 
-        // Get references
-        footstepsAudioSource = GetComponents<AudioSource>()[0];
+		// Get references
+		footstepsAudioSource = GetComponents<AudioSource>()[0];
 
         // Set clip to footsteps source because that's the only sound it'll play
         footstepsAudioSource.clip = footstepsSound;
@@ -63,10 +71,12 @@ public class Living : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
-
-    }
+		// Do lerp at a constant rate towards desired degree
+		currentFacingDegree = Mathf.MoveTowards(currentFacingDegree, desiredFacingDegree, Time.deltaTime * FACING_SPEED);
+		transform.rotation = Quaternion.Euler(0.0f, currentFacingDegree, 0.0f);
+	}
 
     public void Move(float xAxis)
     {
@@ -93,16 +103,27 @@ public class Living : MonoBehaviour
 		// If so, stop the previous one if that one is still playing
 		if (prevFacingDirection != facingDirection)
 		{
-
+			switch (facingDirection)
+			{
+				case Direction.LEFT:
+					desiredFacingDegree = LEFT_DEGREE;
+					break;
+				case Direction.FORWARD:
+					desiredFacingDegree = FORWARD_DEGREE;
+					break;
+				case Direction.RIGHT:
+					desiredFacingDegree = RIGHT_DEGREE;
+					break;
+			}
 		}
 
 		//if(transform != null)
 		{
-            transform.Translate(new Vector2(xAxis * moveSpeed, 0.0f));
-        }
+            transform.Translate(new Vector2(xAxis * moveSpeed, 0.0f), Space.World);
+		}
 
-        // Only play footsteps if they're actually moving and it's not playing already
-        const float walkingThreshold = 0.15f;
+		// Only play footsteps if they're actually moving and it's not playing already
+		const float walkingThreshold = 0.15f;
 
         if (Mathf.Abs(xAxis) >= walkingThreshold)
         {
@@ -113,7 +134,7 @@ public class Living : MonoBehaviour
             }
         }
 
-        if(isStandingStill)
+        if(facingDirection == Direction.FORWARD)
         {
             animator.SetTrigger("Idle");
             animator.ResetTrigger("Walk");
