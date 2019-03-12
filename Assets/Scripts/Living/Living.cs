@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+enum Direction
+{
+	LEFT = -1,
+	FORWARD,
+	RIGHT,
+};
+
 public class Living : MonoBehaviour
 {
     // Their health
@@ -38,10 +45,7 @@ public class Living : MonoBehaviour
 
     public Animator animator;
 
-	// -1 = left
-	// 0 = straight
-	// 1 = right
-	int facingDirection = 0;
+	Direction facingDirection = Direction.FORWARD;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -66,23 +70,23 @@ public class Living : MonoBehaviour
 
     public void Move(float xAxis)
     {
-		int prevFacingDirection = facingDirection;
+		Direction prevFacingDirection = facingDirection;
 
 		// Determine new facing direction
 		if (xAxis > 0.0f)
 		{
 			// Face right
-			facingDirection = 1;
+			facingDirection = Direction.RIGHT;
 		}
 		else if (xAxis < 0.0f)
 		{
 			// Face left
-			facingDirection = -1;
+			facingDirection = Direction.LEFT;
 		}
 		else if(standingOnSurface && Mathf.Abs(xAxis) < 0.05f)
         {
 			// Face straight
-			facingDirection = 0;
+			facingDirection = Direction.FORWARD;
 		}
 
 		// Check to see if the facing direction needs to be played
