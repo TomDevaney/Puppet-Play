@@ -113,7 +113,7 @@ public class Living : MonoBehaviour
             }
         }
 
-        if(isStandingStill)
+        if(facingDirection == Direction.FORWARD)
         {
             animator.SetTrigger("Idle");
             animator.ResetTrigger("Walk");

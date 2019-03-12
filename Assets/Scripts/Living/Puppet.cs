@@ -110,7 +110,7 @@ public class Puppet : Living
         //standing
         if (true)
         {
-            
+            animator.SetTrigger("Attack");
 
             //Ignore the Player Layer
             int LayerMask = 1 << 9 | 1 << 10;
@@ -121,7 +121,7 @@ public class Puppet : Living
             AudioManager.instance.PlaySoundFXAtPosition(attackClip, gameObject.transform.position);
 
             float MaxRayDistance = 1.5f;
-            print("transform.right : " + transform.right);
+            //print("transform.right : " + transform.right);
             RaycastHit HitInfo;
             if(Physics.Raycast(new Vector3(transform.position.x - 1, transform.position.y, transform.position.z),
                 transform.right, out HitInfo, MaxRayDistance, LayerMask) 
@@ -130,18 +130,15 @@ public class Puppet : Living
 
                 )
             {
-                print("hit " + HitInfo.transform.tag);
+                //print("hit " + HitInfo.transform.tag);
                 if(HitInfo.transform.tag.Equals("Enemy"))
                 {
-                    print("dodamage");
-                    DoDamage(HitInfo.transform.GetComponent<Living>());
+                    //print("dodamage");
+                    //DoDamage(HitInfo.transform.GetComponent<Living>());
 
                 }
 
             }
-
-            animator.SetTrigger("Attack");
-            print("attack");
         }
     }
 
