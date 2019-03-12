@@ -66,7 +66,7 @@ public class Living : MonoBehaviour
     public void Move(float xAxis)
     {
         isFacingRight = xAxis > 0;
-        if(standingOnSurface && Mathf.Abs(xAxis) > 0.05f)
+        if(standingOnSurface && Mathf.Abs(xAxis) < 0.05f)
         {
             isStandingStill = true;
         }
@@ -94,7 +94,8 @@ public class Living : MonoBehaviour
 
         if(isStandingStill)
         {
-
+            animator.SetTrigger("Idle");
+            animator.ResetTrigger("Walk");
         }
         else
         {

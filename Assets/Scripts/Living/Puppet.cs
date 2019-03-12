@@ -110,7 +110,7 @@ public class Puppet : Living
         //standing
         if (true)
         {
-            print("attack");
+            
 
             //Ignore the Player Layer
             int LayerMask = 1 << 9 | 1 << 10;
@@ -141,6 +141,7 @@ public class Puppet : Living
             }
 
             animator.SetTrigger("Attack");
+            print("attack");
         }
     }
 
