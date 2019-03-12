@@ -29,7 +29,7 @@ public class PatrollingEnemy : Enemy
         // Initialize parent variables
         base.Start();
 
-        SetMoveSpeed(0.01f);
+        SetMoveSpeed(0.04f);
         SetAttackDamage(1);
 
         // Initialize variables
