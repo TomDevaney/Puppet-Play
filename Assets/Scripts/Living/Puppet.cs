@@ -20,6 +20,8 @@ public class Puppet : Living
 	// Different puppets have different origins so need to customize this
 	public float checkStandingRayDistance;
 
+    public MeleeWeapon meleeWeapon;
+
     [SerializeField]
     AudioClip jumpClip;
 
@@ -105,11 +107,12 @@ public class Puppet : Living
 
     public void Attack()
     {
-        //invoke("",3)
 
         //standing
         if (true)
         {
+            meleeWeapon.AttackModeActive = true;
+            Invoke("DisableWeaponAttackMode",2);
             animator.SetTrigger("Attack");
 
             //Ignore the Player Layer
@@ -140,6 +143,11 @@ public class Puppet : Living
 
             }
         }
+    }
+
+    public void DisableWeaponAttackMode()
+    {
+        meleeWeapon.AttackModeActive = false;
     }
 
     public void MoveToLocation(float Loc)
