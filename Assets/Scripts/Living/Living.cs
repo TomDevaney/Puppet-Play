@@ -66,16 +66,19 @@ public class Living : MonoBehaviour
     public void Move(float xAxis)
     {
         isFacingRight = xAxis > 0;
-        if(standingOnSurface)
+        if(standingOnSurface && Mathf.Abs(xAxis) > 0.05f)
         {
-            isStandingStill;
+            isStandingStill = true;
         }
         else
         {
-            isStandingStill;
+            isStandingStill = false;
         }
 
-        transform.Translate(new Vector2(xAxis * moveSpeed, 0.0f));
+        //if(transform != null)
+        {
+            transform.Translate(new Vector2(xAxis * moveSpeed, 0.0f));
+        }
 
         // Only play footsteps if they're actually moving and it's not playing already
         const float walkingThreshold = 0.15f;
@@ -89,7 +92,14 @@ public class Living : MonoBehaviour
             }
         }
 
-        animator.SetTrigger("Walk");
+        if(isStandingStill)
+        {
+
+        }
+        else
+        {
+            animator.SetTrigger("Walk");
+        }
     }
 
     public void DoDamage(Living living)
