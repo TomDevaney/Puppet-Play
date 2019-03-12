@@ -38,9 +38,10 @@ public class Living : MonoBehaviour
 
     public Animator animator;
 
-    bool isFacingRight = true;
-
-    bool isStandingStill = true;
+	// -1 = left
+	// 0 = straight
+	// 1 = right
+	int facingDirection = 0;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -65,18 +66,34 @@ public class Living : MonoBehaviour
 
     public void Move(float xAxis)
     {
-        isFacingRight = xAxis > 0;
-        if(standingOnSurface && Mathf.Abs(xAxis) < 0.05f)
-        {
-            isStandingStill = true;
-        }
-        else
-        {
-            isStandingStill = false;
-        }
+		int prevFacingDirection = facingDirection;
 
-        //if(transform != null)
+		// Determine new facing direction
+		if (xAxis > 0.0f)
+		{
+			// Face right
+			facingDirection = 1;
+		}
+		else if (xAxis < 0.0f)
+		{
+			// Face left
+			facingDirection = -1;
+		}
+		else if(standingOnSurface && Mathf.Abs(xAxis) < 0.05f)
         {
+			// Face straight
+			facingDirection = 0;
+		}
+
+		// Check to see if the facing direction needs to be played
+		// If so, stop the previous one if that one is still playing
+		if (prevFacingDirection != facingDirection)
+		{
+
+		}
+
+		//if(transform != null)
+		{
             transform.Translate(new Vector2(xAxis * moveSpeed, 0.0f));
         }
 
