@@ -1418,8 +1418,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1154159742}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.36}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.8}
+  m_LocalPosition: {x: 0, y: -0, z: 0.52}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 2094375043}
   m_RootOrder: 5
@@ -1491,9 +1491,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1154159742}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c8534406b34c3c46847168493c2d6cf, type: 3}
+  m_Script: {fileID: 11500000, guid: 05a85d99199b57a42a5a76941d9b6fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AttackModeActive: 0
 --- !u!4 &1160357840 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2158742748975830221, guid: 2d567b9450be5fe4a9aaecf91866a950,
@@ -1753,6 +1754,7 @@ MonoBehaviour:
   FootSpread: 0.1
   JumpForce: 150
   checkStandingRayDistance: 0
+  meleeWeapon: {fileID: 0}
   jumpClip: {fileID: 8300000, guid: 103970729c9cacb499906a8b51388c6e, type: 3}
   landClip: {fileID: 8300000, guid: 1f7912cb3b0fede428d286c602595a1d, type: 3}
   attackClip: {fileID: 8300000, guid: f2f95c3b83f51ce4f9267fa20c6fefe8, type: 3}
@@ -3323,6 +3325,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 524871513}
     m_Modifications:
+    - target: {fileID: 2158742748975830226, guid: 2d567b9450be5fe4a9aaecf91866a950,
+        type: 3}
+      propertyPath: m_Name
+      value: PatrollingEnemy
+      objectReference: {fileID: 0}
     - target: {fileID: 2158742748975830221, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3392,11 +3399,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2158742748975830226, guid: 2d567b9450be5fe4a9aaecf91866a950,
-        type: 3}
-      propertyPath: m_Name
-      value: PatrollingEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 2158742748975830222, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
@@ -4512,6 +4514,7 @@ MonoBehaviour:
   FootSpread: 0.1
   JumpForce: 300
   checkStandingRayDistance: 0.1
+  meleeWeapon: {fileID: 1154159747}
   jumpClip: {fileID: 8300000, guid: 103970729c9cacb499906a8b51388c6e, type: 3}
   landClip: {fileID: 8300000, guid: 1f7912cb3b0fede428d286c602595a1d, type: 3}
   attackClip: {fileID: 8300000, guid: f2f95c3b83f51ce4f9267fa20c6fefe8, type: 3}
