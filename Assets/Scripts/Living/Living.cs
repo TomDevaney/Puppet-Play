@@ -5,7 +5,6 @@ using UnityEngine;
 enum Direction
 {
 	LEFT = -1,
-	FORWARD,
 	RIGHT,
 };
 
@@ -46,12 +45,11 @@ public class Living : MonoBehaviour
     public Animator animator;
 
 	/* Facing variables */
-	Direction facingDirection = Direction.FORWARD;
+	Direction facingDirection = Direction.RIGHT;
 
 	const float LEFT_DEGREE = 0.0f;
-	const float FORWARD_DEGREE = -90.0f;
 	const float RIGHT_DEGREE = -180.0f;
-	const float FACING_SPEED = 360.0f;
+	const float FACING_SPEED = 720.0f;
 	float currentFacingDegree = 0.0f;
 	float desiredFacingDegree = 0.0f;
 
@@ -93,11 +91,6 @@ public class Living : MonoBehaviour
 			// Face left
 			facingDirection = Direction.LEFT;
 		}
-		else if(standingOnSurface && Mathf.Abs(xAxis) < 0.05f)
-        {
-			// Face straight
-			facingDirection = Direction.FORWARD;
-		}
 
 		// Check to see if the facing direction needs to be played
 		// If so, stop the previous one if that one is still playing
@@ -107,9 +100,6 @@ public class Living : MonoBehaviour
 			{
 				case Direction.LEFT:
 					desiredFacingDegree = LEFT_DEGREE;
-					break;
-				case Direction.FORWARD:
-					desiredFacingDegree = FORWARD_DEGREE;
 					break;
 				case Direction.RIGHT:
 					desiredFacingDegree = RIGHT_DEGREE;
@@ -132,16 +122,13 @@ public class Living : MonoBehaviour
             {
                 footstepsAudioSource.Play();
             }
-        }
 
-        if(facingDirection == Direction.FORWARD)
+			animator.SetTrigger("Walk");
+		}
+		else
         {
             animator.SetTrigger("Idle");
             animator.ResetTrigger("Walk");
-        }
-        else
-        {
-            animator.SetTrigger("Walk");
         }
     }
 

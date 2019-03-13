@@ -193,6 +193,11 @@ public class Puppet : Living
         EventManager.instance.MarkEventAsDone();
     }
 
+	public void SetFacingDirection(string direction)
+	{
+
+	}
+
     public override void Respawn()
     {
         // Respawn player at recent checkpoint
