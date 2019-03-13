@@ -130,9 +130,9 @@ public class EventManager : MonoBehaviour
         puppet.MoveToLocation(float.Parse(args[1]));
     }
 
-    public void MakePuppetJump(string PathToPuppet)
+    public void MakePuppetJump(string pathToPuppet)
     {
-        Puppet puppet = GameObject.Find(PathToPuppet).GetComponent<Puppet>();
+        Puppet puppet = GameObject.Find(pathToPuppet).GetComponent<Puppet>();
 
         // Regardless of whether they can jump, mark them as being able to
         // Little hack for daughter who is never standing on surface because her origin is in the middle whereas the knight is at his fight
@@ -142,7 +142,7 @@ public class EventManager : MonoBehaviour
         MarkEventAsDone();
     }
 
-    public void OpenCurtains(string unused)
+	public void OpenCurtains(string unused)
     {
         StageController stageController = GameObject.Find("Stage").GetComponent<StageController>();
         stageController.OpenCurtains();
@@ -156,9 +156,10 @@ public class EventManager : MonoBehaviour
 
     public void SetMainMenuVisible(string visible)
     {
-        MenuManager.instance.MainMenuSetActive(visible == "y");
+        //MenuManager.instance.MainMenuSetActive(visible == "y");
+        MenuManager.instance.ToggleMenuEnabledState("MainMenuCanvas");
         MarkEventAsDone();
-    }
+	}
 
     // Will tell daughter to stop checking for other states
     // Might have problems as this will retain state that it was in
