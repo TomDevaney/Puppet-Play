@@ -76,7 +76,16 @@ public class Puppet : Living
             if (!IsStandingOnSurface())
             {
                 AudioManager.instance.PlaySoundFXAtPosition(landClip, gameObject.transform.position);
-                animator.SetTrigger("LandedOnSurface");
+                if(isMovingLR)
+                {
+                    animator.ResetTrigger("LandedOnSurface");  
+                    animator.SetTrigger("LandedWhileMoving"); 
+                }
+                else
+                {
+                    animator.SetTrigger("LandedOnSurface");
+                    animator.ResetTrigger("LandedWhileMoving");
+                }
             }
 
             SetStandingOnSurface(true);
