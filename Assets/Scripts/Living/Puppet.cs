@@ -76,6 +76,16 @@ public class Puppet : Living
             if (!IsStandingOnSurface())
             {
                 AudioManager.instance.PlaySoundFXAtPosition(landClip, gameObject.transform.position);
+                if(isMovingLR)
+                {
+                    animator.ResetTrigger("LandedOnSurface");  
+                    animator.SetTrigger("LandedWhileMoving"); 
+                }
+                else
+                {
+                    animator.SetTrigger("LandedOnSurface");
+                    animator.ResetTrigger("LandedWhileMoving");
+                }
             }
 
             SetStandingOnSurface(true);
@@ -83,6 +93,11 @@ public class Puppet : Living
         }
         else
         {
+            if(IsStandingOnSurface())
+            {
+                animator.ResetTrigger("LandedOnSurface");
+            }
+
             SetStandingOnSurface(false);
         }
 
@@ -114,7 +129,7 @@ public class Puppet : Living
         if (true)
         {
             meleeWeapon.AttackModeActive = true;
-            Invoke("DisableWeaponAttackMode",2);
+            Invoke("DisableWeaponAttackMode",1);
             animator.SetTrigger("Attack");
 
             //Ignore the Player Layer
@@ -150,6 +165,7 @@ public class Puppet : Living
     public void DisableWeaponAttackMode()
     {
         meleeWeapon.AttackModeActive = false;
+        print("DWAM");
     }
 
     public void MoveToLocation(float Loc)

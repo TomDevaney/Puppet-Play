@@ -25,6 +25,8 @@ public class Living : MonoBehaviour
     // Whether the living is in air or not
     bool standingOnSurface = true;
 
+    public bool isMovingLR = false;
+
     // Where the living will spawn if they respawn after dying
     Vector3 spawnPoint;
 
@@ -115,6 +117,8 @@ public class Living : MonoBehaviour
 		// Only play footsteps if they're actually moving and it's not playing already
 		const float walkingThreshold = 0.15f;
 
+        
+
         if (Mathf.Abs(xAxis) >= walkingThreshold)
         {
             // Don't play if they're in the air!
@@ -123,10 +127,13 @@ public class Living : MonoBehaviour
                 footstepsAudioSource.Play();
             }
 
+            isMovingLR = true;
+
 			animator.SetTrigger("Walk");
 		}
 		else
         {
+            isMovingLR = false;
             animator.SetTrigger("Idle");
             animator.ResetTrigger("Walk");
         }
