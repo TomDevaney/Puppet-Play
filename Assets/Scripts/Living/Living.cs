@@ -129,6 +129,7 @@ public class Living : MonoBehaviour
 
             isMovingLR = true;
 
+            animator.ResetTrigger("Idle");
 			animator.SetTrigger("Walk");
 		}
 		else
