@@ -131,6 +131,7 @@ public class Living : MonoBehaviour
 
 			if (animator != null)
 			{
+            	animator.ResetTrigger("Idle");
 				animator.SetTrigger("Walk");
 			}
 		}
