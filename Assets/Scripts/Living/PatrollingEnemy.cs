@@ -22,7 +22,10 @@ public class PatrollingEnemy : Enemy
 
     // If true, it will go to the end position. If false, it will go to the false position
     bool goToEnd;
-    
+
+	// Lazy hack to have a stationary enemy
+	bool dontMove;
+
     // Start is called before the first frame update
     public override void Start()
     {
@@ -46,11 +49,21 @@ public class PatrollingEnemy : Enemy
             finalStartPosition = startPosition;
             finalEndPosition = endPosition;
         }
+
+		if (startPosition == endPosition)
+		{
+			dontMove = true;
+		}
     }
 
     // Update is called once per frame
     void Update()
     {
+		if (dontMove)
+		{
+			return;
+		}
+
         // -1 = go left. 1 = go right
         int direction;
 

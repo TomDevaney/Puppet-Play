@@ -129,13 +129,20 @@ public class Living : MonoBehaviour
 
             isMovingLR = true;
 
-			animator.SetTrigger("Walk");
+			if (animator != null)
+			{
+				animator.SetTrigger("Walk");
+			}
 		}
 		else
         {
             isMovingLR = false;
-            animator.SetTrigger("Idle");
-            animator.ResetTrigger("Walk");
+
+			if (animator != null)
+			{
+				animator.SetTrigger("Idle");
+				animator.ResetTrigger("Walk");
+			}
         }
     }
 

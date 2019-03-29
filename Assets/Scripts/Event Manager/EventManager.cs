@@ -16,7 +16,8 @@ public class EventManager : MonoBehaviour
 
 	KillEvent[] killEvents;
 
-	GameObject patrollingEnemy;
+	// Prefabs to instantiate
+	public GameObject patrollingEnemy;
 
     // Awake is called before Start
     void Awake()
@@ -114,7 +115,7 @@ public class EventManager : MonoBehaviour
 	public void SpawnEnemy(string location)
 	{
         string[] args = location.Split(' ');
-		Vector3 vectorLocation = new Vector3(float.Parse(args[0]), float.Parse(args[0]), float.Parse(args[0]));
+		Vector3 vectorLocation = new Vector3(float.Parse(args[0]), float.Parse(args[1]), float.Parse(args[2]));
 
 		Instantiate(patrollingEnemy, vectorLocation, new Quaternion());
 	}
@@ -159,6 +160,12 @@ public class EventManager : MonoBehaviour
         //MenuManager.instance.MainMenuSetActive(visible == "y");
         MenuManager.instance.ToggleMenuEnabledState("MainMenuCanvas");
         MarkEventAsDone();
+	}
+
+	public void ToggleMenuActive(string menuName)
+	{
+		MenuManager.instance.ToggleMenuEnabledState(menuName);
+		MarkEventAsDone();
 	}
 
     // Will tell daughter to stop checking for other states
