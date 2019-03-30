@@ -140,7 +140,8 @@ public class AIContoller : StateMachine
 
 			// TODO: use puppet move function instead
 			// Move them closer to dad
-			aiTransform.Translate(new Vector3(direction * moveSpeed, 0.0f, 0.0f));
+			daughterPuppet.Move(direction);
+			//aiTransform.Translate(new Vector3(direction * moveSpeed, 0.0f, 0.0f));
 
 			// Check to see if somethings in the way
 			if (!bJustJumped)

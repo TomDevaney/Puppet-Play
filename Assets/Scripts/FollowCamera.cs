@@ -8,14 +8,12 @@ public class FollowCamera : MonoBehaviour
     public Puppet PlayerPuppet;
 
     public float LevelBoundLeft;
-
     public float LevelBoundRight;
+	public float levelBoundUp;
+	public float levelBoundDown;
 
-    public float TargetY;
-
-
-    // Start is called before the first frame update
-    void Start()
+	// Start is called before the first frame update
+	void Start()
     {
         PlayerPuppet = GameObject.Find("Player").GetComponent<Puppet>();
     }
@@ -37,14 +35,30 @@ public class FollowCamera : MonoBehaviour
             TargetX = PlayerPuppet.transform.position.x;
         }
 
-        float nextX = Mathf.Lerp(transform.position.x, TargetX , Time.deltaTime);
+		float targetY = 0;
+		if (PlayerPuppet.transform.position.y > levelBoundUp)
+		{
+			targetY = levelBoundUp;
+		}
+		else if (PlayerPuppet.transform.position.y < levelBoundDown)
+		{
+			targetY = levelBoundDown;
+		}
+		else
+		{
+			targetY = PlayerPuppet.transform.position.y;
+		}
 
-        transform.position = new Vector3(nextX, TargetY, transform.position.z);
+		float nextX = Mathf.Lerp(transform.position.x, TargetX , Time.deltaTime);
+        float nextY = Mathf.Lerp(transform.position.y, targetY, Time.deltaTime);
+		//float nextY = Mathf.Lerp(transform.position.y, PlayerPuppet.transform.position.y + yOffset, Time.deltaTime);
+
+		transform.position = new Vector3(nextX, nextY, transform.position.z);
     }
 
     public void OnRespawn()
     {
         PlayerPuppet = GameObject.Find("Player").GetComponent<Puppet>();
-        transform.position = new Vector3(PlayerPuppet.transform.position.x, TargetY, transform.position.z);
+        transform.position = new Vector3(PlayerPuppet.transform.position.x, PlayerPuppet.transform.position.y, transform.position.z);
     }
 }

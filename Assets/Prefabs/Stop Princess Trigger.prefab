@@ -82,4 +82,4 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  person: {fileID: 0}
+  person: {fileID: 6902007168576865847, guid: 3fd3cd2f8fb2cc742a583345d31cc9c1, type: 3}
