@@ -42,7 +42,7 @@ public class FollowCamera : MonoBehaviour
 		}
 		else if (PlayerPuppet.transform.position.y < levelBoundDown)
 		{
-			targetY = levelBoundDown;
+			targetY = levelBoundDown  ;
 		}
 		else
 		{
