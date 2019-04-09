@@ -68,13 +68,7 @@ Knight
 My lady, anything is possible. You are stronger than you think.
 
 Princess
-Poopie! I missed the jump. It’s too far for me!
-
-Knight
-It was so close your highness. Just try again. I know you’ll make it.
-
-Princess
-Alright, I’m trying one more time. But if I don’t make it, you’ll just have to give me a piggyback ride the rest of the way!
+Alright. Let me try then...
 
 Princess
 Woohoo! I did it!
@@ -104,7 +98,7 @@ Knight
 Not so fast. If there’s some here, there’s probably even more. Stick close to me while we go deeper into the town.
 
 Princess
-Oh great. It’s two of the hardest things ever combined!
+Oh great. There's even more!
 
 Knight
 Tis not a problem. Just stay behind me as I deal with these monsters.
