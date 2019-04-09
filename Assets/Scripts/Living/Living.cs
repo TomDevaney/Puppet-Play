@@ -52,8 +52,8 @@ public class Living : MonoBehaviour
 	const float LEFT_DEGREE = 0.0f;
 	const float RIGHT_DEGREE = -180.0f;
 	const float FACING_SPEED = 720.0f;
-	float currentFacingDegree = 0.0f;
-	float desiredFacingDegree = 0.0f;
+	float currentFacingDegree = RIGHT_DEGREE;
+	float desiredFacingDegree = RIGHT_DEGREE;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -75,6 +75,8 @@ public class Living : MonoBehaviour
     {
 		// Do lerp at a constant rate towards desired degree
 		currentFacingDegree = Mathf.MoveTowards(currentFacingDegree, desiredFacingDegree, Time.deltaTime * FACING_SPEED);
+		print("current degree: " + currentFacingDegree + "\t desired degree: " + desiredFacingDegree);
+
 		transform.rotation = Quaternion.Euler(0.0f, currentFacingDegree, 0.0f);
 	}
 
