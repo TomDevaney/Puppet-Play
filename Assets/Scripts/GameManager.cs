@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void EndGame()
+    public void GameOver()
     {
         // TODO: pull curtains in
 
@@ -65,10 +65,14 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < livingBeings.Length; ++i)
         {
-            if (livingBeings[i].IsDead())
-            {
-                livingBeings[i].Respawn();
-            }
+			// Only respawn enemies to the right of the checkpoint because it looked weird that enemies before the checkpoint were spawned
+			if (livingBeings[i].transform.position.x > recentCheckpoint.transform.position.x)
+			{
+				if (livingBeings[i].IsDead())
+				{
+					livingBeings[i].Respawn();
+				}
+			}
         }
     }
 

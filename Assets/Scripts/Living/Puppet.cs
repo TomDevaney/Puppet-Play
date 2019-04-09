@@ -40,7 +40,8 @@ public class Puppet : Living
 
         // Initialize parent variables
         SetHealthPoints(1);
-    }
+		SetAttackDamage(1);
+	}
 
     // Update is called once per frame
     public override void Update()
@@ -56,7 +57,7 @@ public class Puppet : Living
         base.JustDied();
 
         // Tell the manager it's game over
-        GameManager.instance.EndGame();
+        GameManager.instance.GameOver();
     }
 
     void CheckStandingOnSurface()
@@ -124,42 +125,12 @@ public class Puppet : Living
 
     public void Attack()
     {
+        meleeWeapon.AttackModeActive = true;
+        Invoke("DisableWeaponAttackMode",1);
+        animator.SetTrigger("Attack");
 
-        //standing
-        if (true)
-        {
-            meleeWeapon.AttackModeActive = true;
-            Invoke("DisableWeaponAttackMode",1);
-            animator.SetTrigger("Attack");
-
-            //Ignore the Player Layer
-            int LayerMask = 1 << 9 | 1 << 10;
-            //int LayerMask = 0;
-            LayerMask = ~LayerMask;
-
-            // Play sword swinging sound
-            AudioManager.instance.PlaySoundFXAtPosition(attackClip, gameObject.transform.position);
-
-            float MaxRayDistance = 1.5f;
-            //print("transform.right : " + transform.right);
-            RaycastHit HitInfo;
-            if(Physics.Raycast(new Vector3(transform.position.x - 1, transform.position.y, transform.position.z),
-                transform.right, out HitInfo, MaxRayDistance, LayerMask) 
-                || Physics.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z),
-                transform.right, out HitInfo, MaxRayDistance, LayerMask)
-
-                )
-            {
-                //print("hit " + HitInfo.transform.tag);
-                if(HitInfo.transform.tag.Equals("Enemy"))
-                {
-                    //print("dodamage");
-                    //DoDamage(HitInfo.transform.GetComponent<Living>());
-
-                }
-
-            }
-        }
+        // Play sword swinging sound
+        AudioManager.instance.PlaySoundFXAtPosition(attackClip, gameObject.transform.position);
     }
 
     public void DisableWeaponAttackMode()

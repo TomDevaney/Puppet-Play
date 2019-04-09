@@ -37,11 +37,10 @@ public class InputManager : MonoBehaviour
 
     void Start()
     {
-        // Initialize variables
-        canPlayerMove = true;
-        canPlayerJump = true;
-        canPlayerAttack = true;
-    }
+		// Initialize variables
+		DisablePlayerActions();
+
+	}
 
     void Update()
     {
