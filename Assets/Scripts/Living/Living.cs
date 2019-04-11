@@ -75,7 +75,6 @@ public class Living : MonoBehaviour
     {
 		// Do lerp at a constant rate towards desired degree
 		currentFacingDegree = Mathf.MoveTowards(currentFacingDegree, desiredFacingDegree, Time.deltaTime * FACING_SPEED);
-		print("current degree: " + currentFacingDegree + "\t desired degree: " + desiredFacingDegree);
 
 		transform.rotation = Quaternion.Euler(0.0f, currentFacingDegree, 0.0f);
 	}
