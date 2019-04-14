@@ -100,10 +100,20 @@ public class EventManager : MonoBehaviour
 
     }
 
-    public void PanCamera(string panValue)
+    public void MoveCamera(string positionXY)
     {
+        string[] args = positionXY.Split(' ');
 
-    }
+		GameManager.instance.GetCameraFSM().SetCurrentState(new CameraFSM.MoveState(GameManager.instance.GetCameraFSM(), float.Parse(args[0]), float.Parse(args[1]), true));
+	}
+
+	public void FollowObjectCamera(string objectName)
+	{
+		GameObject gameObject = GameObject.Find(objectName);
+
+		GameManager.instance.GetCameraFSM().SetCurrentState(new CameraFSM.FollowState(GameManager.instance.GetCameraFSM(), gameObject, true));
+		//GameManager.instance.GetFollowCamera().ChangePuppetToFollow(puppet);
+	}
 
 	public void DaughterDoAttack(string nothing)
 	{

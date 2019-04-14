@@ -10,13 +10,14 @@ public class GameManager : MonoBehaviour
     // Keeps track of the most recent checkpoint for respawning puppets to
     Checkpoint recentCheckpoint;
 
-    //
     Living[] livingBeings;
 
     // Even though it's a part of the livingBeings array, I want direct access to both puppets
     Puppet playerPuppet;
     Puppet daughterPuppet;
 
+	CameraFSM cameraFSM;
+	//FollowCamera followCamera;
 
     // Awake is called before Start
     void Awake()
@@ -27,7 +28,7 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
 
-        //Sets this to not be destroyed when reloading scene... Not sure it's needed for this game
+        // Sets this to not be destroyed when loading different scene... Not sure it's needed for this game
         //DontDestroyOnLoad(gameObject);
 
         // Retrieve references for everything game manager cares about
@@ -37,10 +38,12 @@ public class GameManager : MonoBehaviour
         playerPuppet = puppets[0];
         daughterPuppet = puppets[1];
 
-    }
+		//followCamera = FindObjectOfType<Camera>().GetComponent<FollowCamera>();
+		cameraFSM = FindObjectOfType<Camera>().GetComponent<CameraFSM>();
+	}
 
-    // Start is called before the first frame update
-    void Start()
+	// Start is called before the first frame update
+	void Start()
     {
 
     }
@@ -92,8 +95,18 @@ public class GameManager : MonoBehaviour
         return daughterPuppet;
     }
 
-    /* Setters */
-    public void SetRecentCheckpoint(Checkpoint checkpoint)
+	public CameraFSM GetCameraFSM()
+	{
+		return cameraFSM;
+	}
+
+	//public FollowCamera GetFollowCamera()
+	//{
+	//	return followCamera;
+	//}
+
+	/* Setters */
+	public void SetRecentCheckpoint(Checkpoint checkpoint)
     {
         recentCheckpoint = checkpoint;
     }
