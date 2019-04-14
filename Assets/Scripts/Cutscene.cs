@@ -42,7 +42,7 @@ public class Cutscene : MonoBehaviour
         // There's an event after this one
         if (currentEventIndex + 1 != events.Length)
         {
-            EventManager.OnEventDone += NextCutscene;
+            EventManager.OnEventDone += NextEvent;
         }
         else
         {
@@ -50,10 +50,10 @@ public class Cutscene : MonoBehaviour
         }
     }
 
-    public void NextCutscene()
+    public void NextEvent()
     {
         // Get rid of event that just called this
-        EventManager.OnEventDone -= NextCutscene;
+        EventManager.OnEventDone -= NextEvent;
 
         // Increment index 
         ++currentEventIndex;
@@ -64,7 +64,7 @@ public class Cutscene : MonoBehaviour
         // There's an event after this one
         if (currentEventIndex + 1 != events.Length)
         {
-            EventManager.OnEventDone += NextCutscene;
+            EventManager.OnEventDone += NextEvent;
         }
         else
         {
