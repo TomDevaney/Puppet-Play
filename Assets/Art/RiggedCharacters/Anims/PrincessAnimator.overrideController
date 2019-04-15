@@ -7,5 +7,7 @@ AnimatorOverrideController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: PrincessAnimator
-  m_Controller: {fileID: 9100000, guid: 1369c898847deba49bc9c2654ac6fc54, type: 2}
-  m_Clips: []
+  m_Controller: {fileID: 9100000, guid: 24d1629d163815444927a6cb6a14dfb8, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 0c5d124ea3fa9234f898032e1ef3cfb9, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 1e70639b7a87b8c43a73064d87ba4324, type: 3}

@@ -30,8 +30,11 @@ public class AIContoller : StateMachine
         Puppet dadPuppet;
         float dadInitialPosition;
 
-        // AI variables
-        Transform aiTransform;
+		// Reference to daughter
+		Puppet daughterPuppet;
+
+		// AI variables
+		Transform aiTransform;
 
         // Don't start following until this distance is reached
         const float maxDistanceBetweenDad = 4.0f;
@@ -41,6 +44,9 @@ public class AIContoller : StateMachine
             // Get references
             dadPuppet = GameManager.instance.GetPlayerPuppet();
             aiTransform = GetAIController().transform;
+			daughterPuppet = GameManager.instance.GetDaughterPuppet();
+
+			GetAIController().animator.SetTrigger("Idle");
 
             print("IdleState");
         }
@@ -48,7 +54,8 @@ public class AIContoller : StateMachine
         override public State Update()
         {
 			// Do idle stuff
-		
+			daughterPuppet.Move(0);
+
 			//
 			return CheckForTransition();
         }
@@ -209,7 +216,7 @@ public class AIContoller : StateMachine
     void Start()
     {
         // Set references
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
 
         // Set to the default state
         SetCurrentState(new IdleState(this));
@@ -218,10 +225,13 @@ public class AIContoller : StateMachine
     public override void Reset()
     {
         SetCurrentState(new IdleState(this));
-    }
 
-    /* Getters */
-    Animator GetAnimator()
+		animator.SetTrigger("Idle");
+		animator.ResetTrigger("Walk");
+	}
+
+	/* Getters */
+	Animator GetAnimator()
     {
         return animator;
     }
