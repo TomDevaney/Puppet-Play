@@ -170,6 +170,12 @@ public class Puppet : Living
             Move(axis);
             yield return new WaitForSeconds(.01f);
         }
+
+		// Move to location is separate from Move which handles the animator trigger stuff
+		// So reset to idle here
+		animator.SetTrigger("Idle");
+		animator.ResetTrigger("Walk");
+
         EventManager.instance.MarkEventAsDone();
     }
 

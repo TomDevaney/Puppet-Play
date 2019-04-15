@@ -17,14 +17,19 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (InputManager.instance.CanPlayerMove())
-        {
+		if (InputManager.instance.CanPlayerMove())
+		{
 			//A Left D Right
-            float xAxis = Input.GetAxis("Horizontal");
-            ThePuppet.Move(xAxis);
-        }
+			float xAxis = Input.GetAxis("Horizontal");
+			ThePuppet.Move(xAxis);
+		}
+		else
+		{
+			// Important for idle animation
+			ThePuppet.Move(0.0f);
+		}
 
-		if(InputManager.instance.CanPlayerJump())
+		if (InputManager.instance.CanPlayerJump())
 		{
 			if(Input.GetButtonDown("Jump"))
 			{

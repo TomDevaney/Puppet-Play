@@ -34,7 +34,8 @@ public class Cutscene : MonoBehaviour
         // Don't allow any player movement anymore
         InputManager.instance.DisablePlayerActions();
 
-        // TODO: Tell AI to stop doing its thing
+		// Reset daughter to idle
+		GameManager.instance.GetDaughterPuppet().GetComponent<AIContoller>().Reset();
 
         // Actually start
         events[currentEventIndex].StartCountdown();

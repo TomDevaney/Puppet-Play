@@ -112,12 +112,12 @@ public class EventManager : MonoBehaviour
 		GameObject gameObject = GameObject.Find(objectName);
 
 		GameManager.instance.GetCameraFSM().SetCurrentState(new CameraFSM.FollowState(GameManager.instance.GetCameraFSM(), gameObject, true));
-		//GameManager.instance.GetFollowCamera().ChangePuppetToFollow(puppet);
 	}
 
 	public void DaughterDoAttack(string nothing)
 	{
 		GameManager.instance.GetDaughterPuppet().Attack();
+        Invoke("MarkEventAsDone", 1.0f);
 	}
 
 	// TODO: Make it dynamic where it can spawn other types of enemies
