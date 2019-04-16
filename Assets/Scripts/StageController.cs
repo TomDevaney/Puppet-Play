@@ -39,7 +39,7 @@ public class StageController : MonoBehaviour
     {
         float TimeBetween = 0.015f;
         float FullyOpenScale = 0.1f;
-        float CloseEnoughRange = 0.09f;
+        float CloseEnoughRange = 0.01f;
 
         while (true)
         {
