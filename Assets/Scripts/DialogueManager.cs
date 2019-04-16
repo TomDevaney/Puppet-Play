@@ -56,6 +56,15 @@ public class Person
     }
 }
 
+/* How the dialogue parser works */
+// Add the name of the person on the first line
+// On the second line add the words you want them to say
+// Add a newline to indicate a new dialogue is next
+// There is a limit to how many words can be displayed so break it into small chunks
+
+// Add "//" after the chunk of dialogue you want to display back to back in a cutscene
+// This comment will indicate the end of a current block of dialogue
+
 public class DialogueManager : MonoBehaviour
 {
     // Singleton so classes can reference without reference
@@ -63,16 +72,18 @@ public class DialogueManager : MonoBehaviour
 
     // Every piece of dialogue needed for the game
     // If it ever became too big, or too slow to load in all the dialogue at once, there could be multiple dimensions and/or multiple divisions of dialogue based on chapters
-    List<Dialogue> mAllDialogue;
+    List<List<Dialogue>> mAllDialogueChunks;
 
-    // Indicates which dialogue to currently display
-    int mCurrentDialogueIndex;
+    // Indicates which chunk of dialogue is being read from
+    int mCurrentDialogueChunkIndex;
+	List<Dialogue> currentDialogueChunk;
 
-    // Relative path to the dialogue file
-    const string mDialogueFilePath = "/Files/Dialogue.txt";
+	// Indicates which piece of dialogue in a chunk should be said
+	int mCurrentDialogueIndex;
+	Dialogue currentDialogue;
 
-    // Used to display multiple dialogues per one event call
-    int numberOfDialoguesToDisplay;
+	// Relative path to the dialogue file
+	const string mDialogueFilePath = "/Files/Dialogue.txt";
 
     // Used to keep track of number of dialogues displayed per one event call
     int numberOfDialoguesThatHaveBeenDisplayed;
@@ -134,16 +145,16 @@ public class DialogueManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Initialize variables
-        mCurrentDialogueIndex = 0;
-        numberOfDialoguesToDisplay = 0;
+		// Initialize variables
+		mCurrentDialogueChunkIndex = 0;
+		mCurrentDialogueIndex = 0;
         currentCharIndexForDialogue = 0;
         numberOfDialoguesThatHaveBeenDisplayed = 0;
         everyNthFrame = 0;
         doDialogue = false;
 
         // Initialize all dialogue list
-        mAllDialogue = new List<Dialogue>();
+        mAllDialogueChunks = new List<List<Dialogue>>();
 
         // Create dictionary for quick access to the respective person
         Dictionary<string, int> personDictionary = new Dictionary<string, int>();
@@ -156,36 +167,51 @@ public class DialogueManager : MonoBehaviour
         // Set up stream reader to dialogue text file
         StreamReader reader = new StreamReader(Application.dataPath + mDialogueFilePath);
 
-        // TODO: I think this isn't needed anymore... need to add something to tell dialogue when to stop. I think the actions will be useful for that.
+		// TODO: See how long this file reading takes
 
-        // TODO: See how long this file reading takes
+		// Transfer the dialogue to the list of dialogue
+		List<Dialogue> dialogueChunk = new List<Dialogue>();
 
-        // Transfer the dialogue to the list of dialogue
-        while (true)
+		while (true)
         {
-            // Find out who said the dialogue
-            string personName = reader.ReadLine();
-            string personsWords = reader.ReadLine();
-            int whichPerson = personDictionary[personName];
+			string currentLine = reader.ReadLine();
 
-            // Set the person
-            Person person = mPeople[whichPerson];
+			if (currentLine[0] == '/' && currentLine[1] == '/')
+			{
+				// Add chunk and clear it for next chunk to be filled
+				mAllDialogueChunks.Add(new List<Dialogue>(dialogueChunk));
+				
+				dialogueChunk.Clear();
 
-            // Construct dialogue
-            Dialogue dialogue = new Dialogue(person, personsWords);
+				// Get rid of blank line after comment
+				reader.ReadLine();
+			}
+			else
+			{
+				// Find out who said the dialogue
+				string personName = currentLine;
+				string personsWords = reader.ReadLine();
+				int whichPerson = personDictionary[personName];
 
-            // Add to list of all dialogue
-            mAllDialogue.Add(dialogue);
+				// Set the person
+				Person person = mPeople[whichPerson];
 
-            // Every dialogue has an empty line so clear that
-            reader.ReadLine();
+				// Construct dialogue
+				Dialogue dialogue = new Dialogue(person, personsWords);
 
-            // Check if everything has been read
-            if (reader.EndOfStream)
-            {
-                break;
-            }
-        }
+				// Add to current chunk of dialogue
+				dialogueChunk.Add(dialogue);
+
+				// Every dialogue has an empty line so clear that
+				reader.ReadLine();
+			}
+
+			// Check if everything has been read
+			if (reader.EndOfStream)
+			{
+				break;
+			}
+		}
 
         // Close stream reader given we're done reading
         reader.Close();
@@ -216,7 +242,7 @@ public class DialogueManager : MonoBehaviour
         // Only do if it's been told to
         if (doDialogue)
         {
-            //
+            // Play the talking sound until all the words have been displayed
             if (!audioSource.isPlaying)
             {
                 audioSource.pitch = Random.Range(0.75f, 1.25f);
@@ -226,13 +252,13 @@ public class DialogueManager : MonoBehaviour
             // Number of frames til text can be added
             const int nFrames = 3;
 
-            // Only do if all the text isn't there
-            if (text.text.Length != mAllDialogue[mCurrentDialogueIndex].GetWords().Length)
+			// Only do if all the text isn't there
+			if (text.text.Length != currentDialogue.GetWords().Length)
             {
                 // Is it the nth frame?
                 if (everyNthFrame++ % nFrames == 0)
                 {
-                    text.text += mAllDialogue[mCurrentDialogueIndex].GetWords()[currentCharIndexForDialogue];
+                    text.text += currentDialogue.GetWords()[currentCharIndexForDialogue];
 
                     ++currentCharIndexForDialogue;
                 }
@@ -252,7 +278,7 @@ public class DialogueManager : MonoBehaviour
                 ++numberOfDialoguesThatHaveBeenDisplayed;
 
                 // Only do if we haven't met requested number of dialogues
-                if (numberOfDialoguesThatHaveBeenDisplayed < numberOfDialoguesToDisplay)
+                if (numberOfDialoguesThatHaveBeenDisplayed < currentDialogueChunk.Count)
                 {
                     // Then subscribe to input manager for left mouse click event using NextDialogue
                     InputManager.OnLeftMouseReleased += NextDialogue;
@@ -266,11 +292,8 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void StartDialogue(int numDialogues)
+    public void StartDialogue()
     {
-        // Store number of dialogues
-        numberOfDialoguesToDisplay = numDialogues;
-
         // TODO: Do cool animation to bring up canvas
 
         // Set enabled so it is visible
@@ -311,7 +334,6 @@ public class DialogueManager : MonoBehaviour
 
         // Reinitialize variables
         doDialogue = false;
-        numberOfDialoguesToDisplay = 0;
         currentCharIndexForDialogue = 0;
         numberOfDialoguesThatHaveBeenDisplayed = 0;
 
@@ -322,14 +344,18 @@ public class DialogueManager : MonoBehaviour
     // Some basic initialization that both StartDialogue and NextDialogue use
     void DialogueInitialization()
     {
-        // Disable input prompt image
-        inputPrompt.enabled = false;
+		// Set current dialogue variables
+		currentDialogueChunk = mAllDialogueChunks[mCurrentDialogueChunkIndex];
+		currentDialogue = currentDialogueChunk[mCurrentDialogueIndex];
+
+		// Disable input prompt image
+		inputPrompt.enabled = false;
 
         // Clear text
         text.text = "";
 
         // Set text to the respective color
-        text.color = mAllDialogue[mCurrentDialogueIndex].GetPerson().GetColor();
+        text.color = currentDialogue.GetPerson().GetColor();
 
         // Set audio clip to the correct person
         audioSource.clip = mumblingClips[1];
@@ -346,37 +372,8 @@ public class DialogueManager : MonoBehaviour
         // Development tool to skip dialogue
         if (skipDialogue)
         {
-            text.text = mAllDialogue[mCurrentDialogueIndex].GetWords();
+            text.text = currentDialogue.GetWords();
             currentCharIndexForDialogue = text.text.Length;
         }
     }
-
-    //AudioClip MakeMumblingClip(string words)
-    //{
-    //    // Figure out how many words there are
-    //    int numOfWords = words.Split(' ').Length;
-
-    //    // TODO: If doing multiple clips, loop around number of clips and count their accumlative length
-
-    //    // Set up data
-    //    int length = mumblingClips[1].samples * numOfWords;
-    //    float[] allData = new float[length];
-    //    length = 0;
-
-    //    // Transfer data from sounds to final buffer
-    //    for (int i = 0; i < numOfWords; ++i)
-    //    {
-    //        float[] tempBuffer = new float[mumblingClips[1].samples];
-    //        mumblingClips[1].GetData(tempBuffer, 0);
-
-    //        tempBuffer.CopyTo(allData, length);
-    //        length += tempBuffer.Length;
-    //    }
-
-    //    // Create final clip
-    //    AudioClip finalClip = AudioClip.Create("MumblingClip", length, mumblingClips[1].channels, mumblingClips[1].frequency, false);
-    //    finalClip.SetData(allData, 0);
-
-    //    return finalClip;
-    //}
 }

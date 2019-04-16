@@ -80,9 +80,9 @@ public class EventManager : MonoBehaviour
         MarkEventAsDone();
     }
 
-    public void PlayDialogue(string numOfDialogues)
+    public void PlayDialogue(string nothing)
     {
-        DialogueManager.instance.StartDialogue(int.Parse(numOfDialogues));
+        DialogueManager.instance.StartDialogue();
     }
 
     public void PlaySound(string soundName)

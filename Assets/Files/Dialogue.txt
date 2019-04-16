@@ -40,11 +40,15 @@ Why yes, I am the princess. But where’s my castle?
 Knight
 Here. I’ll take you to it. 
 
+// End of dialogue
+
 Princess
 Ouchy! I bumped my head trying to get up there. How’d you get up there so easily?
 
 Knight
 It’s easy your majesty. It’s all in the legs. Try again.
+
+// End of dialogue
 
 Daughter
 I did it!
@@ -52,11 +56,15 @@ I did it!
 Knight
 That you did your majesty. It only gets harder from here though.
 
+// End of dialogue
+
 Princess
 Sir knight! How am I supposed to get up there? It’s too high!
 
 Knight
 You have to jump on to these platforms to get up there. Watch and learn!
+
+// End of dialogue
 
 Knight
 See? Easy!
@@ -70,17 +78,23 @@ My lady, anything is possible. You are stronger than you think.
 Princess
 Alright. Let me try then...
 
+// End of dialogue
+
 Princess
 Woohoo! I did it!
 
 Knight
 You see! What did I tell you?
 
+// End of dialogue
+
 Princess
 I can’t believe we just did that!
 
 Knight
-I told you you would get the hang of things. And I’d say we’re half way to the castle your majesty.
+I told you you would get the hang of things. And look. We've arrived at your town.
+
+// End of dialogue
 
 Daughter
 Daddy! What are those. They’re scary!
@@ -91,44 +105,74 @@ Oh no! Those look like the minions of the dastardly Count Duradel the fourth. Th
 Princess
 Attack them before they can hurt anyone.
 
+// End of dialogue
+
 Princess
 Yes! You saved the town!
 
 Knight
-Not so fast. If there’s some here, there’s probably even more. Stick close to me while we go deeper into the town.
+Not so fast. If there’s some here, there’s probably even more. Stick close to me.
+
+// End of dialogue
 
 Princess
-Oh great. There's even more!
+Oh great. More of the evil things.
+
+Knight
+See, I told you there'd be more. 
 
 Knight
 Tis not a problem. Just stay behind me as I deal with these monsters.
+
+// End of dialogue
 
 Princess
 I can’t believe you took them all out by yourself.
 
 Knight
-It’s what I’ve trained for my whole life. 
+I mean it'd be sad if I couldn't handle that.
+
+Knight
+It is what I have trained for my whole life. 
+
+// End of dialogue
 
 Daughter
 Help daddy! They’ve surrounded me!
 
 Knight
-You are the most powerful person in this whole land. These monsters should be afraid of you. You shouldn’t be afraid of them!
+You are the most powerful person in this whole land.
+
+Knight
+These monsters should be afraid of you. You shouldn’t be afraid of them!
 
 Daughter
 But they’re going to hurt me! I don’t want to die!
 
 Knight
-How many times do I have to tell you your majesty. You are always stronger than you think. You saw me attack them earlier. Attack them just like you saw me do it earlier.
+How many times do I have to tell you your majesty. You are always stronger than you think. 
+
+Knight
+Believe in yourself.
+
+// End of dialogue
 
 Princess
 And that’s what you get for trying to attack the princess of the Kingdom of Fluffy Rabbit Ears!
 
 Knight
-Great job over there your majesty. Maybe Count Duradel will think twice before he sends his minions into your kingdom! And look the castle is right ahead.
+Great job there your majesty. Maybe Count Duradel will think twice before he sends his minions into your kingdom! 
+
+Knight
+And look the castle is right ahead.
+
+// End of dialogue
+
+Knight
+What do you think your majesty
 
 Princess
-The castle is so beautiful!
+It's so beautiful!
 
 Knight
 And it’s yours. This whole kingdom is yours.
@@ -138,3 +182,14 @@ What about the Count? He’s trying to take away my kingdom. We need to stop him
 
 Knight
 We can’t do anything when we’re tired. We’ve had an exhausting day your highness. We will stop the count after we get some rest.
+
+Princess
+Ok. I guess I'm getting really sleepy.
+
+Princess
+But it's got to be the first thing we do tomorrow.
+
+Knight
+As you wish your highness
+
+// End of dialogue
