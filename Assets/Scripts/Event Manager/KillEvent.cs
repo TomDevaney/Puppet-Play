@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine;
 
+// A kill event is an event that is triggered when certain Living objects have been killed
+
 public class KillEvent : MonoBehaviour
 {
 	// An event that can be assigned to by other classes and through the editor
