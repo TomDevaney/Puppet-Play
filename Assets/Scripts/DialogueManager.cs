@@ -85,9 +85,6 @@ public class DialogueManager : MonoBehaviour
 	// Relative path to the dialogue file
 	const string mDialogueFilePath = "/Files/Dialogue.txt";
 
-    // Used to keep track of number of dialogues displayed per one event call
-    int numberOfDialoguesThatHaveBeenDisplayed;
-
     // Used to keep track what char needs to be output for the dialogue
     int currentCharIndexForDialogue;
 
@@ -106,14 +103,19 @@ public class DialogueManager : MonoBehaviour
         new Person("Knight", new Color(255 / 255.0f, 0 / 255.0f, 0 / 255.0f)),
     };
 
-    // Text label to be filled up with dialogue
-    Text text;
+	// Text label to be filled up with dialogue
+	Text nameText;
+
+	// Text label to be filled up with dialogue
+	Text dialogueText;
 
     // Canvas containing all the dialogue HUD
     Canvas canvas;
 
+	// I'm not going to use this currently as I would need 2D art
+	// Instead, I'm doing a name instead
     // Image of the person's avatar
-    Image avatar;
+    //Image avatar;
 
     // Image for input prompt
     Image inputPrompt;
@@ -149,7 +151,6 @@ public class DialogueManager : MonoBehaviour
 		mCurrentDialogueChunkIndex = 0;
 		mCurrentDialogueIndex = 0;
         currentCharIndexForDialogue = 0;
-        numberOfDialoguesThatHaveBeenDisplayed = 0;
         everyNthFrame = 0;
         doDialogue = false;
 
@@ -220,14 +221,15 @@ public class DialogueManager : MonoBehaviour
         canvas = GetComponentInChildren<Canvas>();
         canvas.enabled = false;
 
-        // Set text label
-        text = GetComponentInChildren<Text>();
+		// Set text labels
+		nameText = GetComponentsInChildren<Text>()[0];
+		dialogueText = GetComponentsInChildren<Text>()[1];
 
-        // Set avatar and input prompt
-        Image[] images = GetComponentsInChildren<Image>();
+		// Set avatar and input prompt
+		Image[] images = GetComponentsInChildren<Image>();
 
-        avatar = images[1];
-        inputPrompt = images[2];
+        //avatar = images[1];
+        inputPrompt = images[1];
 
         // Disable input prompt image
         inputPrompt.enabled = false;
@@ -253,12 +255,12 @@ public class DialogueManager : MonoBehaviour
             const int nFrames = 3;
 
 			// Only do if all the text isn't there
-			if (text.text.Length != currentDialogue.GetWords().Length)
+			if (dialogueText.text.Length != currentDialogue.GetWords().Length)
             {
                 // Is it the nth frame?
                 if (everyNthFrame++ % nFrames == 0)
                 {
-                    text.text += currentDialogue.GetWords()[currentCharIndexForDialogue];
+					dialogueText.text += currentDialogue.GetWords()[currentCharIndexForDialogue];
 
                     ++currentCharIndexForDialogue;
                 }
@@ -274,11 +276,8 @@ public class DialogueManager : MonoBehaviour
                 // Update overall dialogue index
                 ++mCurrentDialogueIndex;
 
-                // Update number of dialogues that have been displayed in a row
-                ++numberOfDialoguesThatHaveBeenDisplayed;
-
-                // Only do if we haven't met requested number of dialogues
-                if (numberOfDialoguesThatHaveBeenDisplayed < currentDialogueChunk.Count)
+                // Have we done all the dialogue in the chunk
+                if (mCurrentDialogueIndex < currentDialogueChunk.Count)
                 {
                     // Then subscribe to input manager for left mouse click event using NextDialogue
                     InputManager.OnLeftMouseReleased += NextDialogue;
@@ -326,19 +325,22 @@ public class DialogueManager : MonoBehaviour
         // Set enabled so it isn't visible
         canvas.enabled = false;
 
-        // Clear text. In the future, clearing at the beginning of start could work better depending on HUD animations
-        text.text = "";
+		// Clear text. In the future, clearing at the beginning of start could work better depending on HUD animations
+		dialogueText.text = "";
 
         // Disable input prompt image
         inputPrompt.enabled = false;
 
-        // Reinitialize variables
-        doDialogue = false;
-        currentCharIndexForDialogue = 0;
-        numberOfDialoguesThatHaveBeenDisplayed = 0;
+		// Increment chunk index
+		++mCurrentDialogueChunkIndex;
 
-        // Tell event manager all the dialogue is done
-        EventManager.instance.MarkEventAsDone();
+		// Reinitialize variables
+		doDialogue = false;
+        currentCharIndexForDialogue = 0;
+		mCurrentDialogueIndex = 0;
+
+		// Tell event manager all the dialogue is done
+		EventManager.instance.MarkEventAsDone();
     }
 
     // Some basic initialization that both StartDialogue and NextDialogue use
@@ -351,11 +353,14 @@ public class DialogueManager : MonoBehaviour
 		// Disable input prompt image
 		inputPrompt.enabled = false;
 
-        // Clear text
-        text.text = "";
+		// Clear text
+		dialogueText.text = "";
 
-        // Set text to the respective color
-        text.color = currentDialogue.GetPerson().GetColor();
+		// Set text to the respective color
+		dialogueText.color = currentDialogue.GetPerson().GetColor();
+
+		// Set name text label
+		nameText.text = currentDialogue.GetPerson().GetName();
 
         // Set audio clip to the correct person
         audioSource.clip = mumblingClips[1];
@@ -372,8 +377,8 @@ public class DialogueManager : MonoBehaviour
         // Development tool to skip dialogue
         if (skipDialogue)
         {
-            text.text = currentDialogue.GetWords();
-            currentCharIndexForDialogue = text.text.Length;
+			dialogueText.text = currentDialogue.GetWords();
+            currentCharIndexForDialogue = dialogueText.text.Length;
         }
     }
 }
