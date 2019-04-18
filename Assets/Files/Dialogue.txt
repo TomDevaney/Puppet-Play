@@ -86,13 +86,16 @@ Woohoo! I did it!
 Knight
 You see! What did I tell you?
 
+Knight
+If you can handle that, the rest of this stuff will be easy!
+
 // End of dialogue
 
 Princess
-I can’t believe we just did that!
+That was super easy.
 
 Knight
-I told you you would get the hang of things. And look. We've arrived at your town.
+I knew you would get the hang of things quickly. And look. We've arrived at your town.
 
 // End of dialogue
 
@@ -100,10 +103,13 @@ Daughter
 Daddy! What are those. They’re scary!
 
 Knight
-Oh no! Those look like the minions of the dastardly Count Duradel the fourth. They’ve invaded your kingdom your highness. 
+Oh no! Those look like the minions of the dastardly Count Duradel the fourth.
 
 Princess
-Attack them before they can hurt anyone.
+They’ve invaded my kingdom! 
+
+Princess
+This is unacceptable! Give them a spanking!
 
 // End of dialogue
 
@@ -161,15 +167,12 @@ Princess
 And that’s what you get for trying to attack the princess of the Kingdom of Fluffy Rabbit Ears!
 
 Knight
-Great job there your majesty. Maybe Count Duradel will think twice before he sends his minions into your kingdom! 
-
-Knight
-And look the castle is right ahead.
+Great job your majesty. Maybe Count Duradel will think twice before he sends his minions into your kingdom! 
 
 // End of dialogue
 
 Knight
-What do you think your majesty
+What do you think of the castle your majesty
 
 Princess
 It's so beautiful!
@@ -184,7 +187,7 @@ Knight
 We can’t do anything when we’re tired. We’ve had an exhausting day your highness. We will stop the count after we get some rest.
 
 Princess
-Ok. I guess I'm getting really sleepy.
+Ok. I guess I am getting really sleepy...
 
 Princess
 But it's got to be the first thing we do tomorrow.
