@@ -1,29 +1,28 @@
 Dad
-Hey, come check this out.
+Hey sweetie. Come over here.
 
 Daughter
-Awesome! Let me try!
+Wow, what is this?
 
 Dad
-Hold up a sec. This one’s mine. You have your own.
+It's a puppet show. You see, check this out.
+
+// End of dialogue
 
 Daughter
-That’s not fair! How’d you do that?
+Oh my gosh, he can dance! I want to try!
 
 Dad
-Oh this?
-
-Dad
-Just practice.
+Go ahead. I made you one.
 
 Daughter
-That is so not fair! I want to be able to do that!
+Hmph. It's too hard. I can't make her dance.
 
 Dad
-Trust me. You’ll be able to soon. It just takes practice.
+That's okay. You just need to practice a bit. You'll get the hang of it.
 
 Daughter
-Where are we anyway?
+So where is this anyways?
 
 Knight
 You would know if anyone. This is your land of course, your majesty.
@@ -43,7 +42,7 @@ Here. I’ll take you to it.
 // End of dialogue
 
 Princess
-Ouchy! I bumped my head trying to get up there. How’d you get up there so easily?
+I tried to jump, but it didn't do anything. How’d you get up there so easily?
 
 Knight
 It’s easy your majesty. It’s all in the legs. Try again.
@@ -103,7 +102,7 @@ Daughter
 Daddy! What are those. They’re scary!
 
 Knight
-Oh no! Those look like the minions of the dastardly Count Duradel the fourth.
+Oh no! Those look like the minions of the dastardly Count Duradel IV.
 
 Princess
 They’ve invaded my kingdom! 
@@ -156,7 +155,10 @@ Daughter
 But they’re going to hurt me! I don’t want to die!
 
 Knight
-How many times do I have to tell you your majesty. You are always stronger than you think. 
+How many times do I have to tell you your majesty. 
+
+Knight
+You are stronger than you think. 
 
 Knight
 Believe in yourself.
@@ -167,7 +169,10 @@ Princess
 And that’s what you get for trying to attack the princess of the Kingdom of Fluffy Rabbit Ears!
 
 Knight
-Great job your majesty. Maybe Count Duradel will think twice before he sends his minions into your kingdom! 
+Great job your majesty!
+
+Knight
+Maybe Count Duradel will think twice before he sends his minions into your kingdom! 
 
 // End of dialogue
 
@@ -184,15 +189,34 @@ Princess
 What about the Count? He’s trying to take away my kingdom. We need to stop him before he harms anyone else in my kingdom.
 
 Knight
-We can’t do anything when we’re tired. We’ve had an exhausting day your highness. We will stop the count after we get some rest.
+We can’t do anything when we’re tired. We’ve had an exhausting day your highness. 
+
+Knight
+We will stop the count after we get some rest.
 
 Princess
-Ok. I guess I am getting really sleepy...
+Ok... I guess I am getting really sleepy...
 
 Princess
 But it's got to be the first thing we do tomorrow.
 
 Knight
-As you wish your highness
+As you wish your highness.
 
-// End of dialogue
+Daughter
+That was fun daddy.
+
+Dad
+I'm happy. I spent a lot of time working on all of that.
+
+Daughter
+When do you think we'll be able to play next?
+
+Dad
+Well, it might take a while actually because I haven't even started on the next part.
+
+Daughter
+Aw man! You better hurry up. I need to teach Count Durabell a lesson.
+
+Dad
+Yes, your majesty. I'll get right on it!
