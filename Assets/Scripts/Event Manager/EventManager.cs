@@ -128,6 +128,8 @@ public class EventManager : MonoBehaviour
 		Vector3 vectorLocation = new Vector3(float.Parse(args[0]), float.Parse(args[1]), float.Parse(args[2]));
 
 		Instantiate(patrollingEnemy, vectorLocation, new Quaternion());
+
+		MarkEventAsDone();
 	}
 
     // Could also make it where if they sent in one number, it's just an offset
