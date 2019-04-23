@@ -12,9 +12,6 @@ It's a puppet show. You see, check this out.
 Daughter
 Oh my gosh, he can dance! I want to try!
 
-Dad
-Go ahead. I made you one.
-
 Daughter
 Hmph. It's too hard. I can't make her dance.
 
@@ -22,7 +19,7 @@ Dad
 That's okay. You just need to practice a bit. You'll get the hang of it.
 
 Daughter
-So where is this anyways?
+So where are we anyways?
 
 Knight
 You would know if anyone. This is your land of course, your majesty.
@@ -61,15 +58,10 @@ Princess
 Sir knight! How am I supposed to get up there? It’s too high!
 
 Knight
-You have to jump on to these platforms to get up there. Watch and learn!
-
-// End of dialogue
-
-Knight
-See? Easy!
+Weren't you paying attention? It's easy!
 
 Princess
-That looks hard! I’m not sure my little princess body can handle that.
+It looked hard! I’m not sure my little princess body can handle that.
 
 Knight
 My lady, anything is possible. You are stronger than you think.
@@ -83,10 +75,10 @@ Princess
 Woohoo! I did it!
 
 Knight
-You see! What did I tell you?
+You see! What did I tell you? You made that look easy!
 
 Knight
-If you can handle that, the rest of this stuff will be easy!
+If you can handle that, the rest of this stuff will be even easier!
 
 // End of dialogue
 
@@ -95,6 +87,12 @@ That was super easy.
 
 Knight
 I knew you would get the hang of things quickly. And look. We've arrived at your town.
+
+Princess
+Wow. I can't believe I have a town.
+
+Knight
+I mean you are a princess. What else would you reside over? Ant hills?
 
 // End of dialogue
 
@@ -186,7 +184,10 @@ Knight
 And it’s yours. This whole kingdom is yours.
 
 Princess
-What about the Count? He’s trying to take away my kingdom. We need to stop him before he harms anyone else in my kingdom.
+What about the Count? He’s trying to take away my kingdom.
+
+Princess
+We need to stop him before he harms anyone else in my kingdom.
 
 Knight
 We can’t do anything when we’re tired. We’ve had an exhausting day your highness. 
@@ -207,7 +208,7 @@ Daughter
 That was fun daddy.
 
 Dad
-I'm happy. I spent a lot of time working on all of that.
+I'm happy. Ya know I spent a lot of time working on all of that.
 
 Daughter
 When do you think we'll be able to play next?
@@ -216,7 +217,7 @@ Dad
 Well, it might take a while actually because I haven't even started on the next part.
 
 Daughter
-Aw man! You better hurry up. I need to teach Count Durabell a lesson.
+Aw man! You better hurry up. I need to teach Count Duracell a lesson.
 
 Dad
 Yes, your majesty. I'll get right on it!

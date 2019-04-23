@@ -75,9 +75,14 @@ public class EventManager : MonoBehaviour
 		}
 
     /* Custom Events */
-    public void PlayAnimation(string stateName)
+    public void PlayAnimationForPlayer(string stateName)
     {
-        MarkEventAsDone();
+		GameManager.instance.GetPlayerPuppet().animator.SetTrigger(stateName);
+
+		// Going to make a very lazy and bad assumption that they were in Idle so send them back after the desired state finishes
+		//GameManager.instance.GetPlayerPuppet().animator.SetTrigger("Idle");
+
+		MarkEventAsDone();
     }
 
     public void PlayDialogue(string nothing)
