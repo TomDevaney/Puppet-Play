@@ -37,9 +37,9 @@ public class StageController : MonoBehaviour
 
     IEnumerator OpeningCurtains()
     {
-        float TimeBetween = 0.015f;
-        float FullyOpenScale = 0.1f;
-        float CloseEnoughRange = 0.01f;
+        float TimeBetween = 0.015f * 1.5f;
+        float FullyOpenScale = 0.0f;
+        float CloseEnoughRange = 0.02f;
 
         while (true)
         {
@@ -58,7 +58,9 @@ public class StageController : MonoBehaviour
 
             if(Mathf.Abs(NextZ - FullyOpenScale) <= CloseEnoughRange)
             {
-                break;
+				LeftCurtain.transform.localScale = Vector3.zero;
+				RightCurtain.transform.localScale = Vector3.zero;
+				break;
             }
 
 
