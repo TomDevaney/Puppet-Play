@@ -62,8 +62,8 @@ public class Puppet : Living
 
     void CheckStandingOnSurface()
     {
-        //Ignore the Player Layer
-        int LayerMask = 1 << 9;
+        //Ignore the Player and daughter Layer
+        int LayerMask = 1 << 9 | 1 << 11;
         LayerMask = ~LayerMask;
 
         RaycastHit HitInfo;
@@ -77,33 +77,21 @@ public class Puppet : Living
             if (!IsStandingOnSurface())
             {
                 AudioManager.instance.PlaySoundFXAtPosition(landClip, gameObject.transform.position);
-                if(isMovingLR)
-                {
-                    animator.ResetTrigger("LandedOnSurface");  
-                    animator.SetTrigger("LandedWhileMoving"); 
-                }
-                else
-                {
-                    animator.SetTrigger("LandedOnSurface");
-                    animator.ResetTrigger("LandedWhileMoving");
-                }
             }
 
             SetStandingOnSurface(true);
+
+			animator.SetBool("OnGround", true);
             //print(HitInfo.distance + "");
         }
         else
         {
-            if(IsStandingOnSurface())
-            {
-                animator.ResetTrigger("LandedOnSurface");
-            }
-
             SetStandingOnSurface(false);
-        }
+			animator.SetBool("OnGround", false);
+		}
 
 
-    }
+	}
 
     public void Jump()
     {
@@ -116,8 +104,8 @@ public class Puppet : Living
             AudioManager.instance.PlaySoundFXAtPosition(jumpClip, gameObject.transform.position);
 
             animator.SetTrigger("Jump");
-        }
-        else
+		}
+		else
         {
             print("not standing on surface");
         }
@@ -176,7 +164,7 @@ public class Puppet : Living
 		animator.SetTrigger("Idle");
 		animator.ResetTrigger("Walk");
 
-        EventManager.instance.MarkEventAsDone();
+		EventManager.instance.MarkEventAsDone();
     }
 
 	public void SetFacingDirection(string direction)

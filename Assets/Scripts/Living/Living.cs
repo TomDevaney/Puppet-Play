@@ -118,8 +118,6 @@ public class Living : MonoBehaviour
 		// Only play footsteps if they're actually moving and it's not playing already
 		const float walkingThreshold = 0.15f;
 
-        
-
         if (Mathf.Abs(xAxis) >= walkingThreshold)
         {
             // Don't play if they're in the air!
@@ -132,7 +130,7 @@ public class Living : MonoBehaviour
 
 			if (animator != null)
 			{
-            	animator.ResetTrigger("Idle");
+				animator.ResetTrigger("Idle");
 				animator.SetTrigger("Walk");
 			}
 		}
