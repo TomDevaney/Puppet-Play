@@ -15,7 +15,7 @@ public class Checkpoint : TriggerEvent
     void Start()
     {
         // Grab references to components
-        meshRenderer = GetComponent<MeshRenderer>();
+        meshRenderer = GetComponentInChildren<MeshRenderer>();
         audioSource = GetComponent<AudioSource>();
 
 
