@@ -1,8 +1,7 @@
 fileFormatVersion: 2
-guid: c01b397f0a219364d926c5d752a14972
+guid: bc46981f62233e14f9d9e8fc5eb06aef
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: castle2d_0
+  fileIDToRecycleName: {}
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -41,7 +40,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -83,31 +82,11 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: castle2d_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1800
-        height: 1200
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 205, y: 162, z: 187, w: 307}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5c03736622734234cbf87b02b0d2dd8e
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: d831e0944cf270141b7e4f983fb0e3d4
+    spriteID: 
     vertices: []
     indices: 
     edges: []
