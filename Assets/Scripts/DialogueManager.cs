@@ -269,6 +269,7 @@ public class DialogueManager : MonoBehaviour
             {
                 // Enable input prompt image
                 inputPrompt.enabled = true;
+				inputPrompt.GetComponent<Animator>().SetBool("Bounce", true);
 
                 // Stop dialog from updating
                 doDialogue = false;
@@ -281,11 +282,15 @@ public class DialogueManager : MonoBehaviour
                 {
                     // Then subscribe to input manager for left mouse click event using NextDialogue
                     InputManager.OnLeftMouseReleased += NextDialogue;
-                }
+					InputManager.OnReturnUp += NextDialogue;
+					InputManager.OnSpaceUp += NextDialogue;
+				}
                 else
                 {
                     InputManager.OnLeftMouseReleased += EndDialogue;
-                }
+					InputManager.OnReturnUp += EndDialogue;
+					InputManager.OnSpaceUp += EndDialogue;
+				}
             }
 
         }
@@ -307,9 +312,11 @@ public class DialogueManager : MonoBehaviour
     {
         // Unsubscribe from event
         InputManager.OnLeftMouseReleased -= NextDialogue;
+		InputManager.OnReturnUp -= NextDialogue;
+		InputManager.OnSpaceUp -= NextDialogue;
 
-        // Reset char index
-        currentCharIndexForDialogue = 0;
+		// Reset char index
+		currentCharIndexForDialogue = 0;
 
         // Init some variables needed
         DialogueInitialization();
@@ -321,9 +328,11 @@ public class DialogueManager : MonoBehaviour
 
         // Unsubscribe from event
         InputManager.OnLeftMouseReleased -= EndDialogue;
+		InputManager.OnReturnUp -= EndDialogue;
+		InputManager.OnSpaceUp -= EndDialogue;
 
-        // Set enabled so it isn't visible
-        canvas.enabled = false;
+		// Set enabled so it isn't visible
+		canvas.enabled = false;
 
 		// Clear text. In the future, clearing at the beginning of start could work better depending on HUD animations
 		dialogueText.text = "";
@@ -352,6 +361,7 @@ public class DialogueManager : MonoBehaviour
 
 		// Disable input prompt image
 		inputPrompt.enabled = false;
+		inputPrompt.GetComponent<Animator>().SetBool("Bounce", false);
 
 		// Clear text
 		dialogueText.text = "";

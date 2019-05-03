@@ -13,8 +13,14 @@ public class InputManager : MonoBehaviour
     public delegate void LeftMouseReleased();
     public static event LeftMouseReleased OnLeftMouseReleased;
 
-    // 
-    bool canPlayerMove;
+	public delegate void SpaceReleased();
+	public static event SpaceReleased OnSpaceUp;
+
+	public delegate void ReturnReleased();
+	public static event ReturnReleased OnReturnUp;
+
+	// 
+	bool canPlayerMove;
 
     //
     bool canPlayerJump;
@@ -52,7 +58,25 @@ public class InputManager : MonoBehaviour
                 OnLeftMouseReleased();
             }
         }
-    }
+
+		// Handle space released event
+		if (OnSpaceUp != null)
+		{
+			if (Input.GetKeyUp(KeyCode.Space))
+			{
+				OnSpaceUp();
+			}
+		}
+
+		// Handle enter released event
+		if (OnReturnUp != null)
+		{
+			if (Input.GetKeyUp(KeyCode.Return))
+			{
+				OnReturnUp();
+			}
+		}
+	}
 
     public void DisablePlayerActions()
     {
