@@ -85,7 +85,17 @@ public class EventManager : MonoBehaviour
 		MarkEventAsDone();
     }
 
-    public void PlayDialogue(string nothing)
+	public void PlayAnimationForDaughter(string stateName)
+	{
+		GameManager.instance.GetDaughterPuppet().animator.SetTrigger(stateName);
+
+		// Going to make a very lazy and bad assumption that they were in Idle so send them back after the desired state finishes
+		//GameManager.instance.GetPlayerPuppet().animator.SetTrigger("Idle");
+
+		MarkEventAsDone();
+	}
+
+	public void PlayDialogue(string nothing)
     {
         DialogueManager.instance.StartDialogue();
     }

@@ -16,7 +16,7 @@ Daughter
 Hmph. It's too hard. I can't make her dance.
 
 Dad
-That's okay. You just need to practice a bit. You'll get the hang of it.
+That's okay. You'll be able to dance soon with practice.
 
 Daughter
 So where are we anyways?
@@ -163,14 +163,31 @@ Believe in yourself.
 
 // End of dialogue
 
+Daughter
+I did it!
+
 Princess
-And that’s what you get for trying to attack the princess of the Kingdom of Fluffy Rabbit Ears!
+I think this calls for the royal dance!
+
+// End of dialogue
 
 Knight
-Great job your majesty!
+Wow. Great fighting and dancing moves your highness. 
 
 Knight
-Maybe Count Duradel will think twice before he sends his minions into your kingdom! 
+When the peasants do that dance, it comes off as very peasanty.
+
+Knight
+But when you do it, there's such an elegance to it!
+
+Princess
+Well, the people just need to be taught by their queen how to do the dance. Anyone can do it.
+
+Knight
+Yes, well maybe an old fool like me could get the hang of such a dance.
+
+Knight
+But enough of that let's get going. The castle should be right ahead.
 
 // End of dialogue
 
@@ -195,8 +212,11 @@ We can’t do anything when we’re tired. We’ve had an exhausting day your hi
 Knight
 We will stop the count after we get some rest.
 
+Knight
+It's not like he'll attack again anytime soon. I think you taught him that lesson when you defeated his minions.
+
 Princess
-Ok... I guess I am getting really sleepy...
+Ok.I guess I am actually getting really sleepy...
 
 Princess
 But it's got to be the first thing we do tomorrow.
@@ -221,3 +241,5 @@ Aw man! You better hurry up. I need to teach Count Duracell a lesson.
 
 Dad
 Yes, your majesty. I'll get right on it!
+
+// End of dialogue
