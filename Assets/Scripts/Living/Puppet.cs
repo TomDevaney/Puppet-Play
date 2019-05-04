@@ -15,7 +15,14 @@ public class Puppet : Living
 
     public float FootSpread = 0.1f;
 
-    public float JumpForce = 300;
+    public float jumpVelocity = 7.5f;
+
+	public float fallMultiplier = 2.5f;
+
+	public float smallJumpMultiplier = 2.0f;
+
+	// For ai that jump, but need to jump big
+	bool bDoBigJump = false;
 
 	// Different puppets have different origins so need to customize this
 	public float checkStandingRayDistance;
@@ -48,7 +55,18 @@ public class Puppet : Living
     {
 		base.Update();
 
-        CheckStandingOnSurface();
+		// Have a weightier fall
+		if (TheRigidBody.velocity.y < 0)
+		{
+			TheRigidBody.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1.0f) * Time.deltaTime;
+		}
+		// Have a little jump if you tapped it
+		else if (TheRigidBody.velocity.y > 0 && !Input.GetButton("Jump") && !bDoBigJump)
+		{
+			TheRigidBody.velocity += Vector3.up * Physics.gravity.y * (smallJumpMultiplier - 1.0f) * Time.deltaTime;
+		}
+
+		CheckStandingOnSurface();
     }
 
     public override void JustDied()
@@ -82,7 +100,6 @@ public class Puppet : Living
             SetStandingOnSurface(true);
 
 			animator.SetBool("OnGround", true);
-            //print(HitInfo.distance + "");
         }
         else
         {
@@ -95,20 +112,15 @@ public class Puppet : Living
 
     public void Jump()
     {
-        //print("Jumped");
         if (IsStandingOnSurface())
         {
-            TheRigidBody.AddForce(0, JumpForce, 0);
+			TheRigidBody.velocity = Vector2.up * jumpVelocity;
 
             // Play jump sound
             AudioManager.instance.PlaySoundFXAtPosition(jumpClip, gameObject.transform.position);
 
             animator.SetTrigger("Jump");
 		}
-		else
-        {
-            print("not standing on surface");
-        }
     }
 
     public void Attack()
@@ -124,7 +136,6 @@ public class Puppet : Living
     public void DisableWeaponAttackMode()
     {
         meleeWeapon.AttackModeActive = false;
-        print("DWAM");
     }
 
     public void MoveToLocation(float Loc)
@@ -167,9 +178,9 @@ public class Puppet : Living
 		EventManager.instance.MarkEventAsDone();
     }
 
-	public void SetFacingDirection(string direction)
+	public void SetDoBigJump(bool bigJump)
 	{
-
+		bDoBigJump = bigJump;
 	}
 
     public override void Respawn()

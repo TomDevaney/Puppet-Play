@@ -3056,7 +3056,9 @@ MonoBehaviour:
   animator: {fileID: 0}
   TheRigidBody: {fileID: 127213844}
   FootSpread: 0.1
-  JumpForce: 300
+  jumpVelocity: 7.1
+  fallMultiplier: 2.5
+  smallJumpMultiplier: 2.25
   checkStandingRayDistance: 0.1
   meleeWeapon: {fileID: 427196854}
   jumpClip: {fileID: 8300000, guid: 103970729c9cacb499906a8b51388c6e, type: 3}
@@ -7793,6 +7795,21 @@ PrefabInstance:
       propertyPath: meleeWeapon
       value: 
       objectReference: {fileID: 61981833}
+    - target: {fileID: 6902007168576865840, guid: 3fd3cd2f8fb2cc742a583345d31cc9c1,
+        type: 3}
+      propertyPath: JumpForce
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6902007168576865840, guid: 3fd3cd2f8fb2cc742a583345d31cc9c1,
+        type: 3}
+      propertyPath: jumpVelocity
+      value: 7.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6902007168576865840, guid: 3fd3cd2f8fb2cc742a583345d31cc9c1,
+        type: 3}
+      propertyPath: smallJumpMultiplier
+      value: 2.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fd3cd2f8fb2cc742a583345d31cc9c1, type: 3}
 --- !u!4 &391772695 stripped
@@ -17055,7 +17072,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: StringUnityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
-  eventArgument: Daughter
+  eventArgument: Daughter true
   desiredTimer: 0
 --- !u!1001 &948392742
 PrefabInstance:

@@ -158,16 +158,29 @@ public class EventManager : MonoBehaviour
         puppet.MoveToLocation(float.Parse(args[1]));
     }
 
-    public void MakePuppetJump(string pathToPuppet)
+    public void MakePuppetJump(string pathToPuppetAndBigJump)
     {
-        Puppet puppet = GameObject.Find(pathToPuppet).GetComponent<Puppet>();
+        string[] args = pathToPuppetAndBigJump.Split(' ');
+		Puppet puppet = GameObject.Find(args[0]).GetComponent<Puppet>();
 
         // Regardless of whether they can jump, mark them as being able to
         // Little hack for daughter who is never standing on surface because her origin is in the middle whereas the knight is at his fight
         puppet.SetStandingOnSurface(true);
         puppet.Jump();
 
-        MarkEventAsDone();
+		// If the big jump argument was entered, use the argument
+		// Otherwise, default to small jump
+		if (args.Length > 1)
+		{
+			puppet.SetDoBigJump(bool.Parse(args[1]));
+		}
+		else
+		{
+			puppet.SetDoBigJump(false);
+		}
+
+
+		MarkEventAsDone();
     }
 
 	public void OpenCurtains(string unused)
