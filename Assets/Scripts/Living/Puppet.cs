@@ -92,7 +92,7 @@ public class Puppet : Living
             )
         {
             // Only play landing sound if they were just in the air
-            if (!IsStandingOnSurface())
+            if (!animator.GetBool("OnGround"))
             {
                 AudioManager.instance.PlaySoundFXAtPosition(landClip, gameObject.transform.position);
             }
