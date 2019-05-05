@@ -7,6 +7,8 @@ public class StageController : MonoBehaviour
     public GameObject LeftCurtain = null;
     public GameObject RightCurtain = null;
 
+	public AudioClip CurtainAudioClip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,8 +33,9 @@ public class StageController : MonoBehaviour
             print("null");
         }
 
-        StartCoroutine(OpeningCurtains());
+		AudioManager.instance.PlaySoundFX(CurtainAudioClip);
 
+		StartCoroutine(OpeningCurtains());
     }
 
     IEnumerator OpeningCurtains()
@@ -72,7 +75,9 @@ public class StageController : MonoBehaviour
 
     public void CloseCurtains()
     {
-        StartCoroutine(ClosingCurtains());
+		AudioManager.instance.PlaySoundFX(CurtainAudioClip);
+
+		StartCoroutine(ClosingCurtains());
     }
 
     IEnumerator ClosingCurtains()

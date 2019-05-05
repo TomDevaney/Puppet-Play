@@ -20815,6 +20815,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LeftCurtain: {fileID: 0}
   RightCurtain: {fileID: 0}
+  CurtainAudioClip: {fileID: 8300000, guid: 6f37d14cc7b090f44ac300783e40f953, type: 3}
 --- !u!23 &1161630379
 MeshRenderer:
   m_ObjectHideFlags: 0
