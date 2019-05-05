@@ -103,6 +103,9 @@ public class DialogueManager : MonoBehaviour
         new Person("Knight", new Color(255 / 255.0f, 0 / 255.0f, 0 / 255.0f)),
     };
 
+	// Index map for people
+	Dictionary<string, int> personDictionary;
+
 	// Text label to be filled up with dialogue
 	Text nameText;
 
@@ -158,7 +161,7 @@ public class DialogueManager : MonoBehaviour
         mAllDialogueChunks = new List<List<Dialogue>>();
 
         // Create dictionary for quick access to the respective person
-        Dictionary<string, int> personDictionary = new Dictionary<string, int>();
+        personDictionary = new Dictionary<string, int>();
 
         for (int i = 0; i < mPeople.Length; ++i)
         {
@@ -373,7 +376,7 @@ public class DialogueManager : MonoBehaviour
 		nameText.text = currentDialogue.GetPerson().GetName();
 
         // Set audio clip to the correct person
-        audioSource.clip = mumblingClips[1];
+        audioSource.clip = mumblingClips[personDictionary[currentDialogue.GetPerson().GetName()]];
         //audioSource.clip = MakeMumblingClip(mAllDialogue[mCurrentDialogueIndex].GetWords());
 
         // Play the audio

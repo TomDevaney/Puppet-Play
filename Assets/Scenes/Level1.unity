@@ -9689,7 +9689,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: dab153482576db04c93b7ff7bdd78b24, type: 3}
   - {fileID: 8300000, guid: ed215f528580d4b419799474c152035e, type: 3}
   - {fileID: 8300000, guid: 403c243a13a695f4088b41c79039e7cc, type: 3}
-  - {fileID: 8300000, guid: 81fa12e40dbda554ab8a0b8a40502e7a, type: 3}
+  - {fileID: 8300000, guid: b39ed025213e749499f81c94561a5c10, type: 3}
   skipDialogue: 1
 --- !u!1001 &517524487
 PrefabInstance:
@@ -26548,7 +26548,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1550603283
 Transform:
   m_ObjectHideFlags: 0
@@ -29080,7 +29080,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1709332940
 Transform:
   m_ObjectHideFlags: 0
@@ -33612,7 +33612,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2021942068
 Transform:
   m_ObjectHideFlags: 0
