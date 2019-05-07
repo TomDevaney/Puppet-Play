@@ -72,7 +72,7 @@ public class EventManager : MonoBehaviour
 		{
 			killEvents[i].NotifyOfDeath(living);
 		}
-		}
+	}
 
     /* Custom Events */
     public void PlayAnimationForPlayer(string stateName)

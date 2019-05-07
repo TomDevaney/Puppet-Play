@@ -172,7 +172,20 @@ public class Living : MonoBehaviour
     // Override in the child and react to the death
     public virtual void JustDied()
     {
-        // TODO: Do a fancy animation before destroying it
+		// Do an animation before activating death
+		animator.SetBool("Dead", true);
+
+		// Figure out when to actually mark as dead
+		float deathAnimationTime = 0.0f;
+		AnimationClip[] clips = animator.runtimeAnimatorController.animationClips;
+
+		foreach (AnimationClip clip in clips)
+		{
+			if (clip.name == "Death")
+			{
+				deathAnimationTime = clip.length;
+			}
+		}
 
         // Play death sound
         // TODO: might have to delay it somehow depending on how it sounds being played exactly same time 
@@ -181,19 +194,28 @@ public class Living : MonoBehaviour
             AudioManager.instance.PlaySoundFXAtPosition(deathSound, transform.position);
         }
 
-        // Disable so it can be respawned later if needed
-        gameObject.SetActive(false);
+		// Delay death until animation done
+		Invoke("MarkAsDead", deathAnimationTime);
+    }
+
+	public virtual void MarkAsDead()
+	{
+		// Disable so it can be respawned later if needed
+		gameObject.SetActive(false);
 
 		EventManager.instance.NotifyOfDeath(this);
 
-        // Mark as dead
-        isDead = true;
-    }
+		// Mark as dead
+		isDead = true;
+	}
 
     public virtual void Respawn()
     {
-        // Spawn the object at the spawn point
-        transform.position = new Vector3(spawnPoint.x, spawnPoint.y, transform.position.z);
+		// Go back to idle
+		animator.SetBool("Dead", false);
+
+		// Spawn the object at the spawn point
+		transform.position = new Vector3(spawnPoint.x, spawnPoint.y, transform.position.z);
 
         // Reset variables
         gameObject.SetActive(true);

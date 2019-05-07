@@ -69,16 +69,31 @@ public class Puppet : Living
 		CheckStandingOnSurface();
     }
 
-    public override void JustDied()
-    {
-        // Call parent function
-        base.JustDied();
+	public override void JustDied()
+	{
+		base.JustDied();
 
-        // Tell the manager it's game over
-        GameManager.instance.GameOver();
-    }
+		InputManager.instance.DisablePlayerActions();
+	}
 
-    void CheckStandingOnSurface()
+	public override void MarkAsDead()
+	{
+		base.MarkAsDead();
+
+		EventManager.instance.CloseCurtains("");
+
+		// Tell the manager it's game over
+		// TODO: Do I want to invoke this to after curtain?
+		Invoke("TellGameOver", 6.0f);
+	}
+
+	// Used to delay game over until curtains are done closing
+	public void TellGameOver()
+	{
+		GameManager.instance.GameOver();
+	}
+
+	void CheckStandingOnSurface()
     {
         //Ignore the Player and daughter Layer
         int LayerMask = 1 << 9 | 1 << 11;
@@ -191,5 +206,15 @@ public class Puppet : Living
 
         // Reinitialize parent variables
         SetHealthPoints(1);
+
+		EventManager.instance.OpenCurtains("");
+
+		Invoke("OnRespawnDone", 6.0f);
     }
+
+	// Used to delay player respawn until curtains are done opening
+	public void OnRespawnDone()
+	{
+		InputManager.instance.EnablePlayerActions();
+	}
 }

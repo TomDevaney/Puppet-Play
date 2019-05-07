@@ -14,9 +14,6 @@ public class StageController : MonoBehaviour
     {
         LeftCurtain = GameObject.Find("CurtainLeftParent");
         RightCurtain = GameObject.Find("CurtainRightParent");
-
-        //OpenCurtains();
-
     }
 
     // Update is called once per frame
@@ -27,12 +24,6 @@ public class StageController : MonoBehaviour
 
     public void OpenCurtains()
     {
-        print("OpenCurtains");
-        if(LeftCurtain == null)
-        {
-            print("null");
-        }
-
 		AudioManager.instance.PlaySoundFX(CurtainAudioClip);
 
 		StartCoroutine(OpeningCurtains());
@@ -77,14 +68,18 @@ public class StageController : MonoBehaviour
     {
 		AudioManager.instance.PlaySoundFX(CurtainAudioClip);
 
+		// Restore scale caused from opening curtains
+		LeftCurtain.transform.localScale = new Vector3(1.0f, 1.0f, 0.0f);
+		RightCurtain.transform.localScale = new Vector3(1.0f, 1.0f, 0.0f);
+
 		StartCoroutine(ClosingCurtains());
     }
 
     IEnumerator ClosingCurtains()
     {
-        float TimeBetween = 0.015f;
-        float FullyClosedScale = 1.1f;
-        float CloseEnoughRange = 0.09f;
+		float TimeBetween = 0.015f * 1.5f;
+		float FullyClosedScale = 1.1f;
+        float CloseEnoughRange = 0.02f;
 
         while (true)
         {

@@ -32,7 +32,6 @@ public class Player : MonoBehaviour
 			if(Input.GetButtonDown("Jump"))
 			{
 				ThePuppet.Jump();
-                print("Jumped");
 			}
 		}
         else
