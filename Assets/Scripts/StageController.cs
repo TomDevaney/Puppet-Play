@@ -26,6 +26,7 @@ public class StageController : MonoBehaviour
     {
 		AudioManager.instance.PlaySoundFX(CurtainAudioClip);
 
+		StopCoroutine("Closecurtains");
 		StartCoroutine(OpeningCurtains());
     }
 
@@ -72,6 +73,7 @@ public class StageController : MonoBehaviour
 		LeftCurtain.transform.localScale = new Vector3(1.0f, 1.0f, 0.0f);
 		RightCurtain.transform.localScale = new Vector3(1.0f, 1.0f, 0.0f);
 
+		StopCoroutine("OpenCurtains");
 		StartCoroutine(ClosingCurtains());
     }
 
