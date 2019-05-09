@@ -225,43 +225,10 @@ public class Living : MonoBehaviour
 		// Spawn the object at the spawn point
 		transform.position = new Vector3(spawnPoint.x, spawnPoint.y, transform.position.z);
 
-		// Reset alpha
-		Color color = meshRenderer.material.color;
-		color.a = 1.0f;
-
-		meshRenderer.material.color = color;
-
         // Reset variables
         gameObject.SetActive(true);
         isDead = false;
     }
-
-	/* Coroutines */
-
-	// Was gonna use for player puppet when he died, but because of the current model having multiple meshrenderers
-	// I decided against using this right now
-	IEnumerator FadeTransparency()
-	{
-		const float TimeTilZero = 3.0f;
-		float TotalTime = 0.0f;
-
-		while (true)
-		{
-			Color CurrentColor = meshRenderer.material.color;
-			CurrentColor.a = Mathf.Lerp(1.0f, 0.0f, TotalTime / TimeTilZero);
-
-			meshRenderer.material.color = CurrentColor;
-
-			if (CurrentColor.a == 0.0f)
-			{
-				break;
-			}
-
-			TotalTime += Time.deltaTime;
-
-			yield return new WaitForSeconds(0.1f);
-		}
-	}
 
     /* Setters */
     public void SetMoveSpeed(float speed)
