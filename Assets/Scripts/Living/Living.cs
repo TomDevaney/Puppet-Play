@@ -25,10 +25,11 @@ public class Living : MonoBehaviour
     // Whether the living is in air or not
     bool standingOnSurface = true;
 
-    public bool isMovingLR = false;
-
     // Where the living will spawn if they respawn after dying
     Vector3 spawnPoint;
+
+	// Position the living was first spawned at
+	Vector3 initialPosition;
 
     // Only to be used for footsteps
     // Make sure it's the second audiosource in the object
@@ -46,6 +47,8 @@ public class Living : MonoBehaviour
 
     public Animator animator;
 
+	MeshRenderer meshRenderer;
+
 	/* Facing variables */
 	Direction facingDirection = Direction.RIGHT;
 
@@ -58,16 +61,17 @@ public class Living : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
-        // Initialize variables
-        spawnPoint = transform.position;
+		// Initialize variables
+		initialPosition = transform.position;
+		spawnPoint = initialPosition;
 
 		// Get references
 		footstepsAudioSource = GetComponents<AudioSource>()[0];
+		meshRenderer = GetComponent<MeshRenderer>();
+		animator = GetComponentInChildren<Animator>();
 
-        // Set clip to footsteps source because that's the only sound it'll play
-        footstepsAudioSource.clip = footstepsSound;
-
-        animator = GetComponentInChildren<Animator>();
+		// Set clip to footsteps source because that's the only sound it'll play
+		footstepsAudioSource.clip = footstepsSound;
     }
 
     // Update is called once per frame
@@ -110,10 +114,8 @@ public class Living : MonoBehaviour
 			}
 		}
 
-		//if(transform != null)
-		{
-            transform.Translate(new Vector2(xAxis * moveSpeed, 0.0f), Space.World);
-		}
+		// Move the player
+        transform.Translate(new Vector2(xAxis * moveSpeed, 0.0f), Space.World);
 
 		// Only play footsteps if they're actually moving and it's not playing already
 		const float walkingThreshold = 0.15f;
@@ -126,8 +128,6 @@ public class Living : MonoBehaviour
                 footstepsAudioSource.Play();
             }
 
-            isMovingLR = true;
-
 			if (animator != null)
 			{
 				animator.ResetTrigger("Idle");
@@ -136,8 +136,6 @@ public class Living : MonoBehaviour
 		}
 		else
         {
-            isMovingLR = false;
-
 			if (animator != null)
 			{
 				animator.SetTrigger("Idle");
@@ -173,17 +171,24 @@ public class Living : MonoBehaviour
     public virtual void JustDied()
     {
 		// Do an animation before activating death
-		animator.SetBool("Dead", true);
+		if (animator != null)
+		{
+			animator.SetBool("Dead", true);
+		}
 
 		// Figure out when to actually mark as dead
 		float deathAnimationTime = 0.0f;
-		AnimationClip[] clips = animator.runtimeAnimatorController.animationClips;
 
-		foreach (AnimationClip clip in clips)
+		if (animator != null)
 		{
-			if (clip.name == "Death")
+			AnimationClip[] clips = animator.runtimeAnimatorController.animationClips;
+
+			foreach (AnimationClip clip in clips)
 			{
-				deathAnimationTime = clip.length;
+				if (clip.name == "Death")
+				{
+					deathAnimationTime = clip.length;
+				}
 			}
 		}
 
@@ -212,15 +217,51 @@ public class Living : MonoBehaviour
     public virtual void Respawn()
     {
 		// Go back to idle
-		animator.SetBool("Dead", false);
+		if (animator != null)
+		{
+			animator.SetBool("Dead", false);
+		}
 
 		// Spawn the object at the spawn point
 		transform.position = new Vector3(spawnPoint.x, spawnPoint.y, transform.position.z);
+
+		// Reset alpha
+		Color color = meshRenderer.material.color;
+		color.a = 1.0f;
+
+		meshRenderer.material.color = color;
 
         // Reset variables
         gameObject.SetActive(true);
         isDead = false;
     }
+
+	/* Coroutines */
+
+	// Was gonna use for player puppet when he died, but because of the current model having multiple meshrenderers
+	// I decided against using this right now
+	IEnumerator FadeTransparency()
+	{
+		const float TimeTilZero = 3.0f;
+		float TotalTime = 0.0f;
+
+		while (true)
+		{
+			Color CurrentColor = meshRenderer.material.color;
+			CurrentColor.a = Mathf.Lerp(1.0f, 0.0f, TotalTime / TimeTilZero);
+
+			meshRenderer.material.color = CurrentColor;
+
+			if (CurrentColor.a == 0.0f)
+			{
+				break;
+			}
+
+			TotalTime += Time.deltaTime;
+
+			yield return new WaitForSeconds(0.1f);
+		}
+	}
 
     /* Setters */
     public void SetMoveSpeed(float speed)
