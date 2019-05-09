@@ -65,13 +65,16 @@ public class Puppet : Living
 		{
 			TheRigidBody.velocity += Vector3.up * Physics.gravity.y * (smallJumpMultiplier - 1.0f) * Time.deltaTime;
 		}
-
-		CheckStandingOnSurface();
     }
 
 	public override void JustDied()
 	{
 		base.JustDied();
+
+		// Disable collision between enemies and player while death animation happens
+		Physics.IgnoreLayerCollision(9, 12, true);
+
+		EventManager.instance.CloseCurtains("");
 
 		InputManager.instance.DisablePlayerActions();
 	}
@@ -80,10 +83,7 @@ public class Puppet : Living
 	{
 		base.MarkAsDead();
 
-		EventManager.instance.CloseCurtains("");
-
-		// Tell the manager it's game over
-		// TODO: Do I want to invoke this to after curtain?
+		// Tell the manager it's game over after curtains are done closing in 6 seconds
 		Invoke("TellGameOver", 6.0f);
 	}
 
@@ -91,38 +91,6 @@ public class Puppet : Living
 	public void TellGameOver()
 	{
 		GameManager.instance.GameOver();
-	}
-
-	void CheckStandingOnSurface()
-    {
-        //Ignore the Player and daughter Layer
-        int LayerMask = 1 << 9 | 1 << 11;
-        LayerMask = ~LayerMask;
-
-        RaycastHit HitInfo;
-        Vector3 FootSpreadOffset = new Vector3(FootSpread, 0, 0);
-        if (Physics.Raycast(transform.position, transform.up * -1, out HitInfo, checkStandingRayDistance, LayerMask)
-            || Physics.Raycast(transform.position + FootSpreadOffset, transform.up * -1, out HitInfo, checkStandingRayDistance, LayerMask)
-            || Physics.Raycast(transform.position - FootSpreadOffset, transform.up * -1, out HitInfo, checkStandingRayDistance, LayerMask)
-            )
-        {
-            // Only play landing sound if they were just in the air
-            if (!animator.GetBool("OnGround"))
-            {
-                AudioManager.instance.PlaySoundFXAtPosition(landClip, gameObject.transform.position);
-            }
-
-            SetStandingOnSurface(true);
-
-			animator.SetBool("OnGround", true);
-        }
-        else
-        {
-            SetStandingOnSurface(false);
-			animator.SetBool("OnGround", false);
-		}
-
-
 	}
 
     public void Jump()
@@ -135,8 +103,11 @@ public class Puppet : Living
             AudioManager.instance.PlaySoundFXAtPosition(jumpClip, gameObject.transform.position);
 
             animator.SetTrigger("Jump");
+			animator.SetBool("OnGround", false);
+
+			SetStandingOnSurface(false);
 		}
-    }
+	}
 
     public void Attack()
     {
@@ -153,7 +124,19 @@ public class Puppet : Living
         meleeWeapon.AttackModeActive = false;
     }
 
-    public void MoveToLocation(float Loc)
+	public void OnCollisionEnter(Collision collision)
+	{
+		if (collision.gameObject.layer == LayerMask.NameToLayer("Environment"))
+		{
+			SetStandingOnSurface(true);
+
+			AudioManager.instance.PlaySoundFXAtPosition(landClip, gameObject.transform.position);
+
+			animator.SetBool("OnGround", true);
+		}
+	}
+
+	public void MoveToLocation(float Loc)
     {
         StartCoroutine(MovingToLocation(Loc));
     }
@@ -179,7 +162,6 @@ public class Puppet : Living
             {
                 break;
             }
-
 
             Move(axis);
             yield return new WaitForSeconds(.01f);
@@ -207,8 +189,19 @@ public class Puppet : Living
         // Reinitialize parent variables
         SetHealthPoints(1);
 
+		// Enable collision between enemies and player now that death animation is over
+		Physics.IgnoreLayerCollision(9, 12, false);
+
+		// Set camera position at player's position to prevent camera lerping to player position
+		Vector3 camPosition = GameManager.instance.GetCameraFSM().transform.position;
+		camPosition.x = transform.position.x;
+
+		GameManager.instance.GetCameraFSM().transform.position = camPosition;
+
+		// Open curtains
 		EventManager.instance.OpenCurtains("");
 
+		// 6 seconds for time to open curtainss
 		Invoke("OnRespawnDone", 6.0f);
     }
 
