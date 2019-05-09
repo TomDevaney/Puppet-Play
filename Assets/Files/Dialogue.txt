@@ -5,7 +5,10 @@ Daughter
 Wow, what is this?
 
 Dad
-It's a puppet show. You see, check this out.
+It's a puppet show. You see, check this out. 
+
+Dad
+I can make him do this.
 
 // End of dialogue
 
@@ -51,6 +54,9 @@ I did it!
 
 Knight
 That you did your majesty. It only gets harder from here though.
+
+Knight
+Let's keep on moving. We still have a long journey ahead of us.
 
 // End of dialogue
 
@@ -216,7 +222,7 @@ Knight
 It's not like he'll attack again anytime soon. I think you taught him that lesson when you defeated his minions.
 
 Princess
-Ok.I guess I am actually getting really sleepy...
+Ok. I guess I am actually getting really sleepy...
 
 Princess
 But it's got to be the first thing we do tomorrow.
