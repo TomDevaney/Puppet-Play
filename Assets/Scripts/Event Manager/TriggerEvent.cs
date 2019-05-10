@@ -38,4 +38,10 @@ public class TriggerEvent : MonoBehaviour
 
         return result;
     }
+
+	// Will allow the trigger to be triggered again
+	public void ResetTrigger()
+	{
+		mHasBeenTriggeredAlready = false;
+	}
 }

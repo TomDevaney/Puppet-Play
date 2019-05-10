@@ -15,6 +15,7 @@ public class EventManager : MonoBehaviour
     public static event EventDone OnEventDone;
 
 	KillEvent[] killEvents;
+	TriggerEvent[] triggerEvents;
 
 	// Prefabs to instantiate
 	public GameObject patrollingEnemy;
@@ -37,13 +38,23 @@ public class EventManager : MonoBehaviour
     {
 		// Set up list of kill events
 		killEvents = GetComponentsInChildren<KillEvent>();
+		triggerEvents = GetComponentsInChildren<TriggerEvent>();
 	}
 
-    // Update is called once per frame
-    void Update()
+	// Update is called once per frame
+	void Update()
     {
         
     }
+
+	// Will allow all trigger events to be triggered again
+	public void ResetTriggerEvents()
+	{
+		for (int i = 0; i < triggerEvents.Length; ++i)
+		{
+			triggerEvents[i].ResetTrigger();
+		}
+	}
 
     // Two ways for an event to marked as done
     //

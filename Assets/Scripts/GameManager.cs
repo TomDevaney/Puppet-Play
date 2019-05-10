@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     // Keeps track of the most recent checkpoint for respawning puppets to
     Checkpoint recentCheckpoint;
+	Checkpoint[] checkpoints;
 
     Living[] livingBeings;
 
@@ -17,7 +18,6 @@ public class GameManager : MonoBehaviour
     Puppet daughterPuppet;
 
 	CameraFSM cameraFSM;
-	//FollowCamera followCamera;
 
     // Awake is called before Start
     void Awake()
@@ -33,13 +33,12 @@ public class GameManager : MonoBehaviour
 
         // Retrieve references for everything game manager cares about
         livingBeings = GetComponentsInChildren<Living>();
+		cameraFSM = FindObjectOfType<Camera>().GetComponent<CameraFSM>();
+		checkpoints = FindObjectsOfType<Checkpoint>();
 
-        Puppet[] puppets = GetComponentsInChildren<Puppet>();
+		Puppet[] puppets = GetComponentsInChildren<Puppet>();
         playerPuppet = puppets[0];
         daughterPuppet = puppets[1];
-
-		//followCamera = FindObjectOfType<Camera>().GetComponent<FollowCamera>();
-		cameraFSM = FindObjectOfType<Camera>().GetComponent<CameraFSM>();
 	}
 
 	// Start is called before the first frame update
@@ -54,14 +53,44 @@ public class GameManager : MonoBehaviour
         
     }
 
+	// Either the game was beat or the player exited to the main menu
+	// So reset everything so the player starts in a fresh new world
+	public void EndGame()
+	{
+		RespawnAllDead();
+		
+		// Reset living to initial position in world
+		for (int i = 0; i < livingBeings.Length; ++i)
+		{
+			livingBeings[i].ResetToInitialPosition();
+		}
+
+		// Set camera position at player's position
+		Vector3 camPosition = GameManager.instance.GetCameraFSM().transform.position;
+		camPosition.x = playerPuppet.transform.position.x;
+
+		GameManager.instance.GetCameraFSM().transform.position = camPosition;
+
+		// Reset checkpoints
+		recentCheckpoint = null;
+
+		foreach (Checkpoint checkpoint in checkpoints)
+		{
+			checkpoint.ResetCheckpoint();
+		}
+
+		// Reset dialogue manager
+		DialogueManager.instance.ResetDialogueManager();
+
+		// Reset triggers
+		EventManager.instance.ResetTriggerEvents();
+	}
+
+	// The player was killed so it's game over
     public void GameOver()
     {
-        // TODO: pull curtains in
-
         // Respawn everything that was killed
         RespawnAllDead();
-
-        // TODO: Because I'm only respawning dead, might have to handle special logic for puppet that is still alive
     }
 
     void RespawnAllDead()
@@ -99,11 +128,6 @@ public class GameManager : MonoBehaviour
 	{
 		return cameraFSM;
 	}
-
-	//public FollowCamera GetFollowCamera()
-	//{
-	//	return followCamera;
-	//}
 
 	/* Setters */
 	public void SetRecentCheckpoint(Checkpoint checkpoint)

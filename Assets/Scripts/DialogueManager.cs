@@ -171,8 +171,6 @@ public class DialogueManager : MonoBehaviour
         // Set up stream reader to dialogue text file
         StreamReader reader = new StreamReader(Application.dataPath + mDialogueFilePath);
 
-		// TODO: See how long this file reading takes
-
 		// Transfer the dialogue to the list of dialogue
 		List<Dialogue> dialogueChunk = new List<Dialogue>();
 
@@ -377,12 +375,9 @@ public class DialogueManager : MonoBehaviour
 
         // Set audio clip to the correct person
         audioSource.clip = mumblingClips[personDictionary[currentDialogue.GetPerson().GetName()]];
-        //audioSource.clip = MakeMumblingClip(mAllDialogue[mCurrentDialogueIndex].GetWords());
 
         // Play the audio
         audioSource.Play();
-
-        // TODO: Check if it's a change in person. If so, change Avatar and whatever else needs to be changed. Maybe animation.
 
         // Spit out dialogue time
         doDialogue = true;
@@ -394,4 +389,15 @@ public class DialogueManager : MonoBehaviour
             currentCharIndexForDialogue = dialogueText.text.Length;
         }
     }
+
+	// Reset dialogue manager to initial state
+	public void ResetDialogueManager()
+	{
+		// Just in case they were in the middle of dialogue and quit
+		EndDialogue();
+
+		// Reset back to first dialogue
+		mCurrentDialogueChunkIndex = 0;
+		mCurrentDialogueIndex = 0;
+	}
 }

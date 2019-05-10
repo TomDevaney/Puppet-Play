@@ -8,6 +8,8 @@ public class Checkpoint : TriggerEvent
     [SerializeField]
     Material activeMaterial = null;
 
+	Material defaultMaterial;
+
     AudioSource audioSource = null;
     MeshRenderer meshRenderer;
 
@@ -17,10 +19,10 @@ public class Checkpoint : TriggerEvent
         // Grab references to components
         meshRenderer = GetComponentInChildren<MeshRenderer>();
         audioSource = GetComponent<AudioSource>();
+		defaultMaterial = meshRenderer.material;
 
-
-        // This will happen when someone goes through the trigger
-        OnTrigger.AddListener(SetMostRecentCheckpoint);
+		// This will happen when someone goes through the trigger
+		OnTrigger.AddListener(SetMostRecentCheckpoint);
     }
 
     // Override ontriggerenter to be more specific
@@ -46,8 +48,17 @@ public class Checkpoint : TriggerEvent
         return result;
     }
 
-    // Tell manager what's up
-    void SetMostRecentCheckpoint()
+	// Go to default state
+	public void ResetCheckpoint()
+	{
+		meshRenderer.material = defaultMaterial;
+
+		// Allow to be triggered again
+		ResetTrigger();
+	}
+
+	// Tell manager about this checkpoint being hit
+	void SetMostRecentCheckpoint()
     {
         GameManager.instance.SetRecentCheckpoint(this);
     }

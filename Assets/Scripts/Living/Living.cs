@@ -230,6 +230,12 @@ public class Living : MonoBehaviour
         isDead = false;
     }
 
+	// Will place Living right where they were when game was loaded
+	public void ResetToInitialPosition()
+	{
+		transform.position = initialPosition;
+	}
+
     /* Setters */
     public void SetMoveSpeed(float speed)
     {
