@@ -3051,7 +3051,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   TheRigidBody: {fileID: 127213844}
   FootSpread: 0.1
-  jumpVelocity: 6.9
+  jumpVelocity: 6.7
   fallMultiplier: 2.5
   smallJumpMultiplier: 2.25
   checkStandingRayDistance: 0.1
@@ -7798,13 +7798,23 @@ PrefabInstance:
     - target: {fileID: 6902007168576865840, guid: 3fd3cd2f8fb2cc742a583345d31cc9c1,
         type: 3}
       propertyPath: jumpVelocity
-      value: 6.9
+      value: 6.7
       objectReference: {fileID: 0}
     - target: {fileID: 6902007168576865840, guid: 3fd3cd2f8fb2cc742a583345d31cc9c1,
         type: 3}
       propertyPath: smallJumpMultiplier
       value: 2.1
       objectReference: {fileID: 0}
+    - target: {fileID: 6902007168576865840, guid: 3fd3cd2f8fb2cc742a583345d31cc9c1,
+        type: 3}
+      propertyPath: attackClip
+      value: 
+      objectReference: {fileID: 8300000, guid: ee24c01ad03efbd4bb1c15c0822a238b, type: 3}
+    - target: {fileID: 6902007168576865840, guid: 3fd3cd2f8fb2cc742a583345d31cc9c1,
+        type: 3}
+      propertyPath: jumpClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7a5e65259ed13134796b6de2d6990034, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fd3cd2f8fb2cc742a583345d31cc9c1, type: 3}
 --- !u!4 &391772695 stripped
