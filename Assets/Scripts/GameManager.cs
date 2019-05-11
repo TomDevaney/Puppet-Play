@@ -84,19 +84,23 @@ public class GameManager : MonoBehaviour
 
 		// Reset triggers
 		EventManager.instance.ResetTriggerEvents();
+
+        // Respawn everything that was killed
+		for (int i = 0; i < livingBeings.Length; ++i)
+		{
+			if (livingBeings[i].IsDead())
+			{
+				livingBeings[i].Respawn();
+			}
+		}
 	}
 
 	// The player was killed so it's game over
     public void GameOver()
     {
         // Respawn everything that was killed
-        RespawnAllDead();
-    }
-
-    void RespawnAllDead()
-    {
-        for (int i = 0; i < livingBeings.Length; ++i)
-        {
+		for (int i = 0; i < livingBeings.Length; ++i)
+		{
 			// Only respawn enemies to the right of the checkpoint because it looked weird that enemies before the checkpoint were spawned
 			if (livingBeings[i].transform.position.x > recentCheckpoint.transform.position.x)
 			{
@@ -105,7 +109,11 @@ public class GameManager : MonoBehaviour
 					livingBeings[i].Respawn();
 				}
 			}
-        }
+		}
+	}
+
+    void RespawnAllDead()
+    {
     }
 
     /* Getters */
