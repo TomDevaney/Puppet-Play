@@ -13,12 +13,15 @@ public class Checkpoint : TriggerEvent
     AudioSource audioSource = null;
     MeshRenderer meshRenderer;
 
+	SphereCollider spawnCollider = null;
+
     // Start is called before the first frame update
     void Start()
     {
         // Grab references to components
         meshRenderer = GetComponentInChildren<MeshRenderer>();
         audioSource = GetComponent<AudioSource>();
+		spawnCollider = GetComponent<SphereCollider>();
 		defaultMaterial = meshRenderer.material;
 
 		// This will happen when someone goes through the trigger
@@ -65,6 +68,6 @@ public class Checkpoint : TriggerEvent
 
     public Vector3 GetLocation()
     {
-        return transform.position;
+		return spawnCollider.transform.position + spawnCollider.center;
     }
 }

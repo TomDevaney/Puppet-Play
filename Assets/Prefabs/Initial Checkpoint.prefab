@@ -166,6 +166,7 @@ GameObject:
   - component: {fileID: 909055176973828358}
   - component: {fileID: 909055176973828357}
   - component: {fileID: 909055176973828354}
+  - component: {fileID: 999207297058669993}
   m_Layer: 0
   m_Name: Initial Checkpoint
   m_TagString: Untagged
@@ -180,7 +181,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 909055176973828352}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 44.8, y: -2.52, z: -1.95}
   m_LocalScale: {x: 1, y: 1, z: 0.1}
   m_Children:
@@ -316,3 +317,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!135 &999207297058669993
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909055176973828352}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}

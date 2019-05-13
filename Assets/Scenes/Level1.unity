@@ -3070,6 +3070,7 @@ MonoBehaviour:
   footstepsSound: {fileID: 8300000, guid: 6dc04de928bb6704d855d5bba4e70218, type: 3}
   gotHitSound: {fileID: 8300000, guid: 7fe5f25e0274a0b4aa4b27cfa22569dc, type: 3}
   animator: {fileID: 0}
+  isInvincible: 0
   TheRigidBody: {fileID: 127213844}
   FootSpread: 0.1
   jumpVelocity: 6.7
@@ -7801,6 +7802,11 @@ PrefabInstance:
       propertyPath: footstepsSound
       value: 
       objectReference: {fileID: 8300000, guid: 6dc04de928bb6704d855d5bba4e70218, type: 3}
+    - target: {fileID: 6902007168576865840, guid: 3fd3cd2f8fb2cc742a583345d31cc9c1,
+        type: 3}
+      propertyPath: isInvincible
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fd3cd2f8fb2cc742a583345d31cc9c1, type: 3}
 --- !u!4 &391772695 stripped
@@ -8309,7 +8315,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.5, y: 1.5, z: 1.1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &427196856
 MeshRenderer:
