@@ -60,7 +60,7 @@ public class AudioManager : MonoBehaviour
         audioObjects.Add(gameObject);
     }
 
-    public void PlaySoundFXAtPosition(AudioClip clip, Vector3 position)
+    public void PlaySoundFXAtPosition(AudioClip clip, Vector3 position, float pitch = 1.0f)
     {
         if (clip == null)
             return;
@@ -70,6 +70,7 @@ public class AudioManager : MonoBehaviour
 
         gameObject.transform.position = position;
         audioSource.clip = clip;
+		audioSource.pitch = pitch;
         audioSource.Play();
 
         audioObjects.Add(gameObject);

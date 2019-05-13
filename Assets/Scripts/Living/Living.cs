@@ -49,6 +49,9 @@ public class Living : MonoBehaviour
 
 	MeshRenderer meshRenderer;
 
+	// Allows the living to not take damage
+	public bool isInvincible;
+
 	/* Facing variables */
 	Direction facingDirection = Direction.RIGHT;
 
@@ -123,10 +126,10 @@ public class Living : MonoBehaviour
         if (Mathf.Abs(xAxis) >= walkingThreshold)
         {
             // Don't play if they're in the air!
-            if (!footstepsAudioSource.isPlaying && standingOnSurface)
-            {
-                footstepsAudioSource.Play();
-            }
+            //if (!footstepsAudioSource.isPlaying && standingOnSurface)
+            //{
+            //    footstepsAudioSource.Play();
+            //}
 
 			if (animator != null)
 			{
@@ -151,6 +154,9 @@ public class Living : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+		if (isInvincible)
+			return;
+
         // Apply damage
         healthPoints -= damage;
 
@@ -236,8 +242,13 @@ public class Living : MonoBehaviour
 		transform.position = initialPosition;
 	}
 
-    /* Setters */
-    public void SetMoveSpeed(float speed)
+	public void PlayFootstepSound()
+	{
+		AudioManager.instance.PlaySoundFXAtPosition(footstepsSound, transform.position);
+	}
+
+	/* Setters */
+	public void SetMoveSpeed(float speed)
     {
         moveSpeed = speed;
     }
