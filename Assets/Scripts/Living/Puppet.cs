@@ -45,8 +45,12 @@ public class Puppet : Living
 
         TheRigidBody = GetComponent<Rigidbody>();
 
-        // Initialize parent variables
-        SetHealthPoints(1);
+		// Set as standing to prevent landing sound
+		SetStandingOnSurface(true);
+		animator.SetBool("OnGround", true);
+
+		// Initialize parent variables
+		SetHealthPoints(1);
 		SetAttackDamage(1);
 	}
 
@@ -126,7 +130,7 @@ public class Puppet : Living
 
 	public void OnCollisionEnter(Collision collision)
 	{
-		if (collision.gameObject.layer == LayerMask.NameToLayer("Environment"))
+		if (collision.gameObject.layer == LayerMask.NameToLayer("Environment") && !IsStandingOnSurface())
 		{
 			SetStandingOnSurface(true);
 
@@ -197,6 +201,10 @@ public class Puppet : Living
 		camPosition.x = transform.position.x;
 
 		GameManager.instance.GetCameraFSM().transform.position = camPosition;
+
+		// Set as standing to prevent landing sound
+		SetStandingOnSurface(true);
+		animator.SetBool("OnGround", true);
 
 		// Open curtains
 		EventManager.instance.OpenCurtains("");
