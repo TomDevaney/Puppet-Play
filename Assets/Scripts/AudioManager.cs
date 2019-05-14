@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// This class allows two things. A gameobject doesn't have to worry about having an audio source in order to play a sound
+// and because of this it allows a gameobject to play as many sounds as it wants without having to worry about if one is already playing
+// The problem with having one audiosource and then switching out the clips is that the audiosource could still be playing a clip already
+// So the solution would be to have N amount of audiosource for N amount of audio clips
+// This manager gets rid of that problem
 public class AudioManager : MonoBehaviour
 {
     // Singleton so classes can reference without reference
@@ -46,6 +51,9 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+	// TODO: in the future make it where every single PlaySound function ultimately calls this
+	// That way we can have specific functionss for pitch and position and 3d but reuse functionality
+	// As really the playing, the clip setting, the game object management is all the same across the board
     public void PlaySoundFX(AudioClip clip)
     {
         if (clip == null)
@@ -75,4 +83,34 @@ public class AudioManager : MonoBehaviour
 
         audioObjects.Add(gameObject);
     }
+
+	// I am using a curve that will have sound with 25 units but with 20 units will be the loudest
+	// This will handle the case for the sound that I care about, but this is obviously very static and not dynamic
+	public void Play3DSoundFX(AudioClip clip, Vector3 position)
+	{
+		GameObject gameObject = new GameObject();
+		AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+
+		// Set up sound
+		gameObject.transform.position = position;
+		audioSource.clip = clip;
+
+		// Set up 3D settings
+		AnimationCurve curve = new AnimationCurve();
+		curve.AddKey(10.0f, 1.0f);
+		curve.AddKey(17.5f, 0.15f);
+		curve.AddKey(25.0f, 0.0f);
+		audioSource.SetCustomCurve(AudioSourceCurveType.CustomRolloff, curve);
+
+		audioSource.minDistance = 10.0f;
+		audioSource.maxDistance = 25.0f;
+		audioSource.spatialBlend = 1.0f;
+		audioSource.rolloffMode = AudioRolloffMode.Custom;
+
+		// Play sound
+		audioSource.Play();
+
+		// Add to managed objects list
+        audioObjects.Add(gameObject);
+	}
 }

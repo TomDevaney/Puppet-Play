@@ -52,7 +52,11 @@ MonoBehaviour:
   deathSound: {fileID: 0}
   footstepsSound: {fileID: 8300000, guid: 8095450ac64a17a4390aeda64ddb751a, type: 3}
   gotHitSound: {fileID: 8300000, guid: 7fe5f25e0274a0b4aa4b27cfa22569dc, type: 3}
+  idleSound: {fileID: 8300000, guid: e107aa353b6b5b44fafc2ec9ebf3fcaf, type: 3}
+  minSecondsTilIdleSound: 3
+  maxSecondsTilIdleSound: 6
   animator: {fileID: 0}
+  isInvincible: 0
   startPosition: -6.41
   endPosition: -7.08
   doRelativePositioning: 0
@@ -151,9 +155,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 25
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -186,7 +190,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

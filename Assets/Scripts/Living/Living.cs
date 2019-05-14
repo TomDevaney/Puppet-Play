@@ -45,15 +45,34 @@ public class Living : MonoBehaviour
     [SerializeField]
     AudioClip gotHitSound = null;
 
-    public Animator animator;
+	[SerializeField]
+	AudioClip idleSound = null;
 
-	MeshRenderer meshRenderer;
+	// Idle sound variables
+	[SerializeField]
+	float minSecondsTilIdleSound = 2.0f;
+
+	[SerializeField]
+	float maxSecondsTilIdleSound = 4.0f;
+
+	// Set this to a random time between min and max
+	float desiredSecondsTilIdleSound = 0.0f;
+
+	// Counts how much time has passed since last idle sound
+	// Will play an idle sound once this timer == desiredSoundTimer
+	float idleSoundTimer = 0.0f;
+
+	[HideInInspector]
+	public Animator animator;
 
 	// Allows the living to not take damage
 	public bool isInvincible;
 
 	/* Facing variables */
 	Direction facingDirection = Direction.RIGHT;
+
+	[HideInInspector]
+	public bool doFacing = true;
 
 	const float LEFT_DEGREE = 0.0f;
 	const float RIGHT_DEGREE = -180.0f;
@@ -70,20 +89,40 @@ public class Living : MonoBehaviour
 
 		// Get references
 		footstepsAudioSource = GetComponents<AudioSource>()[0];
-		meshRenderer = GetComponent<MeshRenderer>();
 		animator = GetComponentInChildren<Animator>();
 
 		// Set clip to footsteps source because that's the only sound it'll play
 		footstepsAudioSource.clip = footstepsSound;
+
+		// Set up desired idle time
+		desiredSecondsTilIdleSound = Random.Range(minSecondsTilIdleSound, maxSecondsTilIdleSound);
     }
 
     // Update is called once per frame
     public virtual void Update()
     {
-		// Do lerp at a constant rate towards desired degree
-		currentFacingDegree = Mathf.MoveTowards(currentFacingDegree, desiredFacingDegree, Time.deltaTime * FACING_SPEED);
+		if (doFacing)
+		{
+			// Do lerp at a constant rate towards desired degree
+			currentFacingDegree = Mathf.MoveTowards(currentFacingDegree, desiredFacingDegree, Time.deltaTime * FACING_SPEED);
 
-		transform.rotation = Quaternion.Euler(0.0f, currentFacingDegree, 0.0f);
+			transform.rotation = Quaternion.Euler(transform.rotation.x, currentFacingDegree, transform.rotation.z);
+		}
+
+		// Check if should play idle sound
+		idleSoundTimer += Time.deltaTime;
+
+		if (idleSoundTimer >= desiredSecondsTilIdleSound)
+		{
+			// Play idle sound
+			AudioManager.instance.Play3DSoundFX(idleSound, transform.position);
+
+			// Reset timer
+			idleSoundTimer = 0.0f;
+
+			// Set up new desired idle time
+			desiredSecondsTilIdleSound = Random.Range(minSecondsTilIdleSound, maxSecondsTilIdleSound);
+		}
 	}
 
     public void Move(float xAxis)
@@ -125,11 +164,11 @@ public class Living : MonoBehaviour
 
         if (Mathf.Abs(xAxis) >= walkingThreshold)
         {
-            // Don't play if they're in the air!
-            //if (!footstepsAudioSource.isPlaying && standingOnSurface)
-            //{
-            //    footstepsAudioSource.Play();
-            //}
+			// Don't play if they're in the air!
+			if (!footstepsAudioSource.isPlaying && standingOnSurface)
+			{
+				PlayFootstepSound();
+			}
 
 			if (animator != null)
 			{
@@ -242,9 +281,12 @@ public class Living : MonoBehaviour
 		transform.position = initialPosition;
 	}
 
-	public void PlayFootstepSound()
+	public virtual void PlayFootstepSound()
 	{
-		AudioManager.instance.PlaySoundFXAtPosition(footstepsSound, transform.position);
+		if (!footstepsAudioSource.isPlaying)
+		{
+			footstepsAudioSource.Play();
+		}
 	}
 
 	/* Setters */

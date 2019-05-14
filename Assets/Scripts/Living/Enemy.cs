@@ -14,9 +14,9 @@ public class Enemy : Living
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
-        
+		base.Update();
     }
 
     // Check if it has hurt someone

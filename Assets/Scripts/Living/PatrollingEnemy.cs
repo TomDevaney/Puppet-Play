@@ -32,7 +32,8 @@ public class PatrollingEnemy : Enemy
         // Initialize parent variables
         base.Start();
 
-        SetMoveSpeed(0.04f);
+		doFacing = false;
+		SetMoveSpeed(0.04f);
         SetAttackDamage(1);
 
         // Initialize variables
@@ -57,8 +58,10 @@ public class PatrollingEnemy : Enemy
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
+		base.Update();
+
 		if (dontMove)
 		{
 			return;
