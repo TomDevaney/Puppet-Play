@@ -11,7 +11,7 @@ using UnityEngine;
 public class Puppet : Living
 {
 
-    public Rigidbody TheRigidBody;
+    Rigidbody TheRigidBody;
 
     public float FootSpread = 0.1f;
 
@@ -184,7 +184,12 @@ public class Puppet : Living
 		bDoBigJump = bigJump;
 	}
 
-    public override void Respawn()
+	// Don't do anything as puppet has a special footsteps script to handle this
+	public override void PlayFootstepSound()
+	{
+	}
+
+	public override void Respawn()
     {
         // Respawn player at recent checkpoint
         SetSpawnPoint(GameManager.instance.GetRecentCheckpoint().GetLocation());
