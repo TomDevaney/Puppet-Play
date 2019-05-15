@@ -19,6 +19,12 @@ public class GameManager : MonoBehaviour
 
 	CameraFSM cameraFSM;
 
+	// Indicates the player is in the game and not at the main menu still
+	bool gameIsStarted = false;
+
+	// Indicates whether  paused
+	bool gameIsPaused = false;
+
     // Awake is called before Start
     void Awake()
     {
@@ -53,10 +59,25 @@ public class GameManager : MonoBehaviour
         
     }
 
+	public void StartGame()
+	{
+		// Mark as started
+		gameIsStarted = true;
+
+		// Do any other logic needed for start of game
+		EventManager.instance.OpenCurtains("");
+	}
+
 	// Either the game was beat or the player exited to the main menu
 	// So reset everything so the player starts in a fresh new world
 	public void EndGame()
 	{
+		// Mark as not started
+		gameIsStarted = false;
+
+		// Do other logic for end of game
+		EventManager.instance.CloseCurtains("");
+
 		RespawnAllDead();
 		
 		// Reset living to initial position in world
@@ -116,8 +137,26 @@ public class GameManager : MonoBehaviour
     {
     }
 
-    /* Getters */
-    public Checkpoint GetRecentCheckpoint()
+	public void TogglePauseGame()
+	{
+		gameIsPaused = !gameIsPaused;
+
+		if (gameIsPaused)
+		{
+			Time.timeScale = 0.0f;
+			InputManager.instance.DisablePlayerActions();
+		}
+		else
+		{
+			Time.timeScale = 1.0f;
+			InputManager.instance.EnablePlayerActions();
+		}
+
+		MenuManager.instance.ToggleMenuEnabledState("PauseMenuCanvas");
+	}
+
+	/* Getters */
+	public Checkpoint GetRecentCheckpoint()
     {
         return recentCheckpoint;
     }
@@ -135,6 +174,11 @@ public class GameManager : MonoBehaviour
 	public CameraFSM GetCameraFSM()
 	{
 		return cameraFSM;
+	}
+
+	public bool IsGameStarted()
+	{
+		return gameIsStarted;
 	}
 
 	/* Setters */

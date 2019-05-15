@@ -157,7 +157,7 @@ public class Living : MonoBehaviour
 		}
 
 		// Move the player
-        transform.Translate(new Vector2(xAxis * moveSpeed, 0.0f), Space.World);
+        transform.Translate(new Vector2(xAxis * moveSpeed * Time.deltaTime, 0.0f), Space.World);
 
 		// Only play footsteps if they're actually moving and it's not playing already
 		const float walkingThreshold = 0.15f;

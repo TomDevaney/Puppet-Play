@@ -33,7 +33,7 @@ public class PatrollingEnemy : Enemy
         base.Start();
 
 		doFacing = false;
-		SetMoveSpeed(0.04f);
+		SetMoveSpeed(2.0f);
         SetAttackDamage(1);
 
         // Initialize variables

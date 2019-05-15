@@ -36,8 +36,12 @@ public class MenuManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
+		// Do pause menu stuff on Esc and if they're not on main menu still
+		if (Input.GetKeyUp(KeyCode.Escape) && GameManager.instance.IsGameStarted())
+		{
+			GameManager.instance.TogglePauseGame();
+		}
+	}
 
 	public void ToggleMenuEnabledState(string menuName)
 	{
