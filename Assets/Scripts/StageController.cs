@@ -9,6 +9,10 @@ public class StageController : MonoBehaviour
 
 	public AudioClip CurtainAudioClip;
 
+	// Delegate that can be subscribed to if you need to do something when curtains are done opening or closing
+	public delegate void CurtainsDoneMoving();
+	public event CurtainsDoneMoving OnCurtainsDoneMoving; 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,7 +66,14 @@ public class StageController : MonoBehaviour
             yield return new WaitForSeconds(TimeBetween);
         }
 
-        EventManager.instance.MarkEventAsDone();
+		// Call delegate event
+		if (OnCurtainsDoneMoving != null)
+		{
+			OnCurtainsDoneMoving();
+		}
+
+		// Tell event manager you're done
+		EventManager.instance.MarkEventAsDone();
     }
 
     public void CloseCurtains()
@@ -106,6 +117,14 @@ public class StageController : MonoBehaviour
 
             yield return new WaitForSeconds(TimeBetween);
         }
-        EventManager.instance.MarkEventAsDone();
+
+		// Call delegate event
+		if (OnCurtainsDoneMoving != null)
+		{
+			OnCurtainsDoneMoving();
+		}
+
+		// Tell event manager you're done
+		EventManager.instance.MarkEventAsDone();
     }
 }

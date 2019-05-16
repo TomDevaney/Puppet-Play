@@ -18,12 +18,16 @@ public class GameManager : MonoBehaviour
     Puppet daughterPuppet;
 
 	CameraFSM cameraFSM;
+	StageController stageController;
 
 	// Indicates the player is in the game and not at the main menu still
 	bool gameIsStarted = false;
 
 	// Indicates whether  paused
 	bool gameIsPaused = false;
+
+	// Shows that they got to the end of the game
+	bool beatGame = false;
 
     // Awake is called before Start
     void Awake()
@@ -41,6 +45,7 @@ public class GameManager : MonoBehaviour
         livingBeings = GetComponentsInChildren<Living>();
 		cameraFSM = FindObjectOfType<Camera>().GetComponent<CameraFSM>();
 		checkpoints = FindObjectsOfType<Checkpoint>();
+		stageController = FindObjectOfType<StageController>();
 
 		Puppet[] puppets = GetComponentsInChildren<Puppet>();
         playerPuppet = puppets[0];
@@ -70,16 +75,28 @@ public class GameManager : MonoBehaviour
 
 	// Either the game was beat or the player exited to the main menu
 	// So reset everything so the player starts in a fresh new world
-	public void EndGame()
+	public void EndGame(bool gameWasBeat)
 	{
 		// Mark as not started
 		gameIsStarted = false;
 
+		beatGame = gameWasBeat;
+
 		// Do other logic for end of game
 		EventManager.instance.CloseCurtains("");
 
+		// Subscribe to curtains delegate
+		stageController.OnCurtainsDoneMoving += RealEndGame;
+	}
+
+	// Contains all the end game functionality needed to be called after the curtains are done closing
+	void RealEndGame()
+	{
+		// Unsubscribe from curtains delegate
+		stageController.OnCurtainsDoneMoving -= RealEndGame;
+
 		RespawnAllDead();
-		
+
 		// Reset living to initial position in world
 		for (int i = 0; i < livingBeings.Length; ++i)
 		{
@@ -106,7 +123,7 @@ public class GameManager : MonoBehaviour
 		// Reset triggers
 		EventManager.instance.ResetTriggerEvents();
 
-        // Respawn everything that was killed
+		// Respawn everything that was killed
 		for (int i = 0; i < livingBeings.Length; ++i)
 		{
 			if (livingBeings[i].IsDead())
@@ -114,10 +131,21 @@ public class GameManager : MonoBehaviour
 				livingBeings[i].Respawn();
 			}
 		}
+
+		// Bring up credits if they came from beating the game
+		if (beatGame)
+		{
+			MenuManager.instance.ToggleMenuEnabledState("CreditsCanvas");
+		}
+		// Bring up main menu if came from pause menu
+		else
+		{
+			MenuManager.instance.ToggleMenuEnabledState("MainMenuCanvas");
+		}
 	}
 
 	// The player was killed so it's game over
-    public void GameOver()
+	public void GameOver()
     {
         // Respawn everything that was killed
 		for (int i = 0; i < livingBeings.Length; ++i)
@@ -145,14 +173,15 @@ public class GameManager : MonoBehaviour
 		{
 			Time.timeScale = 0.0f;
 			InputManager.instance.DisablePlayerActions();
+			MenuManager.instance.ToggleMenuEnabledState("PauseMenuCanvas");
 		}
 		else
 		{
 			Time.timeScale = 1.0f;
 			InputManager.instance.EnablePlayerActions();
+			MenuManager.instance.ToggleMenuEnabledState("WarningMenuCanvas");
 		}
 
-		MenuManager.instance.ToggleMenuEnabledState("PauseMenuCanvas");
 	}
 
 	/* Getters */
