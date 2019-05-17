@@ -10,6 +10,7 @@ public class MenuManager : MonoBehaviour
 
 	SortedDictionary<string, int> canvasesDictionary;
 	Canvas[] canvases;
+	int currentCanvasIndex = -1;
 
     void Awake()
     {
@@ -39,7 +40,21 @@ public class MenuManager : MonoBehaviour
 		// Do pause menu stuff on Esc and if they're not on main menu still
 		if (Input.GetKeyUp(KeyCode.Escape) && GameManager.instance.IsGameStarted())
 		{
-			GameManager.instance.TogglePauseGame();
+			//if (canvasesDictionary["PauseMenuCanvas"] == currentCanvasIndex)
+			//{
+			//	GameManager.instance.TogglePauseGame();
+			//	MenuManager.instance.ToggleMenuEnabledState("PauseMenuCanvas");
+			//}
+			if (canvasesDictionary["WarningMenuCanvas"] == currentCanvasIndex)
+			{
+				MenuManager.instance.ToggleMenuEnabledState("WarningMenuCanvas");
+				MenuManager.instance.ToggleMenuEnabledState("PauseMenuCanvas");
+			}
+			else
+			{
+				GameManager.instance.TogglePauseGame();
+				MenuManager.instance.ToggleMenuEnabledState("PauseMenuCanvas");
+			}
 		}
 	}
 
@@ -50,6 +65,17 @@ public class MenuManager : MonoBehaviour
 		if (canvasesDictionary.TryGetValue(menuName, out menuIndex))
 		{
 			canvases[menuIndex].gameObject.SetActive(!canvases[menuIndex].isActiveAndEnabled);
+
+			if (canvases[menuIndex].isActiveAndEnabled)
+			{
+				currentCanvasIndex = menuIndex;
+			}
+			// Just because this one isn't active doesn't mean currentCanvasIndex isn't the active one
+			// If currentCanvasIndex is equal to this menu though and it's not active, we know for sure there is no current canvass
+			else if (menuIndex == currentCanvasIndex)
+			{
+				currentCanvasIndex = -1;
+			}
 		}
 		else
 		{

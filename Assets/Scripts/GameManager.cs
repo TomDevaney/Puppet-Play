@@ -161,6 +161,12 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
+	// Close the application
+	public void ExitGame()
+	{
+		Application.Quit();
+	}
+
     void RespawnAllDead()
     {
     }
@@ -173,13 +179,11 @@ public class GameManager : MonoBehaviour
 		{
 			Time.timeScale = 0.0f;
 			InputManager.instance.DisablePlayerActions();
-			MenuManager.instance.ToggleMenuEnabledState("PauseMenuCanvas");
 		}
 		else
 		{
 			Time.timeScale = 1.0f;
 			InputManager.instance.EnablePlayerActions();
-			MenuManager.instance.ToggleMenuEnabledState("WarningMenuCanvas");
 		}
 
 	}
