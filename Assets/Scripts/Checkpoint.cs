@@ -15,6 +15,10 @@ public class Checkpoint : TriggerEvent
 
 	SphereCollider spawnCollider = null;
 
+	// The first checkpoint in the game should be placed at the player's initial position
+	// And it should be the most recent checkpoint in GameManager and should have its material changed already
+	bool isDefaultCheckpoint = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +30,13 @@ public class Checkpoint : TriggerEvent
 
 		// This will happen when someone goes through the trigger
 		OnTrigger.AddListener(SetMostRecentCheckpoint);
+
+
+		if (isDefaultCheckpoint)
+		{
+			SetMostRecentCheckpoint();
+			meshRenderer.material = activeMaterial;
+		}
     }
 
     // Override ontriggerenter to be more specific
