@@ -161,6 +161,14 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
+	// Called from pause menu to set the player back to the most recent checkpoint
+	public void Retry()
+	{
+		// Kill player so no shenanigans can happen while curtains close
+		// And it'll also take care of respawning player and doing game over stuff
+		playerPuppet.TakeDamage(1);
+	}
+
 	// Close the application
 	public void ExitGame()
 	{
@@ -207,6 +215,11 @@ public class GameManager : MonoBehaviour
 	public CameraFSM GetCameraFSM()
 	{
 		return cameraFSM;
+	}
+
+	public StageController GetStageController()
+	{
+		return stageController;
 	}
 
 	public bool IsGameStarted()
