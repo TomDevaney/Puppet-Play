@@ -87,13 +87,15 @@ public class Puppet : Living
 	{
 		base.MarkAsDead();
 
-		// Tell the manager it's game over after curtains are done closing in 6 seconds
-		Invoke("TellGameOver", 6.0f);
+		// Tell the manager it's game over after curtains are done closing
+		GameManager.instance.GetStageController().OnCurtainsDoneMoving += TellGameOver;
 	}
 
 	// Used to delay game over until curtains are done closing
 	public void TellGameOver()
 	{
+		GameManager.instance.GetStageController().OnCurtainsDoneMoving -= TellGameOver;
+
 		GameManager.instance.GameOver();
 	}
 
@@ -215,12 +217,14 @@ public class Puppet : Living
 		EventManager.instance.OpenCurtains("");
 
 		// 6 seconds for time to open curtainss
-		Invoke("OnRespawnDone", 6.0f);
+		GameManager.instance.GetStageController().OnCurtainsDoneMoving += OnRespawnDone;
     }
 
 	// Used to delay player respawn until curtains are done opening
 	public void OnRespawnDone()
 	{
+		GameManager.instance.GetStageController().OnCurtainsDoneMoving -= OnRespawnDone;
+
 		InputManager.instance.EnablePlayerActions();
 	}
 }
