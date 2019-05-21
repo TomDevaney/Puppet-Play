@@ -213,12 +213,18 @@ public class Puppet : Living
 		SetStandingOnSurface(true);
 		animator.SetBool("OnGround", true);
 
-		// Open curtains
+		// Open curtains after delay because opening curtains right after they just got closed looks funny
+		Invoke("OpenCurtains", 1.5f);
+	}
+
+	// Encapsulated into its own function for delay purposes
+	void OpenCurtains()
+	{
 		EventManager.instance.OpenCurtains("");
 
-		// 6 seconds for time to open curtainss
+		// Hook up delegate to our function
 		GameManager.instance.GetStageController().OnCurtainsDoneMoving += OnRespawnDone;
-    }
+	}
 
 	// Used to delay player respawn until curtains are done opening
 	public void OnRespawnDone()
