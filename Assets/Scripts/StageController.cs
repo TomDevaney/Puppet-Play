@@ -46,8 +46,6 @@ public class StageController : MonoBehaviour
         {
             float NextZ = Mathf.Lerp(FullyClosedScale, FullyOpenScale, ratio);
 
-			print(NextZ);
-
 			LeftCurtain.transform.localScale = new Vector3(
                 LeftCurtain.transform.localScale.x,
                 LeftCurtain.transform.localScale.y,
@@ -58,12 +56,8 @@ public class StageController : MonoBehaviour
                 RightCurtain.transform.localScale.y,
                 NextZ);
 
-
-			//if(Mathf.Abs(NextZ - FullyOpenScale) <= CloseEnoughRange)
 			if (NextZ == FullyOpenScale)
 			{
-				//LeftCurtain.transform.localScale = Vector3.zero;
-				//RightCurtain.transform.localScale = Vector3.zero;
 				break;
             }
 
@@ -113,8 +107,6 @@ public class StageController : MonoBehaviour
                 RightCurtain.transform.localScale.y,
                 NextZ);
 
-
-            //if (Mathf.Abs(NextZ - FullyClosedScale) <= CloseEnoughRange)
 			if (NextZ == FullyClosedScale)
             {
                 break;
