@@ -87,19 +87,10 @@ public class Puppet : Living
 	{
 		base.MarkAsDead();
 
-		// Tell the manager it's game over after curtains are done closing
-		GameManager.instance.GetStageController().OnCurtainsDoneMoving += TellGameOver;
-	}
-
-	// Used to delay game over until curtains are done closing
-	public void TellGameOver()
-	{
-		GameManager.instance.GetStageController().OnCurtainsDoneMoving -= TellGameOver;
-
 		GameManager.instance.GameOver();
 	}
 
-    public void Jump()
+	public void Jump()
     {
         if (IsStandingOnSurface())
         {

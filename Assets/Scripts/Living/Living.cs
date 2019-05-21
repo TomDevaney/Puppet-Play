@@ -222,20 +222,20 @@ public class Living : MonoBehaviour
 		}
 
 		// Figure out when to actually mark as dead
-		float deathAnimationTime = 0.0f;
+		//float deathAnimationTime = 0.0f;
 
-		if (animator != null)
-		{
-			AnimationClip[] clips = animator.runtimeAnimatorController.animationClips;
+		//if (animator != null)
+		//{
+		//	AnimationClip[] clips = animator.runtimeAnimatorController.animationClips;
 
-			foreach (AnimationClip clip in clips)
-			{
-				if (clip.name == "Death")
-				{
-					deathAnimationTime = clip.length;
-				}
-			}
-		}
+		//	foreach (AnimationClip clip in clips)
+		//	{
+		//		if (clip.name == "Death")
+		//		{
+		//			deathAnimationTime = clip.length;
+		//		}
+		//	}
+		//}
 
         // Play death sound
         // TODO: might have to delay it somehow depending on how it sounds being played exactly same time 
@@ -245,14 +245,18 @@ public class Living : MonoBehaviour
         }
 
 		// Delay death until animation done
-		Invoke("MarkAsDead", deathAnimationTime);
+		GameManager.instance.GetStageController().OnCurtainsDoneMoving += MarkAsDead;
+		//Invoke("MarkAsDead", deathAnimationTime);
     }
 
 	public virtual void MarkAsDead()
 	{
+		GameManager.instance.GetStageController().OnCurtainsDoneMoving -= MarkAsDead;
+
 		// Disable so it can be respawned later if needed
 		gameObject.SetActive(false);
 
+		// For kill events, tell EventManager
 		EventManager.instance.NotifyOfDeath(this);
 
 		// Mark as dead
