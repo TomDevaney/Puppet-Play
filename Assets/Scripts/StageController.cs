@@ -7,6 +7,9 @@ public class StageController : MonoBehaviour
     public GameObject LeftCurtain = null;
     public GameObject RightCurtain = null;
 
+	const float FullyOpenScale = 0.10f;
+	const float FullyClosedScale = 1.0f;
+
 	public AudioClip CurtainAudioClip;
 
 	// Delegate that can be subscribed to if you need to do something when curtains are done opening or closing
@@ -36,15 +39,16 @@ public class StageController : MonoBehaviour
 
     IEnumerator OpeningCurtains()
     {
-        float TimeBetween = 0.015f * 1.5f;
-        float FullyOpenScale = 0.0f;
-        float CloseEnoughRange = 0.02f;
+		float TimeBetween = 0.0075f;
+		float ratio = 0.0f;
 
-        while (true)
+		while (true)
         {
-            float NextZ = Mathf.Lerp(LeftCurtain.transform.localScale.z, FullyOpenScale, TimeBetween);
+            float NextZ = Mathf.Lerp(FullyClosedScale, FullyOpenScale, ratio);
 
-            LeftCurtain.transform.localScale = new Vector3(
+			print(NextZ);
+
+			LeftCurtain.transform.localScale = new Vector3(
                 LeftCurtain.transform.localScale.x,
                 LeftCurtain.transform.localScale.y,
                 NextZ);
@@ -55,15 +59,17 @@ public class StageController : MonoBehaviour
                 NextZ);
 
 
-            if(Mathf.Abs(NextZ - FullyOpenScale) <= CloseEnoughRange)
-            {
-				LeftCurtain.transform.localScale = Vector3.zero;
-				RightCurtain.transform.localScale = Vector3.zero;
+			//if(Mathf.Abs(NextZ - FullyOpenScale) <= CloseEnoughRange)
+			if (NextZ == FullyOpenScale)
+			{
+				//LeftCurtain.transform.localScale = Vector3.zero;
+				//RightCurtain.transform.localScale = Vector3.zero;
 				break;
             }
 
+			ratio += TimeBetween;
 
-            yield return new WaitForSeconds(TimeBetween);
+			yield return new WaitForSeconds(TimeBetween);
         }
 
 		// Call delegate event
@@ -90,13 +96,12 @@ public class StageController : MonoBehaviour
 
     IEnumerator ClosingCurtains()
     {
-		float TimeBetween = 0.015f * 1.5f;
-		float FullyClosedScale = 1.1f;
-        float CloseEnoughRange = 0.02f;
+		float TimeBetween = 0.0075f;
+		float ratio = 0.0f;
 
-        while (true)
+		while (true)
         {
-            float NextZ = Mathf.Lerp(LeftCurtain.transform.localScale.z, FullyClosedScale, TimeBetween);
+			float NextZ = Mathf.Lerp(FullyOpenScale, FullyClosedScale, ratio);
 
             LeftCurtain.transform.localScale = new Vector3(
                 LeftCurtain.transform.localScale.x,
@@ -109,13 +114,15 @@ public class StageController : MonoBehaviour
                 NextZ);
 
 
-            if (Mathf.Abs(NextZ - FullyClosedScale) <= CloseEnoughRange)
+            //if (Mathf.Abs(NextZ - FullyClosedScale) <= CloseEnoughRange)
+			if (NextZ == FullyClosedScale)
             {
                 break;
             }
 
+			ratio += TimeBetween;
 
-            yield return new WaitForSeconds(TimeBetween);
+			yield return new WaitForSeconds(TimeBetween);
         }
 
 		// Call delegate event
