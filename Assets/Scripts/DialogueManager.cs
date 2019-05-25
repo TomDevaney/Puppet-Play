@@ -218,18 +218,17 @@ public class DialogueManager : MonoBehaviour
         // Close stream reader given we're done reading
         reader.Close();
 
-        // Set canvas
-        canvas = GetComponentInChildren<Canvas>();
-        canvas.enabled = false;
+        // Get disabled canvas
+        canvas = GetComponentInChildren<Canvas>(true);
 
 		// Set text labels
-		nameText = GetComponentsInChildren<Text>()[0];
-		dialogueText = GetComponentsInChildren<Text>()[1];
+		nameText = canvas.GetComponentsInChildren<Text>()[0];
+		dialogueText = canvas.GetComponentsInChildren<Text>()[1];
 
 		// Set avatar and input prompt
-		Image[] images = GetComponentsInChildren<Image>();
+		Image[] images = canvas.GetComponentsInChildren<Image>();
 
-        //avatar = images[1];
+        //avatar = images[0];
         inputPrompt = images[1];
 
         // Disable input prompt image
@@ -303,9 +302,10 @@ public class DialogueManager : MonoBehaviour
 
         // Set enabled so it is visible
         canvas.enabled = true;
+		canvas.gameObject.SetActive(true);
 
-        // Init some variables needed
-        DialogueInitialization();
+		// Init some variables needed
+		DialogueInitialization();
     }
 
     // Start the next piece of dialogue
