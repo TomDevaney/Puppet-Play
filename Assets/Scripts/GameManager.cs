@@ -82,6 +82,8 @@ public class GameManager : MonoBehaviour
 
 		beatGame = gameWasBeat;
 
+		InputManager.instance.DisablePlayerActions();
+
 		// Do other logic for end of game
 		EventManager.instance.CloseCurtains("");
 
