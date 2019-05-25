@@ -34,8 +34,11 @@ public class Checkpoint : TriggerEvent
 
 		if (isDefaultCheckpoint)
 		{
-			SetMostRecentCheckpoint();
 			meshRenderer.material = activeMaterial;
+
+			// Trigger it so it won't happen again
+			// This also sets most recent checkpoint
+			base.OnTriggerEnter(null);
 		}
     }
 
