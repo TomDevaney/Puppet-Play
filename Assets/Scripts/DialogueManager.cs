@@ -83,7 +83,7 @@ public class DialogueManager : MonoBehaviour
 	Dialogue currentDialogue;
 
 	// Relative path to the dialogue file
-	const string mDialogueFilePath = "/Files/Dialogue.txt";
+	const string mDialogueFileName = "Dialogue";
 
     // Used to keep track what char needs to be output for the dialogue
     int currentCharIndexForDialogue;
@@ -168,16 +168,21 @@ public class DialogueManager : MonoBehaviour
             personDictionary.Add(mPeople[i].GetName(), i);
         }
 
-        // Set up stream reader to dialogue text file
-        StreamReader reader = new StreamReader(Application.dataPath + mDialogueFilePath);
+        // Load txt file into Unity Text Asset then convert to string array
+		TextAsset textAsset = (TextAsset)Resources.Load(mDialogueFileName, typeof(TextAsset));
+		string [] splitCharacters = new string[] {"\r\n", "\r", "\n"};
+
+		string[] allText = textAsset.text.Split(splitCharacters, System.StringSplitOptions.None);
+		int currentTextIndex = 0;
 
 		// Transfer the dialogue to the list of dialogue
-		List<Dialogue> dialogueChunk = new List<Dialogue>();
+		List <Dialogue> dialogueChunk = new List<Dialogue>();
 
 		while (true)
         {
-			string currentLine = reader.ReadLine();
+			string currentLine = allText[currentTextIndex++];
 
+			// Is this the end of the current dialogue chunk?
 			if (currentLine[0] == '/' && currentLine[1] == '/')
 			{
 				// Add chunk and clear it for next chunk to be filled
@@ -186,13 +191,13 @@ public class DialogueManager : MonoBehaviour
 				dialogueChunk.Clear();
 
 				// Get rid of blank line after comment
-				reader.ReadLine();
+				++currentTextIndex;
 			}
 			else
 			{
 				// Find out who said the dialogue
 				string personName = currentLine;
-				string personsWords = reader.ReadLine();
+				string personsWords = allText[currentTextIndex++];
 				int whichPerson = personDictionary[personName];
 
 				// Set the person
@@ -204,19 +209,16 @@ public class DialogueManager : MonoBehaviour
 				// Add to current chunk of dialogue
 				dialogueChunk.Add(dialogue);
 
-				// Every dialogue has an empty line so clear that
-				reader.ReadLine();
+				// Every dialogue has an empty line after it so clear that
+				++currentTextIndex;
 			}
 
 			// Check if everything has been read
-			if (reader.EndOfStream)
+			if (allText.Length == currentTextIndex)
 			{
 				break;
 			}
 		}
-
-        // Close stream reader given we're done reading
-        reader.Close();
 
         // Get disabled canvas
         canvas = GetComponentInChildren<Canvas>(true);
@@ -301,7 +303,7 @@ public class DialogueManager : MonoBehaviour
         // TODO: Do cool animation to bring up canvas
 
         // Set enabled so it is visible
-        canvas.enabled = true;
+        //canvas.enabled = true;
 		canvas.gameObject.SetActive(true);
 
 		// Init some variables needed
@@ -333,7 +335,8 @@ public class DialogueManager : MonoBehaviour
 		InputManager.OnSpaceUp -= EndDialogue;
 
 		// Set enabled so it isn't visible
-		canvas.enabled = false;
+		//canvas.enabled = false;
+		canvas.gameObject.SetActive(false);
 
 		// Clear text. In the future, clearing at the beginning of start could work better depending on HUD animations
 		dialogueText.text = "";
