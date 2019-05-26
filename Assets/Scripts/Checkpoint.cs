@@ -17,7 +17,7 @@ public class Checkpoint : TriggerEvent
 
 	// The first checkpoint in the game should be placed at the player's initial position
 	// And it should be the most recent checkpoint in GameManager and should have its material changed already
-	bool isDefaultCheckpoint = false;
+	public bool isDefaultCheckpoint = false;
 
     // Start is called before the first frame update
     void Start()
