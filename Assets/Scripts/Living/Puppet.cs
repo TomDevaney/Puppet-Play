@@ -75,6 +75,12 @@ public class Puppet : Living
 	{
 		base.JustDied();
 
+		// Undo Living.JustDied call to Invoke this function
+		CancelInvoke("MarkAsDead");
+
+		// Instead, do it after curtains are done moving
+		GameManager.instance.GetStageController().OnCurtainsDoneMoving += MarkAsDead;
+
 		// Disable collision between enemies and player while death animation happens
 		Physics.IgnoreLayerCollision(9, 12, true);
 
