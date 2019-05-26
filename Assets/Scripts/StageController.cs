@@ -39,7 +39,7 @@ public class StageController : MonoBehaviour
 
     IEnumerator OpeningCurtains()
     {
-		float TimeBetween = 0.0075f;
+		float TimeBetween = 0.0035f;
 		float ratio = 0.0f;
 
 		while (true)
@@ -90,7 +90,7 @@ public class StageController : MonoBehaviour
 
     IEnumerator ClosingCurtains()
     {
-		float TimeBetween = 0.0075f;
+		float TimeBetween = 0.0035f;
 		float ratio = 0.0f;
 
 		while (true)
