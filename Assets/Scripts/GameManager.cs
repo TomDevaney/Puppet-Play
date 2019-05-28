@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour
 		GameManager.instance.GetCameraFSM().transform.position = camPosition;
 
 		// Reset checkpoints
-		recentCheckpoint = null;
+		recentCheckpoint = checkpoints[0];
 
 		foreach (Checkpoint checkpoint in checkpoints)
 		{

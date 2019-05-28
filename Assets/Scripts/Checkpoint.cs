@@ -31,7 +31,7 @@ public class Checkpoint : TriggerEvent
 		// This will happen when someone goes through the trigger
 		OnTrigger.AddListener(SetMostRecentCheckpoint);
 
-
+		// Make default checkpoint active automatically
 		if (isDefaultCheckpoint)
 		{
 			meshRenderer.material = activeMaterial;
@@ -68,10 +68,22 @@ public class Checkpoint : TriggerEvent
 	// Go to default state
 	public void ResetCheckpoint()
 	{
-		meshRenderer.material = defaultMaterial;
+		if (isDefaultCheckpoint)
+		{
+			meshRenderer.material = activeMaterial;
 
-		// Allow to be triggered again
-		ResetTrigger();
+			// Trigger it so it won't happen again
+			// This also sets most recent checkpoint
+			base.OnTriggerEnter(null);
+		}
+		else
+		{
+			// Reset material to off material
+			meshRenderer.material = defaultMaterial;
+
+			// Allow to be triggered again
+			ResetTrigger();
+		}
 	}
 
 	// Tell manager about this checkpoint being hit
