@@ -188,7 +188,12 @@ public class Living : MonoBehaviour
 
     public void DoDamage(Living living)
     {
-        living.TakeDamage(attackDamage);
+		// To prevent a bug where the enemy gets hit and the player gets hit later in the same frame, and they both die
+		// In the future, if any projectile based enemies are killed and I want the projectile to still be alive, I will have to modify this
+		if (!isDead)
+		{
+			living.TakeDamage(attackDamage);
+		}
     }
 
     public void TakeDamage(int damage)

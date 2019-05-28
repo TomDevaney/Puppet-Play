@@ -75,6 +75,9 @@ public class Puppet : Living
 	{
 		base.JustDied();
 
+		// Disable attack so that if they swung and died, the enemy can't be killed
+		DisableWeaponAttackMode();
+
 		// Undo Living.JustDied call to Invoke this function
 		CancelInvoke("MarkAsDead");
 

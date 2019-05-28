@@ -26,3 +26,15 @@ Fixed: Can pause the game when the curtains are opening
 	Breaks the game 
 	
 Fixed: When the game is played again, the dialogue after the dance is started immediately
+
+Fixed: Add trees to the last level piece
+
+Fixed:Can die after killing enemy and the kill event still happens
+
+Fixed: Enemy gets hit and then the player days in the same frame
+
+The princess attacking the enemies at the end is broken sometimes
+	- I reproduced it by dying while attacking the enemies
+		Maybe it's attached to dying?
+		
+If you double click attack, you will attack twice
