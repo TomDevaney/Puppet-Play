@@ -38,13 +38,8 @@ public class MenuManager : MonoBehaviour
     void Update()
     {
 		// Do pause menu stuff on Esc and if they're not on main menu still
-		if (Input.GetKeyUp(KeyCode.Escape) && GameManager.instance.IsGameStarted())
+		if (Input.GetKeyUp(KeyCode.Escape) && GameManager.instance.CanPauseGame())
 		{
-			//if (canvasesDictionary["PauseMenuCanvas"] == currentCanvasIndex)
-			//{
-			//	GameManager.instance.TogglePauseGame();
-			//	MenuManager.instance.ToggleMenuEnabledState("PauseMenuCanvas");
-			//}
 			if (canvasesDictionary["WarningMenuCanvas"] == currentCanvasIndex)
 			{
 				MenuManager.instance.ToggleMenuEnabledState("WarningMenuCanvas");

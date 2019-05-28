@@ -22,7 +22,7 @@ Fixed: The spawned stationary enemies are the old model
 	
 Fixed: When the game is beat, and you're put back at the default checkpoint, it makes the sound again
 
-Can pause the game when the curtains are opening
+Fixed: Can pause the game when the curtains are opening
 	Breaks the game 
 	
-When the game is played again, the dialogue after the dance is started immediately
+Fixed: When the game is played again, the dialogue after the dance is started immediately

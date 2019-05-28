@@ -12,6 +12,8 @@ public class StageController : MonoBehaviour
 
 	public AudioClip CurtainAudioClip;
 
+	bool curtainIsMoving = false;
+
 	// Delegate that can be subscribed to if you need to do something when curtains are done opening or closing
 	public delegate void CurtainsDoneMoving();
 	public event CurtainsDoneMoving OnCurtainsDoneMoving; 
@@ -32,6 +34,8 @@ public class StageController : MonoBehaviour
     public void OpenCurtains()
     {
 		AudioManager.instance.PlaySoundFX(CurtainAudioClip);
+
+		curtainIsMoving = true;
 
 		StopCoroutine("Closecurtains");
 		StartCoroutine(OpeningCurtains());
@@ -72,6 +76,8 @@ public class StageController : MonoBehaviour
 			OnCurtainsDoneMoving();
 		}
 
+		curtainIsMoving = false;
+
 		// Tell event manager you're done
 		EventManager.instance.MarkEventAsDone();
     }
@@ -79,6 +85,8 @@ public class StageController : MonoBehaviour
     public void CloseCurtains()
     {
 		AudioManager.instance.PlaySoundFX(CurtainAudioClip);
+
+		curtainIsMoving = true;
 
 		// Restore scale caused from opening curtains
 		LeftCurtain.transform.localScale = new Vector3(1.0f, 1.0f, 0.0f);
@@ -123,7 +131,15 @@ public class StageController : MonoBehaviour
 			OnCurtainsDoneMoving();
 		}
 
+		curtainIsMoving = false;
+
 		// Tell event manager you're done
 		EventManager.instance.MarkEventAsDone();
     }
+
+	/* Getters */
+	public bool IsCurtainMoving()
+	{
+		return curtainIsMoving;
+	}
 }

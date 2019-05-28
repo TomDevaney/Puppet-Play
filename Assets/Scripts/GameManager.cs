@@ -29,6 +29,10 @@ public class GameManager : MonoBehaviour
 	// Shows that they got to the end of the game
 	bool beatGame = false;
 
+	// Is a cutscene happening?
+	[HideInInspector]
+	public bool cutsceneIsPlaying;
+
     // Awake is called before Start
     void Awake()
     {
@@ -227,6 +231,13 @@ public class GameManager : MonoBehaviour
 	public bool IsGameStarted()
 	{
 		return gameIsStarted;
+	}
+
+	// Don't let player pause the game if the game isn't started, if a cutscene is playing, or the curtains are moving
+	// These scenarios can break the game
+	public bool CanPauseGame()
+	{
+		return (gameIsStarted && !cutsceneIsPlaying && !stageController.IsCurtainMoving());
 	}
 
 	/* Setters */

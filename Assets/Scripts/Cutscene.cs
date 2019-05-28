@@ -29,7 +29,8 @@ public class Cutscene : MonoBehaviour
     // Handles start up logic for cutscene
     public void StartCutscene()
     {
-        // Do any graphical things wanted
+		// Notify manager that cutscene started
+		GameManager.instance.cutsceneIsPlaying = true;
 
         // Don't allow any player movement anymore
         InputManager.instance.DisablePlayerActions();
@@ -78,13 +79,14 @@ public class Cutscene : MonoBehaviour
 
     public void StopCutscene()
     {
-        // Get rid of event that just called this
+        // Unhook from event that just called this
         EventManager.OnEventDone -= StopCutscene;
 
-        // Undo those graphical things
+		// Notify manager that cutscene is over
+		GameManager.instance.cutsceneIsPlaying = false;
 
-        // Allow any player movement anymore
-        InputManager.instance.EnablePlayerActions();
+		// Allow any player movement anymore
+		InputManager.instance.EnablePlayerActions();
 
 		// Tell AI to start doing its thing
 		GameManager.instance.GetDaughterPuppet().GetComponent<AIContoller>().SetUpdateMachine(true);
