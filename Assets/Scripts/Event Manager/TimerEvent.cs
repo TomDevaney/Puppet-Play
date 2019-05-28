@@ -51,7 +51,10 @@ public class TimerEvent : MonoBehaviour
 
                 // To prevent further counting down
                 doCountdown = false;
-            }
+
+				// Reset timer
+				currentTimer = 0.0f;
+			}
         }
     }
 
@@ -59,11 +62,5 @@ public class TimerEvent : MonoBehaviour
     public void StartCountdown()
     {
         doCountdown = true;
-    }
-
-    /* Setters */
-    void SetDesiredTimer(float timer)
-    {
-        desiredTimer = timer;
     }
 }

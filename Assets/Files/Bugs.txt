@@ -1,0 +1,28 @@
+-15.24
+
+Fixed: Move back trigger after multiple jumps so you're both on platforms
+
+Fixed: Move first enemy trigger to the next house so you're closer to enemies
+
+Fixed: Second respawn point is broken. Spawns me on house. Maybe have a second trigger that it spawns me to? This will fix first spawn making me fall
+
+Fixed: After beating the game and playing through again, when daughter got ambushed, the dialogue broke? It played twice? Then it ended on the wrong dialogue at then end
+
+Fixed: Make princess jumping platforms in 2nd cutscene smoother
+
+Fixed: Look into footsteps. Enemy's is being used for players for some reason
+	then change volume as well so they're subtle
+	
+Did idle instead: Add back enemy's footsteps
+
+Fixed: PatrollingEnemy(1) still has footsteps remove that
+
+Fixed: The spawned stationary enemies are the old model
+	Yep: Maybe they should even be making the sounds too
+	
+Fixed: When the game is beat, and you're put back at the default checkpoint, it makes the sound again
+
+Can pause the game when the curtains are opening
+	Breaks the game 
+	
+When the game is played again, the dialogue after the dance is started immediately
