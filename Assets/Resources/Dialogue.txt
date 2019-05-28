@@ -120,15 +120,12 @@ Princess
 Yes! You saved the town!
 
 Knight
-Not so fast. If there’s some here, there’s probably even more. Stick close to me.
+Not so fast. I hear more ahead. Stick close to me.
 
 // End of dialogue
 
 Princess
-Oh great. More of the evil things.
-
-Knight
-See, I told you there'd be more. 
+Oh great. There's even more than before!
 
 Knight
 Tis not a problem. Just stay behind me as I deal with these monsters.
@@ -219,7 +216,10 @@ Knight
 We will stop the count after we get some rest.
 
 Knight
-It's not like he'll attack again anytime soon. I think you taught him that lesson when you defeated his minions.
+It's not like he'll attack again anytime soon.
+
+Knight
+I think you taught him that lesson when you defeated his minions.
 
 Princess
 Ok. I guess I am actually getting really sleepy...

@@ -33,7 +33,7 @@ Fixed: Can die after killing enemy and the kill event still happens
 
 Fixed: Enemy gets hit and then the player days in the same frame
 
-The princess attacking the enemies at the end is broken sometimes
+I think it got fixed just by my other fixes: The princess attacking the enemies at the end is broken sometimes
 	- I reproduced it by dying while attacking the enemies
 		Maybe it's attached to dying?
 		
