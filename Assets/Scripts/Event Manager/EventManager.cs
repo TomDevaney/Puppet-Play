@@ -153,7 +153,7 @@ public class EventManager : MonoBehaviour
         string[] args = location.Split(' ');
 		Vector3 vectorLocation = new Vector3(float.Parse(args[0]), float.Parse(args[1]), float.Parse(args[2]));
 
-		Instantiate(patrollingEnemy, vectorLocation, new Quaternion());
+		Instantiate(patrollingEnemy, vectorLocation, patrollingEnemy.transform.rotation);
 
 		MarkEventAsDone();
 	}
