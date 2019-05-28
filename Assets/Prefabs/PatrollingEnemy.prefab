@@ -50,13 +50,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0.04
   deathSound: {fileID: 0}
-  footstepsSound: {fileID: 8300000, guid: 8095450ac64a17a4390aeda64ddb751a, type: 3}
+  footstepsSound: {fileID: 0}
   gotHitSound: {fileID: 8300000, guid: 7fe5f25e0274a0b4aa4b27cfa22569dc, type: 3}
   idleSound: {fileID: 8300000, guid: e107aa353b6b5b44fafc2ec9ebf3fcaf, type: 3}
   minSecondsTilIdleSound: 3
   maxSecondsTilIdleSound: 6
   animator: {fileID: 0}
   isInvincible: 0
+  doFacing: 1
   startPosition: -6.41
   endPosition: -7.08
   doRelativePositioning: 0
