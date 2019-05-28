@@ -117,12 +117,16 @@ public class Puppet : Living
 
     public void Attack()
     {
-        meleeWeapon.AttackModeActive = true;
-        Invoke("DisableWeaponAttackMode",1);
-        animator.SetTrigger("Attack");
+		// Don't allow player to attack if they are currently doing attack animation in any form
+		if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") && !animator.GetAnimatorTransitionInfo(0).IsName("IdleState -> Attack") && !animator.GetAnimatorTransitionInfo(0).IsName("Attack -> IdleState"))
+		{
+			meleeWeapon.AttackModeActive = true;
+			Invoke("DisableWeaponAttackMode", 1);
+			animator.SetTrigger("Attack");
 
-        // Play sword swinging sound
-        AudioManager.instance.PlaySoundFXAtPosition(attackClip, gameObject.transform.position);
+			// Play sword swinging sound
+			AudioManager.instance.PlaySoundFXAtPosition(attackClip, gameObject.transform.position);
+		}
     }
 
     public void DisableWeaponAttackMode()
