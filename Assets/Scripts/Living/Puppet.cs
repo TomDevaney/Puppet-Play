@@ -118,7 +118,7 @@ public class Puppet : Living
     public void Attack()
     {
 		// Don't allow player to attack if they are currently doing attack animation in any form
-		if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") && !animator.GetAnimatorTransitionInfo(0).IsName("IdleState -> Attack") && !animator.GetAnimatorTransitionInfo(0).IsName("Attack -> IdleState"))
+		if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") && !animator.GetNextAnimatorStateInfo(0).IsName("Attack"))
 		{
 			meleeWeapon.AttackModeActive = true;
 			Invoke("DisableWeaponAttackMode", 1);
