@@ -123,9 +123,6 @@ public class GameManager : MonoBehaviour
 			checkpoint.ResetCheckpoint();
 		}
 
-		// Reset dialogue manager
-		DialogueManager.instance.ResetDialogueManager();
-
 		// Reset triggers
 		EventManager.instance.ResetTriggerEvents();
 
@@ -148,6 +145,15 @@ public class GameManager : MonoBehaviour
 		{
 			MenuManager.instance.ToggleMenuEnabledState("MainMenuCanvas");
 		}
+
+		// Reset dialogue manager
+		// Do at end as this function tells event manager that event is done
+		DialogueManager.instance.ResetDialogueManager();
+
+		// Stupid fix
+		// Marking event as done calls StopCutscene() which enables player actions
+		// Instead of fixing that, just disable again
+		InputManager.instance.DisablePlayerActions();
 	}
 
 	// The player was killed so it's game over

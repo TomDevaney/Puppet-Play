@@ -38,3 +38,7 @@ I think it got fixed just by my other fixes: The princess attacking the enemies 
 		Maybe it's attached to dying?
 		
 Fixed: If you double click attack, you will attack twice
+
+Princess jumping cutscene looks a bit off. Maybe add some pauses so the transition to idle can happen?
+
+Fixed: When game ends, I can hear player attacking, moving, etc.
