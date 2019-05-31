@@ -39,6 +39,12 @@ I think it got fixed just by my other fixes: The princess attacking the enemies 
 		
 Fixed: If you double click attack, you will attack twice
 
-Princess jumping cutscene looks a bit off. Maybe add some pauses so the transition to idle can happen?
+Fixed: Princess jumping cutscene looks a bit off. Maybe add some pauses so the transition to idle can happen?
 
 Fixed: When game ends, I can hear player attacking, moving, etc.
+
+Fixed: Princess can get stuck in the same spot as player
+	Did this one: Or... Just add a barrier that the princess cannot move past.
+	Will need to make try button reset princess position
+		Also don't let her move til the curtains have been opened up again
+	Have to add princess being able to jump up big walls so she can get past the cutscene jumping part even if it was already done

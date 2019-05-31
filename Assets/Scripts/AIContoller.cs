@@ -47,8 +47,6 @@ public class AIContoller : StateMachine
 			daughterPuppet = GameManager.instance.GetDaughterPuppet();
 
 			GetAIController().animator.SetTrigger("Idle");
-
-            print("IdleState");
         }
 
         override public State Update()
@@ -125,8 +123,6 @@ public class AIContoller : StateMachine
             dadTransform = GameManager.instance.GetPlayerPuppet().transform;
             aiTransform = GetAIController().transform;
 			daughterPuppet = GameManager.instance.GetDaughterPuppet();
-
-			print("FollowState");
         }
 
 		override public State Update()
@@ -140,13 +136,19 @@ public class AIContoller : StateMachine
 				direction = 1;
 			}
 
+			// Don't let the daughter move past the left bounds (-1 is left movement)
+			if (direction == -1 && aiTransform.position.x <= GetAIController().GetLeftBound())
+			{
+				direction = 0;
+				print("Daughter can't move past left bound!");
+			}
+
 			// Move them closer to dad
 			daughterPuppet.Move(direction);
 
 			// Check to see if somethings in the way
 			if (!bJustJumped)
 			{
-				float MaxRayDistance = 1.0f;
 				Vector3 position = aiTransform.position;
 
 				// Only look for environment layer
@@ -156,7 +158,6 @@ public class AIContoller : StateMachine
 				RaycastHit hitInfo;
 
 				// Is there something above the princess?
-				MaxRayDistance = 1.5f;
 				if (Physics.Raycast(new Vector3(position.x, position.y + 1.5f, position.z), aiTransform.right * -1, out hitInfo, bigJumpRayDistance, LayerMask))
 				{
 					// Do a big jump
@@ -227,9 +228,10 @@ public class AIContoller : StateMachine
     }
 
     Animator animator;
+	float leftXBoundPosition;
 
-    // Start is called before the first frame update
-    void Start()
+	// Start is called before the first frame update
+	void Start()
     {
         // Set references
         animator = GetComponentInChildren<Animator>();
@@ -246,9 +248,20 @@ public class AIContoller : StateMachine
 		animator.ResetTrigger("Walk");
 	}
 
+	/* Setters */
+	public void SetLeftBound(float position)
+	{
+		leftXBoundPosition = position;
+	}
+
 	/* Getters */
 	Animator GetAnimator()
     {
         return animator;
     }
+
+	float GetLeftBound()
+	{
+		return leftXBoundPosition;
+	}
 }

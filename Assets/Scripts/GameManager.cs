@@ -179,8 +179,6 @@ public class GameManager : MonoBehaviour
 		// Kill player so no shenanigans can happen while curtains close
 		// And it'll also take care of respawning player and doing game over stuff
 		playerPuppet.TakeDamage(1);
-
-		daughterPuppet.ResetToInitialPosition();
 	}
 
 	// Close the application
