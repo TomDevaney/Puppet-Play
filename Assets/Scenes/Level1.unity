@@ -205,7 +205,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3228293}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.36, y: 0.28, z: -11}
+  m_LocalPosition: {x: 94.31, y: 0.28, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1161630377}
@@ -3508,7 +3508,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 127213838}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 3.4100032, y: -2.982457, z: -3.24}
+  m_LocalPosition: {x: 90.36, y: -2.982457, z: -3.24}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 2096696868}
@@ -3736,7 +3736,8 @@ MonoBehaviour:
   moveSpeed: 2.4
   deathSound: {fileID: 8300000, guid: dfa0786cee745244cba1b233847fcb6b, type: 3}
   footstepsSound: {fileID: 8300000, guid: 6dc04de928bb6704d855d5bba4e70218, type: 3}
-  gotHitSound: {fileID: 8300000, guid: 7fe5f25e0274a0b4aa4b27cfa22569dc, type: 3}
+  gotHitSound: {fileID: 0}
+  hitSound: {fileID: 0}
   idleSound: {fileID: 0}
   minSecondsTilIdleSound: 3
   maxSecondsTilIdleSound: 6
@@ -3981,7 +3982,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: StringUnityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
-  eventArgument: 92 -2.5 -3
+  eventArgument: 92 -2.5 -3.3
   desiredTimer: 0.25
 --- !u!1 &146099803
 GameObject:
@@ -5876,7 +5877,7 @@ PrefabInstance:
     - target: {fileID: 2158742748975830226, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2158742748975830221, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
@@ -5891,7 +5892,7 @@ PrefabInstance:
     - target: {fileID: 2158742748975830221, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.0151396
+      value: -3.3
       objectReference: {fileID: 0}
     - target: {fileID: 2158742748975830221, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
@@ -5933,6 +5934,16 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2158742748975830222, guid: 2d567b9450be5fe4a9aaecf91866a950,
+        type: 3}
+      propertyPath: gotHitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 7fe5f25e0274a0b4aa4b27cfa22569dc, type: 3}
+    - target: {fileID: 2158742748975830222, guid: 2d567b9450be5fe4a9aaecf91866a950,
+        type: 3}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: cc26eb94fc31d784da01b8fdf3386803, type: 3}
     - target: {fileID: 3792989787354959477, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
       propertyPath: rolloffCustomCurve.m_Curve.Array.size
@@ -9261,7 +9272,7 @@ PrefabInstance:
     - target: {fileID: 6902007168576865846, guid: 3fd3cd2f8fb2cc742a583345d31cc9c1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.1299968
+      value: 89.079994
       objectReference: {fileID: 0}
     - target: {fileID: 6902007168576865846, guid: 3fd3cd2f8fb2cc742a583345d31cc9c1,
         type: 3}
@@ -11700,7 +11711,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ed215f528580d4b419799474c152035e, type: 3}
   - {fileID: 8300000, guid: 403c243a13a695f4088b41c79039e7cc, type: 3}
   - {fileID: 8300000, guid: b39ed025213e749499f81c94561a5c10, type: 3}
-  skipDialogue: 0
+  skipDialogue: 1
 --- !u!1 &515574609
 GameObject:
   m_ObjectHideFlags: 0
@@ -11912,7 +11923,7 @@ PrefabInstance:
     - target: {fileID: 2158742748975830226, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2158742748975830221, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
@@ -11927,7 +11938,7 @@ PrefabInstance:
     - target: {fileID: 2158742748975830221, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.0151396
+      value: -3.3
       objectReference: {fileID: 0}
     - target: {fileID: 2158742748975830221, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
@@ -11969,6 +11980,16 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2158742748975830222, guid: 2d567b9450be5fe4a9aaecf91866a950,
+        type: 3}
+      propertyPath: gotHitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 7fe5f25e0274a0b4aa4b27cfa22569dc, type: 3}
+    - target: {fileID: 2158742748975830222, guid: 2d567b9450be5fe4a9aaecf91866a950,
+        type: 3}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: cc26eb94fc31d784da01b8fdf3386803, type: 3}
     - target: {fileID: 2158742748975830217, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
       propertyPath: m_Constraints
@@ -14361,7 +14382,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: StringUnityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
-  eventArgument: 95 -2.5 -3
+  eventArgument: 95 -2.5 -3.3
   desiredTimer: 0
 --- !u!1001 &635951376
 PrefabInstance:
@@ -14681,7 +14702,7 @@ PrefabInstance:
     - target: {fileID: 2158742748975830226, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2158742748975830221, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
@@ -14696,7 +14717,7 @@ PrefabInstance:
     - target: {fileID: 2158742748975830221, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.0151396
+      value: -3.3
       objectReference: {fileID: 0}
     - target: {fileID: 2158742748975830221, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
@@ -14738,6 +14759,16 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2158742748975830222, guid: 2d567b9450be5fe4a9aaecf91866a950,
+        type: 3}
+      propertyPath: gotHitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 7fe5f25e0274a0b4aa4b27cfa22569dc, type: 3}
+    - target: {fileID: 2158742748975830222, guid: 2d567b9450be5fe4a9aaecf91866a950,
+        type: 3}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: cc26eb94fc31d784da01b8fdf3386803, type: 3}
     - target: {fileID: 2158742748975830217, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
       propertyPath: m_Constraints
@@ -24691,7 +24722,7 @@ PrefabInstance:
     - target: {fileID: 2158742748975830226, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2158742748975830221, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
@@ -24706,7 +24737,7 @@ PrefabInstance:
     - target: {fileID: 2158742748975830221, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.0151396
+      value: -3.3
       objectReference: {fileID: 0}
     - target: {fileID: 2158742748975830221, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
@@ -24748,6 +24779,16 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2158742748975830222, guid: 2d567b9450be5fe4a9aaecf91866a950,
+        type: 3}
+      propertyPath: gotHitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 7fe5f25e0274a0b4aa4b27cfa22569dc, type: 3}
+    - target: {fileID: 2158742748975830222, guid: 2d567b9450be5fe4a9aaecf91866a950,
+        type: 3}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: cc26eb94fc31d784da01b8fdf3386803, type: 3}
     - target: {fileID: 2158742748975830217, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
       propertyPath: m_Constraints
@@ -35298,7 +35339,7 @@ PrefabInstance:
     - target: {fileID: 2158742748975830226, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2158742748975830221, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
@@ -35313,7 +35354,7 @@ PrefabInstance:
     - target: {fileID: 2158742748975830221, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.0151396
+      value: -3.3
       objectReference: {fileID: 0}
     - target: {fileID: 2158742748975830221, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
@@ -35355,6 +35396,16 @@ PrefabInstance:
       propertyPath: footstepsSound
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2158742748975830222, guid: 2d567b9450be5fe4a9aaecf91866a950,
+        type: 3}
+      propertyPath: gotHitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 7fe5f25e0274a0b4aa4b27cfa22569dc, type: 3}
+    - target: {fileID: 2158742748975830222, guid: 2d567b9450be5fe4a9aaecf91866a950,
+        type: 3}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: cc26eb94fc31d784da01b8fdf3386803, type: 3}
     - target: {fileID: 2158742748975830217, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
       propertyPath: m_Constraints
@@ -38144,7 +38195,7 @@ PrefabInstance:
     - target: {fileID: 2158742748975830226, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2158742748975830221, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
@@ -38159,7 +38210,7 @@ PrefabInstance:
     - target: {fileID: 2158742748975830221, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.043
+      value: -3.3278604
       objectReference: {fileID: 0}
     - target: {fileID: 2158742748975830221, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
@@ -38201,6 +38252,16 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2158742748975830222, guid: 2d567b9450be5fe4a9aaecf91866a950,
+        type: 3}
+      propertyPath: gotHitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 7fe5f25e0274a0b4aa4b27cfa22569dc, type: 3}
+    - target: {fileID: 2158742748975830222, guid: 2d567b9450be5fe4a9aaecf91866a950,
+        type: 3}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: cc26eb94fc31d784da01b8fdf3386803, type: 3}
     - target: {fileID: 2158742748975830217, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
       propertyPath: m_Constraints

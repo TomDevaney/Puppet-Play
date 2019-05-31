@@ -4,7 +4,7 @@ using UnityEngine;
 
 enum Direction
 {
-	LEFT = -1,
+	LEFT,
 	RIGHT,
 };
 
@@ -44,6 +44,9 @@ public class Living : MonoBehaviour
 
     [SerializeField]
     AudioClip gotHitSound = null;
+
+	[SerializeField]
+	AudioClip hitSound = null;
 
 	[SerializeField]
 	AudioClip idleSound = null;
@@ -192,6 +195,11 @@ public class Living : MonoBehaviour
 		// In the future, if any projectile based enemies are killed and I want the projectile to still be alive, I will have to modify this
 		if (!isDead)
 		{
+			if (hitSound != null)
+			{
+				AudioManager.instance.PlaySoundFXAtPosition(hitSound, transform.position);
+			}
+
 			living.TakeDamage(attackDamage);
 		}
     }
