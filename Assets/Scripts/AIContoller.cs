@@ -114,7 +114,12 @@ public class AIContoller : StateMachine
 		bool bJustJumped = false;
 		int framesSinceJumped = 0;
 
-        public FollowState(AIContoller controller) : base(controller)
+		const float smallJumpRayDistance = 1.0f;
+
+		// Big jump needs more space to jump higher
+		const float bigJumpRayDistance = 1.5f;
+
+		public FollowState(AIContoller controller) : base(controller)
         {
             // Retrieve references
             dadTransform = GameManager.instance.GetPlayerPuppet().transform;
@@ -149,16 +154,27 @@ public class AIContoller : StateMachine
 
 				// Origin is a bit below feet. Offset it to be towards torso
 				RaycastHit hitInfo;
-				if (Physics.Raycast(new Vector3(position.x, position.y + 0.5f, position.z), aiTransform.right * -1, out hitInfo, MaxRayDistance, LayerMask))
+
+				// Is there something above the princess?
+				MaxRayDistance = 1.5f;
+				if (Physics.Raycast(new Vector3(position.x, position.y + 1.5f, position.z), aiTransform.right * -1, out hitInfo, bigJumpRayDistance, LayerMask))
 				{
+					// Do a big jump
+					daughterPuppet.SetDoBigJump(true);
 					daughterPuppet.Jump();
-					print("daughter jump!");
-					Debug.DrawLine(new Vector3(position.x, position.y + 0.5f, position.z), new Vector3(position.x, position.y + 0.5f, position.z) + aiTransform.right * -1 * MaxRayDistance ,Color.red, 2.0f);
 
 					bJustJumped = true;
 					framesSinceJumped = 0;
+				}
+				// Is something in front of princess?
+				else if (Physics.Raycast(new Vector3(position.x, position.y + 0.5f, position.z), aiTransform.right * -1, out hitInfo, smallJumpRayDistance, LayerMask))
+				{
+					// Do a regular jump
+					daughterPuppet.SetDoBigJump(false);
+					daughterPuppet.Jump();
 
-					print(hitInfo.transform.gameObject.name);
+					bJustJumped = true;
+					framesSinceJumped = 0;
 				}
 			}
 			else
