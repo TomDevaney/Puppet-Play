@@ -48,3 +48,7 @@ Fixed: Princess can get stuck in the same spot as player
 	Will need to make try button reset princess position
 		Also don't let her move til the curtains have been opened up again
 	Have to add princess being able to jump up big walls so she can get past the cutscene jumping part even if it was already done
+	
+Redo background music as I sound out of breath
+
+If Nate fixes collision on houses so the player can actually jump, then I need to make it so that the player can't get past the part until the player killers all the enemies

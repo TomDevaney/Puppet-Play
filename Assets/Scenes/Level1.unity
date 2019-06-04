@@ -10693,7 +10693,7 @@ MonoBehaviour:
         m_MethodName: PlaySoundFXLooped
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: e0fd61a00c4f1fb45b079083e9a30d22,
+          m_ObjectArgument: {fileID: 8300000, guid: 82928c8f70d6b8841910dafd246c0751,
             type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
@@ -34494,7 +34494,7 @@ MonoBehaviour:
         m_MethodName: StopSoundFXByClip
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: e0fd61a00c4f1fb45b079083e9a30d22,
+          m_ObjectArgument: {fileID: 8300000, guid: 82928c8f70d6b8841910dafd246c0751,
             type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
@@ -42847,6 +42847,7 @@ MonoBehaviour:
     type: 3}
   creditsAudioClip: {fileID: 8300000, guid: 0f09a4b55d16a15428d6cac6f8cac4db, type: 3}
   shhAudioClip: {fileID: 8300000, guid: 952fbc2d56efb3143a32b788cd9272c3, type: 3}
+  backgroundAudioClip: {fileID: 8300000, guid: 56b30d58107f5294088873b2d6049fbb, type: 3}
   cutsceneIsPlaying: 0
 --- !u!1001 &2087529620
 PrefabInstance:

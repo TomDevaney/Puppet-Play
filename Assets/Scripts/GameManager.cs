@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 	public AudioClip audienceTalkingAudioClip;
 	public AudioClip creditsAudioClip;
 	public AudioClip shhAudioClip;
+	public AudioClip backgroundAudioClip;
 
 	// Keeps track of the most recent checkpoint for respawning puppets to
 	Checkpoint recentCheckpoint;
