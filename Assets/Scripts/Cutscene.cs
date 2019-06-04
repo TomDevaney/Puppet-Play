@@ -35,8 +35,8 @@ public class Cutscene : MonoBehaviour
         // Don't allow any player movement anymore
         InputManager.instance.DisablePlayerActions();
 
-		// Stop background music for cutscene
-		AudioManager.instance.StopSoundFXByClip(GameManager.instance.backgroundAudioClip);
+		// Lower background music for cutscene
+		AudioManager.instance.ChangeAudioVolumeByClip(0.5f, GameManager.instance.backgroundAudioClip);
 
 		// Tell AI to stop doing its thing
 		GameManager.instance.GetDaughterPuppet().GetComponent<AIContoller>().SetUpdateMachine(false);
@@ -97,7 +97,8 @@ public class Cutscene : MonoBehaviour
 		// Play the background music only if game is currently going
 		if (GameManager.instance.IsGameStarted())
 		{
-			AudioManager.instance.PlaySoundFXLooped(GameManager.instance.backgroundAudioClip);
+			// Turn volume back to full now that cutscene is over
+			AudioManager.instance.ChangeAudioVolumeByClip(1.0f, GameManager.instance.backgroundAudioClip);
 		}
 
 		// Reset variable

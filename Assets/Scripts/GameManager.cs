@@ -92,6 +92,12 @@ public class GameManager : MonoBehaviour
 	// But do everything needed after the shh audio clip is played
 	void RealStartGame()
 	{
+		AudioManager.instance.PlaySoundFXLooped(GameManager.instance.backgroundAudioClip);
+
+		// Turn volume down as cutscene starts right away
+		// And we don't want background music loud during cutscenes
+		AudioManager.instance.ChangeAudioVolumeByClip(0.5f, GameManager.instance.backgroundAudioClip);
+
 		EventManager.instance.OpenCurtains("");
 	}
 
@@ -106,10 +112,13 @@ public class GameManager : MonoBehaviour
 
 		InputManager.instance.DisablePlayerActions();
 
+		// Stop game music
+		AudioManager.instance.StopSoundFXByClip(audienceTalkingAudioClip);
+
 		// Play epic music!
 		if (gameWasBeat)
 		{
-			AudioManager.instance.PlaySoundFX(creditsAudioClip);
+			AudioManager.instance.PlaySoundFXLooped(creditsAudioClip);
 		}
 
 		// Do other logic for end of game
@@ -226,11 +235,13 @@ public class GameManager : MonoBehaviour
 		{
 			Time.timeScale = 0.0f;
 			InputManager.instance.DisablePlayerActions();
+			AudioManager.instance.ChangeAudioVolumeByClip(0.5f, GameManager.instance.backgroundAudioClip);
 		}
 		else
 		{
 			Time.timeScale = 1.0f;
 			InputManager.instance.EnablePlayerActions();
+			AudioManager.instance.ChangeAudioVolumeByClip(1.0f, GameManager.instance.backgroundAudioClip);
 		}
 
 	}

@@ -146,4 +146,19 @@ public class AudioManager : MonoBehaviour
 			}
 		}
 	}
+
+	public void ChangeAudioVolumeByClip(float newVolume, AudioClip clip)
+	{
+		foreach (GameObject gameObject in audioObjects)
+		{
+			if (gameObject.GetComponent<AudioSource>().clip == clip)
+			{
+				gameObject.GetComponent<AudioSource>().volume = newVolume;
+
+				// This function won't work if there are multiple sounds currently for that clip
+				// As of right now, I don't have a need for that functionality though, so the break is fine
+				break;
+			}
+		}
+	}
 }
