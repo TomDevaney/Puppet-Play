@@ -10677,6 +10677,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1094386359}
+        m_MethodName: StopSoundFXByClip
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 0f09a4b55d16a15428d6cac6f8cac4db,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1094386359}
+        m_MethodName: PlaySoundFXLooped
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: e0fd61a00c4f1fb45b079083e9a30d22,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &462105400
@@ -34454,6 +34478,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1094386359}
+        m_MethodName: PlaySoundFXLooped
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 0f09a4b55d16a15428d6cac6f8cac4db,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1094386359}
+        m_MethodName: StopSoundFXByClip
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: e0fd61a00c4f1fb45b079083e9a30d22,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1640082282
@@ -42795,6 +42843,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e0b5dad7c8d2d4e93fa3775e886e40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audienceTalkingAudioClip: {fileID: 8300000, guid: 82928c8f70d6b8841910dafd246c0751,
+    type: 3}
+  creditsAudioClip: {fileID: 8300000, guid: 0f09a4b55d16a15428d6cac6f8cac4db, type: 3}
+  shhAudioClip: {fileID: 8300000, guid: 952fbc2d56efb3143a32b788cd9272c3, type: 3}
   cutsceneIsPlaying: 0
 --- !u!1001 &2087529620
 PrefabInstance:

@@ -7,8 +7,12 @@ public class GameManager : MonoBehaviour
     // Singleton so classes can reference without reference
     public static GameManager instance = null;
 
-    // Keeps track of the most recent checkpoint for respawning puppets to
-    Checkpoint recentCheckpoint;
+	public AudioClip audienceTalkingAudioClip;
+	public AudioClip creditsAudioClip;
+	public AudioClip shhAudioClip;
+
+	// Keeps track of the most recent checkpoint for respawning puppets to
+	Checkpoint recentCheckpoint;
 	Checkpoint[] checkpoints;
 
     Living[] livingBeings;
@@ -59,7 +63,7 @@ public class GameManager : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-
+		AudioManager.instance.PlaySoundFXLooped(audienceTalkingAudioClip);
     }
 
     // Update is called once per frame
@@ -73,7 +77,20 @@ public class GameManager : MonoBehaviour
 		// Mark as started
 		gameIsStarted = true;
 
-		// Do any other logic needed for start of game
+		// Stop audience talking sound effect
+		AudioManager.instance.StopSoundFXByClip(audienceTalkingAudioClip);
+
+		// Play shush sound
+		AudioManager.instance.PlaySoundFX(shhAudioClip);
+
+		// Invoke curtains to open after sound is done playing and then some
+		Invoke("RealStartGame", shhAudioClip.length);
+	}
+
+	// Separate private function so it can be invoked
+	// But do everything needed after the shh audio clip is played
+	void RealStartGame()
+	{
 		EventManager.instance.OpenCurtains("");
 	}
 
@@ -87,6 +104,12 @@ public class GameManager : MonoBehaviour
 		beatGame = gameWasBeat;
 
 		InputManager.instance.DisablePlayerActions();
+
+		// Play epic music!
+		if (gameWasBeat)
+		{
+			AudioManager.instance.PlaySoundFX(creditsAudioClip);
+		}
 
 		// Do other logic for end of game
 		EventManager.instance.CloseCurtains("");
@@ -144,6 +167,9 @@ public class GameManager : MonoBehaviour
 		else
 		{
 			MenuManager.instance.ToggleMenuEnabledState("MainMenuCanvas");
+
+			// Main menu has the audience talking, so play that
+			AudioManager.instance.PlaySoundFXLooped(audienceTalkingAudioClip);
 		}
 
 		// Reset dialogue manager
