@@ -52,3 +52,10 @@ Fixed: Princess can get stuck in the same spot as player
 Redo background music as I sound out of breath
 
 If Nate fixes collision on houses so the player can actually jump, then I need to make it so that the player can't get past the part until the player killers all the enemies
+
+Make footsteps and landing sound louder because background music is covering some of that
+
+Fixed: It seems like player's attack animation is too high to hurt enemies now
+	Make enemies bigger?
+	
+Player just died while also killing an enemy and the kill event happened :(

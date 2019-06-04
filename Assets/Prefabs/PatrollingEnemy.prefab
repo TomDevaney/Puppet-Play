@@ -31,11 +31,11 @@ Transform:
   m_GameObject: {fileID: 2158742748975830226}
   m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: -6.419, y: 0.168, z: 1.145}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 45.4, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
 --- !u!114 &2158742748975830222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52,6 +52,7 @@ MonoBehaviour:
   deathSound: {fileID: 0}
   footstepsSound: {fileID: 0}
   gotHitSound: {fileID: 8300000, guid: 7fe5f25e0274a0b4aa4b27cfa22569dc, type: 3}
+  hitSound: {fileID: 0}
   idleSound: {fileID: 8300000, guid: e107aa353b6b5b44fafc2ec9ebf3fcaf, type: 3}
   minSecondsTilIdleSound: 3
   maxSecondsTilIdleSound: 6
