@@ -68,7 +68,22 @@ public class AudioManager : MonoBehaviour
         audioObjects.Add(gameObject);
     }
 
-    public void PlaySoundFXAtPosition(AudioClip clip, Vector3 position, float pitch = 1.0f)
+	public void PlaySoundFXLooped(AudioClip clip)
+	{
+		if (clip == null)
+			return;
+
+		GameObject gameObject = new GameObject();
+		AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+
+		audioSource.clip = clip;
+		audioSource.loop = true;
+		audioSource.Play();
+
+		audioObjects.Add(gameObject);
+	}
+
+	public void PlaySoundFXAtPosition(AudioClip clip, Vector3 position, float pitch = 1.0f)
     {
         if (clip == null)
             return;
@@ -112,5 +127,23 @@ public class AudioManager : MonoBehaviour
 
 		// Add to managed objects list
         audioObjects.Add(gameObject);
+	}
+
+	public void StopSoundFXByClip(AudioClip clip)
+	{
+		foreach (GameObject gameObject in audioObjects)
+		{
+			if (gameObject.GetComponent<AudioSource>().clip == clip)
+			{
+				// Remove before it's destroyed
+				audioObjects.Remove(gameObject);
+
+				Destroy(gameObject);
+
+				// This function won't work if there are multiple sounds currently for that clip
+				// As of right now, I don't have a need for that functionality though, so the break is fine
+				break;
+			}
+		}
 	}
 }
