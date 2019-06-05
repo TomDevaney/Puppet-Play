@@ -11727,7 +11727,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ed215f528580d4b419799474c152035e, type: 3}
   - {fileID: 8300000, guid: 403c243a13a695f4088b41c79039e7cc, type: 3}
   - {fileID: 8300000, guid: b39ed025213e749499f81c94561a5c10, type: 3}
-  skipDialogue: 0
+  skipDialogue: 1
 --- !u!1 &515574609
 GameObject:
   m_ObjectHideFlags: 0
@@ -32962,7 +32962,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1550603283
 Transform:
   m_ObjectHideFlags: 0
@@ -35769,7 +35769,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1709332940
 Transform:
   m_ObjectHideFlags: 0
@@ -41322,7 +41322,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2021942068
 Transform:
   m_ObjectHideFlags: 0
@@ -42839,7 +42839,7 @@ MonoBehaviour:
     type: 3}
   creditsAudioClip: {fileID: 8300000, guid: 0f09a4b55d16a15428d6cac6f8cac4db, type: 3}
   shhAudioClip: {fileID: 8300000, guid: 952fbc2d56efb3143a32b788cd9272c3, type: 3}
-  backgroundAudioClip: {fileID: 8300000, guid: 56b30d58107f5294088873b2d6049fbb, type: 3}
+  backgroundAudioClip: {fileID: 8300000, guid: 78064b48a82dc4c42a6af17faca4d062, type: 3}
   cutsceneIsPlaying: 0
 --- !u!1001 &2087529620
 PrefabInstance:
