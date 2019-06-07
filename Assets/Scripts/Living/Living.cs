@@ -256,6 +256,9 @@ public class Living : MonoBehaviour
             AudioManager.instance.PlaySoundFXAtPosition(deathSound, transform.position);
         }
 
+		// Do here because the living shouldn't be able to harm anyone when their death animation is happening
+		isDead = true;
+
 		// Delay death until animation done
 		Invoke("MarkAsDead", deathAnimationTime);
 	}
@@ -269,9 +272,6 @@ public class Living : MonoBehaviour
 
 		// For kill events, tell EventManager
 		EventManager.instance.NotifyOfDeath(this);
-
-		// Mark as dead
-		isDead = true;
 	}
 
     public virtual void Respawn()

@@ -102,6 +102,31 @@ I mean you are a princess. What else would you reside over? Ant hills?
 
 // End of dialogue
 
+Princess
+Why is the gate to my town closed?
+
+Knight
+To keep the bad things out of course.
+
+Princess
+Oh. Well, how do we get it to open then?
+
+Knight
+I mean you're the princess. Just tell it to open.
+
+Princess
+Open sesame!
+
+// End of dialogue
+
+Knight
+Remember, this is your land. You control things around here.
+
+Princess
+Yeah, I guess it'll just take some getting used to.
+
+// End of dialogue
+
 Daughter
 Daddy! What are those. They’re scary!
 
@@ -109,10 +134,13 @@ Knight
 Oh no! Those look like the minions of the dastardly Count Duradel IV.
 
 Princess
-They’ve invaded my kingdom! 
+They’ve invaded my kingdom! I thought you said the gate would keep them out!
+
+Knight
+You're right... How is it even possible that they got in?
 
 Princess
-This is unacceptable! Give them a spanking!
+I don't know, but this is unacceptable! Give them a spanking!
 
 // End of dialogue
 
@@ -121,6 +149,26 @@ Yes! You saved the town!
 
 Knight
 Not so fast. I hear more ahead. Stick close to me.
+
+Princess
+Hold on, why's there a gate in front of us?
+
+Knight
+It's the town's defenses.
+
+Knight
+They must've went up to keep the minions from getting to the castle. 
+
+Knight
+They'll go down when we have defeated the monsters.
+
+// End of dialogue
+
+Knight
+See?
+
+Princess
+Ok. Let's go get the rest of them then!
 
 // End of dialogue
 

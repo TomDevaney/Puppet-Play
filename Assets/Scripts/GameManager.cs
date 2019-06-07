@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour
 		InputManager.instance.DisablePlayerActions();
 
 		// Stop game music
-		AudioManager.instance.StopSoundFXByClip(audienceTalkingAudioClip);
+		AudioManager.instance.StopSoundFXByClip(backgroundAudioClip);
 
 		// Play epic music!
 		if (gameWasBeat)
