@@ -15,11 +15,11 @@ I can make him do this.
 Daughter
 Oh my gosh, he can dance! I want to try!
 
-Daughter
-Hmph. It's too hard. I can't make her dance.
-
 Dad
-That's okay. You'll be able to dance soon with practice.
+Hold your horses. Maybe, you should learn to walk first before you try to dance.
+
+Daughter
+Yeah, I guess you have a point. 
 
 Daughter
 So where are we anyways?
@@ -41,11 +41,20 @@ Here. I’ll take you to it.
 
 // End of dialogue
 
-Princess
-I tried to jump, but it didn't do anything. How’d you get up there so easily?
+Daughter
+How do I get up there daddy? 
 
 Knight
-It’s easy your majesty. It’s all in the legs. Try again.
+It’s easy your majesty. It’s all in the legs.
+
+Daughter
+I can't figure it out! This is hard!
+
+Dad
+Here, try it this way.
+
+Daughter
+Ok, I'll give it a shot.
 
 // End of dialogue
 
@@ -56,7 +65,10 @@ Knight
 That you did your majesty. It only gets harder from here though.
 
 Knight
-Let's keep on moving. We still have a long journey ahead of us.
+Just keep your calm, and you'll be able to handle the rest easily.
+
+Knight
+Let's keep on moving. We still have a ways to go.
 
 // End of dialogue
 
