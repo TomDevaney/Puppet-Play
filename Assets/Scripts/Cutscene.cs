@@ -16,6 +16,9 @@ public class Cutscene : MonoBehaviour
     // Which event are we on?
     int currentEventIndex;
 
+	// There can be multiple events per Timer event, so don't go onto the next Timerevent unless all of them have been marked as complete
+	int numberOfEventsMarkedAsDone = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +37,9 @@ public class Cutscene : MonoBehaviour
 
         // Don't allow any player movement anymore
         InputManager.instance.DisablePlayerActions();
+
+		// Reset counter
+		numberOfEventsMarkedAsDone = 0;
 
 		// Lower background music for cutscene
 		AudioManager.instance.ChangeAudioVolumeByClip(0.5f, GameManager.instance.backgroundAudioClip);
@@ -60,48 +66,66 @@ public class Cutscene : MonoBehaviour
 
     public void NextEvent()
     {
-        // Get rid of event that just called this
-        EventManager.OnEventDone -= NextEvent;
+		// See if all the events for the current timer event are done
+		++numberOfEventsMarkedAsDone;
 
-        // Increment index 
-        ++currentEventIndex;
+		if (events[currentEventIndex].OnTimerEnd.GetPersistentEventCount() == numberOfEventsMarkedAsDone)
+		{
+			// Reset counter
+			numberOfEventsMarkedAsDone = 0;
 
-        // Start the next event's timer
-        events[currentEventIndex].StartCountdown();
+			// Get rid of event that just called this
+			EventManager.OnEventDone -= NextEvent;
 
-        // There's an event after this one
-        if (currentEventIndex + 1 != events.Length)
-        {
-            EventManager.OnEventDone += NextEvent;
-        }
-        else
-        {
-            EventManager.OnEventDone += StopCutscene;
-        }
+			// Increment index 
+			++currentEventIndex;
+
+			// Start the next event's timer
+			events[currentEventIndex].StartCountdown();
+
+			// There's an event after this one
+			if (currentEventIndex + 1 != events.Length)
+			{
+				EventManager.OnEventDone += NextEvent;
+			}
+			else
+			{
+				EventManager.OnEventDone += StopCutscene;
+			}
+		}
     }
 
     public void StopCutscene()
     {
-        // Unhook from event that just called this
-        EventManager.OnEventDone -= StopCutscene;
+		// See if all the events for the current timer event are done
+		++numberOfEventsMarkedAsDone;
 
-		// Notify manager that cutscene is over
-		GameManager.instance.cutsceneIsPlaying = false;
-
-		// Allow any player movement anymore
-		InputManager.instance.EnablePlayerActions();
-
-		// Tell AI to start doing its thing
-		GameManager.instance.GetDaughterPuppet().GetComponent<AIContoller>().SetUpdateMachine(true);
-
-		// Play the background music only if game is currently going
-		if (GameManager.instance.IsGameStarted())
+		if (events[currentEventIndex].OnTimerEnd.GetPersistentEventCount() == numberOfEventsMarkedAsDone)
 		{
-			// Turn volume back to full now that cutscene is over
-			AudioManager.instance.ChangeAudioVolumeByClip(1.0f, GameManager.instance.backgroundAudioClip);
-		}
+			// Reset counter
+			numberOfEventsMarkedAsDone = 0;
 
-		// Reset variable
-		currentEventIndex = 0;
+			// Unhook from event that just called this
+			EventManager.OnEventDone -= StopCutscene;
+
+			// Notify manager that cutscene is over
+			GameManager.instance.cutsceneIsPlaying = false;
+
+			// Allow any player movement anymore
+			InputManager.instance.EnablePlayerActions();
+
+			// Tell AI to start doing its thing
+			GameManager.instance.GetDaughterPuppet().GetComponent<AIContoller>().SetUpdateMachine(true);
+
+			// Play the background music only if game is currently going
+			if (GameManager.instance.IsGameStarted())
+			{
+				// Turn volume back to full now that cutscene is over
+				AudioManager.instance.ChangeAudioVolumeByClip(1.0f, GameManager.instance.backgroundAudioClip);
+			}
+
+			// Reset variable
+			currentEventIndex = 0;
+		}
     }
 }
