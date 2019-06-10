@@ -5,6 +5,8 @@ using UnityEngine;
 public class Gate : MonoBehaviour
 {
 	public float openToDegrees;
+	public AudioClip openAudioClip;
+
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +25,8 @@ public class Gate : MonoBehaviour
 		// Play animation
 		StartCoroutine("OpenGate");
 
-		// TODO: Play sound
+		// Play sound
+		AudioManager.instance.PlaySoundFXAtPosition(openAudioClip, transform.position);
 
 		// Disable collision so it doesn't move the player when opening
 		GetComponentInChildren<BoxCollider>().enabled = false;
@@ -31,7 +34,8 @@ public class Gate : MonoBehaviour
 
 	IEnumerator OpenGate()
 	{
-		float TimeBetween = 0.0035f;
+		float openSpeed = 0.0035f;
+		float TimeBetween = 0.0f;
 		float ratio = 0.0f;
 
 		while (true)
@@ -45,7 +49,7 @@ public class Gate : MonoBehaviour
 				break;
 			}
 
-			ratio += TimeBetween;
+			ratio += openSpeed;
 
 			yield return new WaitForSeconds(TimeBetween);
 		}

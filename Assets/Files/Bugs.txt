@@ -58,4 +58,7 @@ Done: Make footsteps and landing sound louder because background music is coveri
 Fixed: It seems like player's attack animation is too high to hurt enemies now
 	Make enemies bigger?
 	
-Player just died while also killing an enemy and the kill event happened :(
+Fixed: Player just died while also killing an enemy and the kill event happened :(
+
+
+Fixed: Opening both gates causes MarkEventAsDone to be called twide, which skips the dialogue
