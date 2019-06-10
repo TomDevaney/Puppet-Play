@@ -56,15 +56,24 @@ public class EventManager : MonoBehaviour
 		}
 	}
 
-    // Two ways for an event to marked as done
-    //
-    // 1) Certain events cannot be determined when they are done, so we will mark them as done right away
-    // Example: an animation cannot be determined when it is done easily, so a timer event can be used here.
-    // A sound needs to happen after the animation. The animation takes around 3.5 seconds, so we set a TimerEvent on a sound for 3.5 seconds
-    //
-    // 2) Other events can be marked as completed when they are actually done.
-    // This is handled in separate classes though so this function will be called by those classes
-    public void MarkEventAsDone()
+	// Will allow all kill events to be triggered again
+	public void ResetKillEvents()
+	{
+		for (int i = 0; i < killEvents.Length; ++i)
+		{
+			killEvents[i].ResetEvent();
+		}
+	}
+
+	// Two ways for an event to marked as done
+	//
+	// 1) Certain events cannot be determined when they are done, so we will mark them as done right away
+	// Example: an animation cannot be determined when it is done easily, so a timer event can be used here.
+	// A sound needs to happen after the animation. The animation takes around 3.5 seconds, so we set a TimerEvent on a sound for 3.5 seconds
+	//
+	// 2) Other events can be marked as completed when they are actually done.
+	// This is handled in separate classes though so this function will be called by those classes
+	public void MarkEventAsDone()
     {
         if (OnEventDone != null)
         {

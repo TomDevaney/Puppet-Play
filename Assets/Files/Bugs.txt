@@ -63,8 +63,14 @@ Fixed: Player just died while also killing an enemy and the kill event happened 
 
 Fixed: Opening both gates causes MarkEventAsDone to be called twide, which skips the dialogue
 
+Fixed: Kill event didn't trigger again the second time playing
+
 Done: Make dads voice louder,
 
 Done: Move trigger before first enemies to between houses so you're closer to enemies
 
 Done: Make collider on sword bigger so enemies get hit when it looks like they do.
+
+Make it so you can't hear the enemies from outside gate.
+
+Reduce attack time window

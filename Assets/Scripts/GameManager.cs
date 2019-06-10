@@ -158,8 +158,9 @@ public class GameManager : MonoBehaviour
 			checkpoint.ResetCheckpoint();
 		}
 
-		// Reset triggers
+		// Reset events
 		EventManager.instance.ResetTriggerEvents();
+		EventManager.instance.ResetKillEvents();
 
 		// Reset gates
 		for (int i = 0; i < gates.Length; ++i)
