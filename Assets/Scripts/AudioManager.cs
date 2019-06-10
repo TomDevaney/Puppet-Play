@@ -113,12 +113,12 @@ public class AudioManager : MonoBehaviour
 		// Set up 3D settings
 		AnimationCurve curve = new AnimationCurve();
 		curve.AddKey(10.0f, 1.0f);
-		curve.AddKey(17.5f, 0.15f);
+		curve.AddKey(17.5f, 0.3f);
 		curve.AddKey(25.0f, 0.0f);
 		audioSource.SetCustomCurve(AudioSourceCurveType.CustomRolloff, curve);
 
 		audioSource.minDistance = 10.0f;
-		audioSource.maxDistance = 25.0f;
+		audioSource.maxDistance = 15.0f;
 		audioSource.spatialBlend = 1.0f;
 		audioSource.rolloffMode = AudioRolloffMode.Custom;
 

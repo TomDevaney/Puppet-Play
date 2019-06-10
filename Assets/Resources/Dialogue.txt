@@ -160,7 +160,7 @@ Princess
 Yes! You saved the town!
 
 Knight
-Not so fast. I hear more ahead. Stick close to me.
+Not so fast. I think there's more ahead. Stick close to me.
 
 Princess
 Hold on, why's there a gate in front of us?
@@ -172,7 +172,7 @@ Knight
 They must've went up to keep the minions from getting to the castle. 
 
 Knight
-They'll go down when we have defeated the monsters.
+They'll open when we have defeated the monsters.
 
 // End of dialogue
 
@@ -300,7 +300,7 @@ Daughter
 That was fun daddy.
 
 Dad
-I'm happy. Ya know I spent a lot of time working on all of that.
+I'm happy. I spent a lot of time working on all of that.
 
 Daughter
 When do you think we'll be able to play next?
