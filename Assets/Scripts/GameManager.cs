@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 	Checkpoint recentCheckpoint;
 	Checkpoint[] checkpoints;
 
+	Gate[] gates;
     Living[] livingBeings;
 
     // Even though it's a part of the livingBeings array, I want direct access to both puppets
@@ -55,6 +56,7 @@ public class GameManager : MonoBehaviour
 		cameraFSM = FindObjectOfType<Camera>().GetComponent<CameraFSM>();
 		checkpoints = FindObjectsOfType<Checkpoint>();
 		stageController = FindObjectOfType<StageController>();
+		gates = FindObjectsOfType<Gate>();
 
 		Puppet[] puppets = GetComponentsInChildren<Puppet>();
         playerPuppet = puppets[0];
@@ -158,6 +160,12 @@ public class GameManager : MonoBehaviour
 
 		// Reset triggers
 		EventManager.instance.ResetTriggerEvents();
+
+		// Reset gates
+		for (int i = 0; i < gates.Length; ++i)
+		{
+			gates[i].ResetGate();
+		}
 
 		// Respawn everything that was killed
 		for (int i = 0; i < livingBeings.Length; ++i)

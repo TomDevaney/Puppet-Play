@@ -20,6 +20,11 @@ public class Gate : MonoBehaviour
         
     }
 
+	public void ResetGate()
+	{
+		transform.rotation = Quaternion.Euler(transform.rotation.x, 0.0f, transform.rotation.z);
+	}
+
 	public void Open()
 	{
 		// Play animation
