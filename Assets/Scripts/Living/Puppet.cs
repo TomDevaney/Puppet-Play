@@ -16,13 +16,13 @@ public class Puppet : Living
     public float FootSpread = 0.1f;
 
     public float jumpVelocity = 7.5f;
-
 	public float fallMultiplier = 2.5f;
-
 	public float smallJumpMultiplier = 2.0f;
 
+	public float disableAttackModeTimer;
+
 	// For ai that jump, but need to jump big
-	bool bDoBigJump = false;
+	bool doBigJump = false;
 
 	// Different puppets have different origins so need to customize this
 	public float checkStandingRayDistance;
@@ -65,7 +65,7 @@ public class Puppet : Living
 			TheRigidBody.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1.0f) * Time.deltaTime;
 		}
 		// Have a little jump if you tapped it
-		else if (TheRigidBody.velocity.y > 0 && !Input.GetButton("Jump") && !bDoBigJump)
+		else if (TheRigidBody.velocity.y > 0 && !Input.GetButton("Jump") && !doBigJump)
 		{
 			TheRigidBody.velocity += Vector3.up * Physics.gravity.y * (smallJumpMultiplier - 1.0f) * Time.deltaTime;
 		}
@@ -121,7 +121,7 @@ public class Puppet : Living
 		if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") && !animator.GetNextAnimatorStateInfo(0).IsName("Attack"))
 		{
 			meleeWeapon.AttackModeActive = true;
-			Invoke("DisableWeaponAttackMode", 1);
+			Invoke("DisableWeaponAttackMode", disableAttackModeTimer);
 			animator.SetTrigger("Attack");
 
 			// Play sword swinging sound
@@ -134,6 +134,9 @@ public class Puppet : Living
         meleeWeapon.AttackModeActive = false;
     }
 
+	// I switched from ray trace to collision for figuring out when the player could jump again
+	// The only problem is that the environment isn't just the floor, so they could collide with walls and be able to jump again
+	// I still think the collision benefits outweigh ray trace though
 	public void OnCollisionEnter(Collision collision)
 	{
 		if (collision.gameObject.layer == LayerMask.NameToLayer("Environment") && !IsStandingOnSurface())
@@ -187,7 +190,7 @@ public class Puppet : Living
 
 	public void SetDoBigJump(bool bigJump)
 	{
-		bDoBigJump = bigJump;
+		doBigJump = bigJump;
 	}
 
 	// Don't do anything as puppet has a special footsteps script to handle this
