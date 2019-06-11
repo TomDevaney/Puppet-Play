@@ -112,6 +112,11 @@ public class AIContoller : StateMachine
 		bool bJustJumped = false;
 		int framesSinceJumped = 0;
 
+		// To allow really close jump
+		const float rightNextToWall = 0.5f;
+		const float secondsTilMove = 0.3f;
+		float secondsTilMovetimer = secondsTilMove;
+
 		const float smallJumpRayDistance = 1.0f;
 
 		// Big jump needs more space to jump higher
@@ -143,8 +148,13 @@ public class AIContoller : StateMachine
 				print("Daughter can't move past left bound!");
 			}
 
+			secondsTilMovetimer += Time.deltaTime;
+
 			// Move them closer to dad
-			daughterPuppet.Move(direction);
+			if (secondsTilMovetimer >= secondsTilMove)
+			{
+				daughterPuppet.Move(direction);
+			}
 
 			// Check to see if somethings in the way
 			if (!bJustJumped)
@@ -176,6 +186,13 @@ public class AIContoller : StateMachine
 
 					bJustJumped = true;
 					framesSinceJumped = 0;
+
+					// The daughter is so close to the wall, that jumping and moving at the same time won't work
+					// We need to make her jump then move after shes high enough to get over the wall
+					if (hitInfo.distance <= rightNextToWall)
+					{
+						secondsTilMovetimer = 0.0f;
+					}
 				}
 			}
 			else

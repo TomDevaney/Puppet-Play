@@ -74,6 +74,6 @@ Done: Make it so you can't hear the enemies from outside gate.
 
 Done: Reduce attack time window
 
-Princess sometimes gets stuck platforming
+Fixed: Princess sometimes gets stuck platforming
 
 Fixed: Princess attack didn't hit again!!!
