@@ -105,13 +105,10 @@ public class Puppet : Living
         {
 			TheRigidBody.velocity = Vector2.up * jumpVelocity;
 
-            // Play jump sound
-            AudioManager.instance.PlaySoundFXAtPosition(jumpClip, gameObject.transform.position);
-
             animator.SetTrigger("Jump");
-			animator.SetBool("OnGround", false);
 
-			SetStandingOnSurface(false);
+			// Play jump sound
+			AudioManager.instance.PlaySoundFXAtPosition(jumpClip, gameObject.transform.position);
 		}
 	}
 
@@ -137,15 +134,46 @@ public class Puppet : Living
 	// I switched from ray trace to collision for figuring out when the player could jump again
 	// The only problem is that the environment isn't just the floor, so they could collide with walls and be able to jump again
 	// I still think the collision benefits outweigh ray trace though
-	public void OnCollisionEnter(Collision collision)
+	public void OnCollisionStay(Collision collision)
 	{
-		if (collision.gameObject.layer == LayerMask.NameToLayer("Environment") && !IsStandingOnSurface())
+		if (collision.gameObject.layer == LayerMask.NameToLayer("Environment"))
 		{
-			SetStandingOnSurface(true);
+			ContactPoint[] contacts = new ContactPoint[collision.contactCount];
+			collision.GetContacts(contacts);
 
-			AudioManager.instance.PlaySoundFXAtPosition(landClip, gameObject.transform.position);
+			// Check if it's the floor
+			bool onFloor = false;
 
-			animator.SetBool("OnGround", true);
+			for (int i = 0; i < contacts.Length; ++i)
+			{
+				// Allow for some deviance from a completly flat floor
+				if (contacts[i].normal.y >= 0.5f && contacts[i].normal.y <= 1.0f)
+				{
+					onFloor = true;
+					break;
+				}
+			}
+
+			if (onFloor)
+			{
+				if (!IsStandingOnSurface())
+				{
+					AudioManager.instance.PlaySoundFXAtPosition(landClip, gameObject.transform.position);
+				}
+
+				SetStandingOnSurface(true);
+
+				animator.SetBool("OnGround", true);
+			}
+		}
+	}
+
+	public void OnCollisionExit(Collision collision)
+	{
+		if (collision.gameObject.layer == LayerMask.NameToLayer("Environment"))
+		{
+			SetStandingOnSurface(false);
+			animator.SetBool("OnGround", false);
 		}
 	}
 
