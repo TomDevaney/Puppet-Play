@@ -76,4 +76,4 @@ Done: Reduce attack time window
 
 Princess sometimes gets stuck platforming
 
-Princess attack didn't hit again!!!
+Fixed: Princess attack didn't hit again!!!
