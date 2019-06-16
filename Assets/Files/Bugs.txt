@@ -77,3 +77,5 @@ Done: Reduce attack time window
 Fixed: Princess sometimes gets stuck platforming
 
 Fixed: Princess attack didn't hit again!!!
+
+Fixed: Hitting second enemy of first group is hard for some reason. It obviously collides but doesn't count as collision.

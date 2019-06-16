@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 2158742748975830226, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
       propertyPath: m_Name
-      value: PatrollingEnemy
+      value: NonPatrollingEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 2158742748975830221, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
@@ -66,6 +66,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158742748975830221, guid: 2d567b9450be5fe4a9aaecf91866a950,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158742748975830221, guid: 2d567b9450be5fe4a9aaecf91866a950,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158742748975830221, guid: 2d567b9450be5fe4a9aaecf91866a950,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 2158742748975830222, guid: 2d567b9450be5fe4a9aaecf91866a950,
         type: 3}
