@@ -71,6 +71,16 @@ public class Puppet : Living
 		}
     }
 
+
+	public override void Move(float xAxis)
+	{
+		// Don't allow player to move while attacking
+		//if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") && !animator.GetNextAnimatorStateInfo(0).IsName("Attack"))
+		{
+			base.Move(xAxis);
+		}
+	}
+
 	public override void JustDied()
 	{
 		base.JustDied();

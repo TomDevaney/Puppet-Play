@@ -128,7 +128,7 @@ public class Living : MonoBehaviour
 		}
 	}
 
-    public void Move(float xAxis)
+    virtual public void Move(float xAxis)
     {
 		Direction prevFacingDirection = facingDirection;
 
