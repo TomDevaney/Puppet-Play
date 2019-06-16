@@ -112,19 +112,23 @@ Wow. I can't believe I have a town.
 Knight
 I mean you are a princess. What else would you reside over? Ant hills?
 
-// End of dialogue
+Princess
+I'd hope not. That makes my skin crawl just thinking about those little things.
 
 Princess
-Why is the gate to my town closed?
+So how do we get into my kingdom? The gate is closed.
+
+Knight
+I mean you're the princess. Just tell it to open.
+
+Princess
+Oh, ok. But why was it closed in the first place?
 
 Knight
 To keep the bad things out of course.
 
 Princess
-Oh. Well, how do we get it to open then?
-
-Knight
-I mean you're the princess. Just tell it to open.
+That makes sense. Alright then, time to open the door. 
 
 Princess
 Open sesame!
@@ -256,7 +260,7 @@ Knight
 Not me. I'm getting too old to be learning any new dance moves.
 
 Knight
-But enough of that let's get going. The castle should be right ahead.
+But enough of that, let's get going. The castle should be right ahead.
 
 // End of dialogue
 
