@@ -11,6 +11,10 @@ ModelImporter:
     2100006: Cardboard
     2100008: Ground
     2100010: Brick
+    2100012: Default_Material
+    2100014: PalmWood
+    2100016: q
+    2100018: Brick1
     2300000: //RootNode
     3300000: //RootNode
     4300000: SM_LV1_Plat4
