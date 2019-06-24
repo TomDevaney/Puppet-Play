@@ -10,9 +10,11 @@ ModelImporter:
     2100004: Cardboard
     2100006: Ground
     2100008: Brick
+    2100010: Dark
     2300000: //RootNode
     3300000: //RootNode
     4300000: SM_LV1_Plat7
+    4300002: ExtraFloor
   externalObjects:
   - first:
       type: UnityEngine:Material
