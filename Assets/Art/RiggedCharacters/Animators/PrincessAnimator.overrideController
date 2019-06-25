@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PrincessAnimator
+  m_Controller: {fileID: 9100000, guid: 24d1629d163815444927a6cb6a14dfb8, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 581b51a4d8263d141817829921625e1b, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: d4996943277c3e34ea6d7854f922f010, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: a81c0b0585274a2499bd3d14a486400e, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 021dfa3b0c01f4d4d8ad98903d2ef2a2, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 76f5007d5eb9f1f46b44af9c424c3f23, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: c1e4c5fd457a6f541b29deb7c13afa82, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 78da8bccbb8e4f643845c703e1f4635b, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 7125341d35918b842907132765b5824d, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 4d27be573994b6243bf09010adcfdee5, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 4d6a0a776978e8345937cfb71d3b72a1, type: 3}
