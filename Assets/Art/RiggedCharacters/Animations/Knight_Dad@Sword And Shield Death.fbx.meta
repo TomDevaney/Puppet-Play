@@ -1,20 +1,20 @@
 fileFormatVersion: 2
-guid: 34720f50346895b418dcec764e0b2f6b
+guid: 18187476c16f5c245907d2c65451d7d5
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: group1_Head
-    100002: //RootNode
-    100004: group3
-    100006: Hip
-    100008: LeftArm
-    100010: LeftFingers
-    100012: LeftFoot
-    100014: LeftHand
-    100016: LeftHeel
-    100018: LeftLeg
-    100020: LeftShoulder
-    100022: LeftThigh
+    100000: group3
+    100002: Hip
+    100004: //RootNode
+    100006: LeftArm
+    100008: LeftFingers
+    100010: LeftFoot
+    100012: LeftHand
+    100014: LeftHeel
+    100016: LeftLeg
+    100018: LeftShoulder
+    100020: LeftThigh
+    100022: mixamo:SKM_Knight
     100024: Neck
     100026: RightArm
     100028: RightFingers
@@ -25,21 +25,20 @@ ModelImporter:
     100038: RightShoulder
     100040: RightThigh
     100042: Root
-    100044: SKM_Knight
-    100046: Spine
-    100048: Visor
-    400000: group1_Head
-    400002: //RootNode
-    400004: group3
-    400006: Hip
-    400008: LeftArm
-    400010: LeftFingers
-    400012: LeftFoot
-    400014: LeftHand
-    400016: LeftHeel
-    400018: LeftLeg
-    400020: LeftShoulder
-    400022: LeftThigh
+    100044: Spine
+    100046: Visor
+    400000: group3
+    400002: Hip
+    400004: //RootNode
+    400006: LeftArm
+    400008: LeftFingers
+    400010: LeftFoot
+    400012: LeftHand
+    400014: LeftHeel
+    400016: LeftLeg
+    400018: LeftShoulder
+    400020: LeftThigh
+    400022: mixamo:SKM_Knight
     400024: Neck
     400026: RightArm
     400028: RightFingers
@@ -50,37 +49,15 @@ ModelImporter:
     400038: RightShoulder
     400040: RightThigh
     400042: Root
-    400044: SKM_Knight
-    400046: Spine
-    400048: Visor
-    2100000: lambert1
-    2100002: lambert2
-    2100004: Head
-    2300000: group1_Head
-    2300002: SKM_Knight
-    3300000: group1_Head
-    3300002: SKM_Knight
-    4300000: group1_Head
-    4300002: SKM_Knight
+    400044: Spine
+    400046: Visor
+    2300000: mixamo:SKM_Knight
+    3300000: mixamo:SKM_Knight
+    4300000: mixamo:SKM_Knight
+    7400000: Sword And Shield Death
     9500000: //RootNode
-    13700000: SKM_Knight
     2186277476908879412: ImportLogs
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Head
-    second: {fileID: 2100000, guid: 1eeb4597dff5ba0469d20cf95e70c93c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: lambert1
-    second: {fileID: 2100000, guid: ee48fc55026eba347b135efbb07f9c8f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: lambert2
-    second: {fileID: 2100000, guid: ee48fc55026eba347b135efbb07f9c8f, type: 2}
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
@@ -100,14 +77,42 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Sword And Shield Death
+      takeName: mixamo.com
+      firstFrame: 0
+      lastFrame: 69
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -143,7 +148,7 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   importAnimation: 1
-  copyAvatar: 0
+  copyAvatar: 1
   humanDescription:
     serializedVersion: 2
     human: []
@@ -159,7 +164,8 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 34720f50346895b418dcec764e0b2f6b,
+    type: 3}
   animationType: 2
   humanoidOversampling: 1
   additionalBone: 0

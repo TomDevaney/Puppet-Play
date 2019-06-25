@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 51225c93c769518489277fd6d56ff137
+guid: c1e4c5fd457a6f541b29deb7c13afa82
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -37,7 +37,6 @@ ModelImporter:
     100062: mixamorig:Spine1
     100064: mixamorig:Spine2
     100066: //RootNode
-    100068: PrincessRigged
     400000: mixamorig:Head
     400002: mixamorig:HeadTop_End
     400004: mixamorig:Hips
@@ -72,15 +71,8 @@ ModelImporter:
     400062: mixamorig:Spine1
     400064: mixamorig:Spine2
     400066: //RootNode
-    400068: PrincessRigged
-    2100000: PalmWood1
-    2100002: Pink_Dress1
-    2100004: Head2
-    2100006: Hair1
-    4300000: PrincessRigged
-    7400000: Take 001
+    7400000: Idle
     9500000: //RootNode
-    13700000: PrincessRigged
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -110,10 +102,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Take 001
-      takeName: Take 001
+      name: Idle
+      takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 120
+      lastFrame: 499
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -172,7 +164,7 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   importAnimation: 1
-  copyAvatar: 0
+  copyAvatar: 1
   humanDescription:
     serializedVersion: 2
     human:
@@ -587,7 +579,8 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 51225c93c769518489277fd6d56ff137,
+    type: 3}
   animationType: 3
   humanoidOversampling: 1
   additionalBone: 0
