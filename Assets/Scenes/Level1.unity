@@ -928,7 +928,7 @@ PrefabInstance:
         type: 3}
       propertyPath: person
       value: 
-      objectReference: {fileID: 391772696}
+      objectReference: {fileID: 4018644373525301399}
     - target: {fileID: 9098030238056292394, guid: 6df70fe9091129c47be11dbe00357681,
         type: 3}
       propertyPath: OnTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -3618,7 +3618,7 @@ GameObject:
   - component: {fileID: 127213842}
   - component: {fileID: 127213840}
   m_Layer: 9
-  m_Name: Player
+  m_Name: Player Mixamo
   m_TagString: Puppet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5003,12 +5003,12 @@ PrefabInstance:
         type: 3}
       propertyPath: OnTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 391772701}
+      objectReference: {fileID: 4018644373525301393}
     - target: {fileID: 9098030238056292394, guid: 6df70fe9091129c47be11dbe00357681,
         type: 3}
       propertyPath: person
       value: 
-      objectReference: {fileID: 391772696}
+      objectReference: {fileID: 4018644373525301399}
     - target: {fileID: 9098030238056292394, guid: 6df70fe9091129c47be11dbe00357681,
         type: 3}
       propertyPath: OnTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -9814,7 +9814,7 @@ PrefabInstance:
     - target: {fileID: 6902007168576865847, guid: 3fd3cd2f8fb2cc742a583345d31cc9c1,
         type: 3}
       propertyPath: m_Name
-      value: Daughter
+      value: Daughter Mixamo
       objectReference: {fileID: 0}
     - target: {fileID: 6902007168576865847, guid: 3fd3cd2f8fb2cc742a583345d31cc9c1,
         type: 3}
@@ -21844,11 +21844,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stop Princess Trigger (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 3132816840013331959, guid: 6df70fe9091129c47be11dbe00357681,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3132816840013331952, guid: 6df70fe9091129c47be11dbe00357681,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -21908,22 +21903,12 @@ PrefabInstance:
         type: 3}
       propertyPath: OnTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 391772701}
-    - target: {fileID: 9098030238056292394, guid: 6df70fe9091129c47be11dbe00357681,
-        type: 3}
-      propertyPath: OnTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetUpdateMachine
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4018644373525301393}
     - target: {fileID: 9098030238056292394, guid: 6df70fe9091129c47be11dbe00357681,
         type: 3}
       propertyPath: person
       value: 
-      objectReference: {fileID: 391772696}
-    - target: {fileID: 9098030238056292394, guid: 6df70fe9091129c47be11dbe00357681,
-        type: 3}
-      propertyPath: OnTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4018644373525301399}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6df70fe9091129c47be11dbe00357681, type: 3}
 --- !u!1001 &919703614
@@ -23251,6 +23236,113 @@ Transform:
   m_Father: {fileID: 769962012}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &971939235
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1492005652}
+    m_Modifications:
+    - target: {fileID: 100000, guid: 39c3b0ad8bd1c2442932c8c5c23b58fb, type: 3}
+      propertyPath: m_Name
+      value: Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 39c3b0ad8bd1c2442932c8c5c23b58fb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.221
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 39c3b0ad8bd1c2442932c8c5c23b58fb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.417
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 39c3b0ad8bd1c2442932c8c5c23b58fb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.106
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 39c3b0ad8bd1c2442932c8c5c23b58fb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 39c3b0ad8bd1c2442932c8c5c23b58fb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 39c3b0ad8bd1c2442932c8c5c23b58fb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.5152856
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 39c3b0ad8bd1c2442932c8c5c23b58fb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.85701853
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 39c3b0ad8bd1c2442932c8c5c23b58fb, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 39c3b0ad8bd1c2442932c8c5c23b58fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 39c3b0ad8bd1c2442932c8c5c23b58fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 39c3b0ad8bd1c2442932c8c5c23b58fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 62.033005
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 39c3b0ad8bd1c2442932c8c5c23b58fb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.1806614
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 39c3b0ad8bd1c2442932c8c5c23b58fb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 39c3b0ad8bd1c2442932c8c5c23b58fb, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3.1806614
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 39c3b0ad8bd1c2442932c8c5c23b58fb, type: 3}
+--- !u!4 &971939236 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: 39c3b0ad8bd1c2442932c8c5c23b58fb,
+    type: 3}
+  m_PrefabInstance: {fileID: 971939235}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &971939237 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 39c3b0ad8bd1c2442932c8c5c23b58fb,
+    type: 3}
+  m_PrefabInstance: {fileID: 971939235}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &971939238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971939237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05a85d99199b57a42a5a76941d9b6fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackModeActive: 0
+--- !u!65 &971939239
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971939237}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1823516, y: 0.65293163, z: 0.023002595}
+  m_Center: {x: 0.0000009461037, y: 0.25402918, z: 0.0000000013969839}
 --- !u!1001 &972407380
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30321,7 +30413,7 @@ GameObject:
   - component: {fileID: 1292430134}
   - component: {fileID: 1292430139}
   m_Layer: 9
-  m_Name: Player (1)
+  m_Name: Player
   m_TagString: Puppet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33272,13 +33364,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed by
-    Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
-    'mixamorig:LeftHandIndex1'\n\tTransform 'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform
-    'mixamorig:RightArm'\n\tTransform 'mixamorig:LeftLeg'\n\tTransform 'mixamorig:LeftShoulder'\n\tTransform
-    'mixamorig:RightFoot'\n\tTransform 'mixamorig:Head'\n\tand more ...\n\tFrom animation
-    clip 'Swagger Walk (1) 1'"
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -34488,6 +34574,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2125440989}
+  - {fileID: 971939236}
   m_Father: {fileID: 195093758}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -45380,7 +45467,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OnTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 391772701}
+      objectReference: {fileID: 4018644373525301393}
     - target: {fileID: 9098030238056292394, guid: 6df70fe9091129c47be11dbe00357681,
         type: 3}
       propertyPath: OnTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -45390,7 +45477,7 @@ PrefabInstance:
         type: 3}
       propertyPath: person
       value: 
-      objectReference: {fileID: 391772696}
+      objectReference: {fileID: 4018644373525301399}
     - target: {fileID: 9098030238056292394, guid: 6df70fe9091129c47be11dbe00357681,
         type: 3}
       propertyPath: OnTrigger.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -48375,7 +48462,7 @@ GameObject:
   - component: {fileID: 4018644373525301422}
   - component: {fileID: 7497874593399026873}
   m_Layer: 11
-  m_Name: Daughter (1)
+  m_Name: Daughter
   m_TagString: Puppet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
