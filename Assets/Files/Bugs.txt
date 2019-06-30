@@ -81,7 +81,8 @@ Fixed: Princess attack didn't hit again!!!
 Fixed: Hitting second enemy of first group is hard for some reason. It obviously collides but doesn't count as collision.
 
 redo footsteps sounds event for animations
-
+	I did princess. I need to do knight in future once final animation is in
+	
 Done: Move attack sign onto house
 
 Done: Adjust time for dad's dance delay cutscene
@@ -95,3 +96,11 @@ Make dad dance shorter (3-4 seconds instead of 6) then readjust delay
 Done: Change person for PrincessDontGoPast
 
 Done: Adjust daughter dance timer to be shorter
+
+Done: Should I do a camera change to the gate when it opens?
+
+Done: Increase attack window for princess as she didn't kill first enemy
+
+Daughter fall animation happens too late in the jumping cutscene (2)
+
+Increase text speed for dialogue to 2 or 2.5

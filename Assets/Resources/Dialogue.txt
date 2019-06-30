@@ -149,6 +149,8 @@ Daddy! What are those. They’re scary!
 Knight
 Oh no! Those look like the minions of the dastardly Count Duradel IV.
 
+// End of dialogue
+
 Princess
 They’ve invaded my kingdom! I thought you said the gate would keep them out!
 
@@ -190,6 +192,8 @@ Ok. Let's go get the rest of them then!
 
 Princess
 Oh great. There's even more than before!
+
+// End of dialogue
 
 Knight
 Tis not a problem. Just stay behind me as I deal with these monsters.
