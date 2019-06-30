@@ -12648,12 +12648,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fe255e5c50b2164eba6ecee9cb7a527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberOfFramesNeeded: 2
   mumblingClips:
   - {fileID: 8300000, guid: dab153482576db04c93b7ff7bdd78b24, type: 3}
   - {fileID: 8300000, guid: ed215f528580d4b419799474c152035e, type: 3}
   - {fileID: 8300000, guid: 403c243a13a695f4088b41c79039e7cc, type: 3}
   - {fileID: 8300000, guid: b39ed025213e749499f81c94561a5c10, type: 3}
-  skipDialogue: 1
+  skipDialogue: 0
 --- !u!1 &515574609
 GameObject:
   m_ObjectHideFlags: 0

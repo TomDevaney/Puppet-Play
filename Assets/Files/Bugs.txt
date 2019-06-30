@@ -103,4 +103,4 @@ Done: Increase attack window for princess as she didn't kill first enemy
 
 Daughter fall animation happens too late in the jumping cutscene (2)
 
-Increase text speed for dialogue to 2 or 2.5
+Done: Increase text speed for dialogue to 2 or 2.5
