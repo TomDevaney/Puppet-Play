@@ -92,10 +92,13 @@ public class DialogueManager : MonoBehaviour
     bool doDialogue;
 
     // Used to take every nth frame off for display text
-    int everyNthFrame;
+    int currentNumberOfFrames;
 
-    // List of all the people who do dialogue
-    Person[] mPeople = new Person[]
+	// How many frames that need to be passed for text crawl
+	public float numberOfFramesNeeded = 2.5f;
+
+	// List of all the people who do dialogue
+	Person[] mPeople = new Person[]
     {
         new Person("Daughter", new Color(255 / 255.0f, 255 / 255.0f, 0 / 255.0f)),
         new Person("Dad", new Color(0 / 255.0f, 102 / 255.0f, 255 / 255.0f)),
@@ -154,7 +157,7 @@ public class DialogueManager : MonoBehaviour
 		mCurrentDialogueChunkIndex = 0;
 		mCurrentDialogueIndex = 0;
         currentCharIndexForDialogue = 0;
-        everyNthFrame = 0;
+        currentNumberOfFrames = 0;
         doDialogue = false;
 
         // Initialize all dialogue list
@@ -253,15 +256,12 @@ public class DialogueManager : MonoBehaviour
                 audioSource.Play();
             }
 
-            // Number of frames til text can be added
-            const int nFrames = 3;
-
 			// Only do if all the text isn't there
 			if (dialogueText.text.Length != currentDialogue.GetWords().Length)
             {
-                // Is it the nth frame?
-                if (everyNthFrame++ % nFrames == 0)
-                {
+				// Is it the nth frame?
+				if (currentNumberOfFrames++ >= numberOfFramesNeeded * currentCharIndexForDialogue)
+				{
 					dialogueText.text += currentDialogue.GetWords()[currentCharIndexForDialogue];
 
                     ++currentCharIndexForDialogue;
@@ -369,6 +369,9 @@ public class DialogueManager : MonoBehaviour
 
 		// Clear text
 		dialogueText.text = "";
+
+		// Reset frames
+		currentNumberOfFrames = 0;
 
 		// Set text to the respective color
 		dialogueText.color = currentDialogue.GetPerson().GetColor();
