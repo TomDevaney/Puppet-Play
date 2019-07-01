@@ -120,11 +120,11 @@ public class DialogueManager : MonoBehaviour
 
 	// I'm not going to use this currently as I would need 2D art
 	// Instead, I'm doing a name instead
-    // Image of the person's avatar
-    //Image avatar;
+	// Image of the person's avatar
+	Image avatar;
 
-    // Image for input prompt
-    Image inputPrompt;
+	// Image for input prompt
+	Image inputPrompt;
 
     // Audio source that is used for mumbling sound
     AudioSource audioSource;
@@ -227,14 +227,16 @@ public class DialogueManager : MonoBehaviour
         canvas = GetComponentInChildren<Canvas>(true);
 
 		// Set text labels
-		nameText = canvas.GetComponentsInChildren<Text>()[0];
-		dialogueText = canvas.GetComponentsInChildren<Text>()[1];
+		//nameText = canvas.GetComponentsInChildren<Text>()[0];
+		//dialogueText = canvas.GetComponentsInChildren<Text>()[1];
+		dialogueText = canvas.GetComponentsInChildren<Text>()[0];
 
 		// Set avatar and input prompt
 		Image[] images = canvas.GetComponentsInChildren<Image>();
 
-        //avatar = images[0];
-        inputPrompt = images[1];
+		// images[0] is the background so offset by 1
+		avatar = images[1];
+		inputPrompt = images[2];
 
         // Disable input prompt image
         inputPrompt.enabled = false;
@@ -374,10 +376,10 @@ public class DialogueManager : MonoBehaviour
 		currentNumberOfFrames = 0;
 
 		// Set text to the respective color
-		dialogueText.color = currentDialogue.GetPerson().GetColor();
+		//dialogueText.color = currentDialogue.GetPerson().GetColor();
 
 		// Set name text label
-		nameText.text = currentDialogue.GetPerson().GetName();
+		//nameText.text = currentDialogue.GetPerson().GetName();
 
         // Set audio clip to the correct person
         audioSource.clip = mumblingClips[personDictionary[currentDialogue.GetPerson().GetName()]];
