@@ -1,0 +1,214 @@
+fileFormatVersion: 2
+guid: 2f34e9b23072ef442a32a80c4313e0e7
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Character2_Ctrl_ChestEndEffector
+    100002: Character2_Ctrl_ChestOriginEffector
+    100004: Character2_Ctrl_Head
+    100006: Character2_Ctrl_HeadEffector
+    100008: Character2_Ctrl_Hips
+    100010: Character2_Ctrl_HipsEffector
+    100012: Character2_Ctrl_LeftAnkleEffector
+    100014: Character2_Ctrl_LeftArm
+    100016: Character2_Ctrl_LeftElbowEffector
+    100018: Character2_Ctrl_LeftFoot
+    100020: Character2_Ctrl_LeftFootEffector
+    100022: Character2_Ctrl_LeftForeArm
+    100024: Character2_Ctrl_LeftHand
+    100026: Character2_Ctrl_LeftHipEffector
+    100028: Character2_Ctrl_LeftKneeEffector
+    100030: Character2_Ctrl_LeftLeg
+    100032: Character2_Ctrl_LeftShoulderEffector
+    100034: Character2_Ctrl_LeftToeBase
+    100036: Character2_Ctrl_LeftUpLeg
+    100038: Character2_Ctrl_LeftWristEffector
+    100040: Character2_Ctrl_Neck
+    100042: Character2_Ctrl_Reference
+    100044: Character2_Ctrl_RightAnkleEffector
+    100046: Character2_Ctrl_RightArm
+    100048: Character2_Ctrl_RightElbowEffector
+    100050: Character2_Ctrl_RightFoot
+    100052: Character2_Ctrl_RightFootEffector
+    100054: Character2_Ctrl_RightForeArm
+    100056: Character2_Ctrl_RightHand
+    100058: Character2_Ctrl_RightHipEffector
+    100060: Character2_Ctrl_RightKneeEffector
+    100062: Character2_Ctrl_RightLeg
+    100064: Character2_Ctrl_RightShoulderEffector
+    100066: Character2_Ctrl_RightToeBase
+    100068: Character2_Ctrl_RightUpLeg
+    100070: Character2_Ctrl_RightWristEffector
+    100072: Character2_Ctrl_Spine
+    100074: Hip
+    100076: LeftArm
+    100078: LeftFingers
+    100080: LeftFoot
+    100082: LeftHand
+    100084: LeftHeel
+    100086: LeftLeg
+    100088: LeftShoulder
+    100090: LeftThigh
+    100092: Neck
+    100094: RightArm
+    100096: RightFingers
+    100098: RightFoot
+    100100: RightHand
+    100102: RightHeel
+    100104: RightLeg
+    100106: RightShoulder
+    100108: RightThigh
+    100110: //RootNode
+    100112: SKM_Knight
+    100114: Spine
+    100116: Visor
+    400000: Character2_Ctrl_ChestEndEffector
+    400002: Character2_Ctrl_ChestOriginEffector
+    400004: Character2_Ctrl_Head
+    400006: Character2_Ctrl_HeadEffector
+    400008: Character2_Ctrl_Hips
+    400010: Character2_Ctrl_HipsEffector
+    400012: Character2_Ctrl_LeftAnkleEffector
+    400014: Character2_Ctrl_LeftArm
+    400016: Character2_Ctrl_LeftElbowEffector
+    400018: Character2_Ctrl_LeftFoot
+    400020: Character2_Ctrl_LeftFootEffector
+    400022: Character2_Ctrl_LeftForeArm
+    400024: Character2_Ctrl_LeftHand
+    400026: Character2_Ctrl_LeftHipEffector
+    400028: Character2_Ctrl_LeftKneeEffector
+    400030: Character2_Ctrl_LeftLeg
+    400032: Character2_Ctrl_LeftShoulderEffector
+    400034: Character2_Ctrl_LeftToeBase
+    400036: Character2_Ctrl_LeftUpLeg
+    400038: Character2_Ctrl_LeftWristEffector
+    400040: Character2_Ctrl_Neck
+    400042: Character2_Ctrl_Reference
+    400044: Character2_Ctrl_RightAnkleEffector
+    400046: Character2_Ctrl_RightArm
+    400048: Character2_Ctrl_RightElbowEffector
+    400050: Character2_Ctrl_RightFoot
+    400052: Character2_Ctrl_RightFootEffector
+    400054: Character2_Ctrl_RightForeArm
+    400056: Character2_Ctrl_RightHand
+    400058: Character2_Ctrl_RightHipEffector
+    400060: Character2_Ctrl_RightKneeEffector
+    400062: Character2_Ctrl_RightLeg
+    400064: Character2_Ctrl_RightShoulderEffector
+    400066: Character2_Ctrl_RightToeBase
+    400068: Character2_Ctrl_RightUpLeg
+    400070: Character2_Ctrl_RightWristEffector
+    400072: Character2_Ctrl_Spine
+    400074: Hip
+    400076: LeftArm
+    400078: LeftFingers
+    400080: LeftFoot
+    400082: LeftHand
+    400084: LeftHeel
+    400086: LeftLeg
+    400088: LeftShoulder
+    400090: LeftThigh
+    400092: Neck
+    400094: RightArm
+    400096: RightFingers
+    400098: RightFoot
+    400100: RightHand
+    400102: RightHeel
+    400104: RightLeg
+    400106: RightShoulder
+    400108: RightThigh
+    400110: //RootNode
+    400112: SKM_Knight
+    400114: Spine
+    400116: Visor
+    2100000: lambert2
+    2100002: Head
+    4300000: SKM_Knight
+    9500000: //RootNode
+    13700000: SKM_Knight
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
