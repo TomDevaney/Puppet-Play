@@ -104,3 +104,8 @@ Done: Increase attack window for princess as she didn't kill first enemy
 Fixed: Daughter fall animation happens too late in the jumping cutscene (2)
 
 Done: Increase text speed for dialogue to 2 or 2.5
+
+Nah: Maybe add some dialogue and the new platforming
+	- dialogue is like why is this here? Dad comes up and is like uhhhhh because...
+	
+Done: Move daughter's z position to -3.24

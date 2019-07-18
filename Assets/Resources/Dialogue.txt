@@ -196,7 +196,7 @@ Oh great. There's even more than before!
 // End of dialogue
 
 Knight
-Tis not a problem. Just stay behind me as I deal with these monsters.
+'Tis not a problem. Just stay behind me as I deal with these monsters.
 
 // End of dialogue
 
