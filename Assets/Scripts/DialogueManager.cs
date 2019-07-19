@@ -36,6 +36,8 @@ public class Dialogue
 public class Person
 {
     string mName;
+
+	// No longer used. Used to change color of text on a per person basis
     Color mColor;
 
     public Person(string name, Color color)
@@ -227,9 +229,9 @@ public class DialogueManager : MonoBehaviour
         canvas = GetComponentInChildren<Canvas>(true);
 
 		// Set text labels
-		//nameText = canvas.GetComponentsInChildren<Text>()[0];
-		//dialogueText = canvas.GetComponentsInChildren<Text>()[1];
-		dialogueText = canvas.GetComponentsInChildren<Text>()[0];
+		nameText = canvas.GetComponentsInChildren<Text>()[0];
+		dialogueText = canvas.GetComponentsInChildren<Text>()[1];
+		//dialogueText = canvas.GetComponentsInChildren<Text>()[0];
 
 		// Set avatar and input prompt
 		Image[] images = canvas.GetComponentsInChildren<Image>();
@@ -375,14 +377,11 @@ public class DialogueManager : MonoBehaviour
 		// Reset frames
 		currentNumberOfFrames = 0;
 
-		// Set text to the respective color
-		//dialogueText.color = currentDialogue.GetPerson().GetColor();
-
 		// Set name text label
-		//nameText.text = currentDialogue.GetPerson().GetName();
+		nameText.text = currentDialogue.GetPerson().GetName();
 
-        // Set audio clip to the correct person
-        audioSource.clip = mumblingClips[personDictionary[currentDialogue.GetPerson().GetName()]];
+		// Set audio clip to the correct person
+		audioSource.clip = mumblingClips[personDictionary[currentDialogue.GetPerson().GetName()]];
 
         // Play the audio
         audioSource.Play();
