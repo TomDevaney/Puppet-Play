@@ -236,9 +236,9 @@ public class DialogueManager : MonoBehaviour
 		// Set avatar and input prompt
 		Image[] images = canvas.GetComponentsInChildren<Image>();
 
-		// images[0] is the background so offset by 1
-		avatar = images[1];
-		inputPrompt = images[2];
+		// images[0] is the background and image[1] is nameLabel so offset by 2
+		avatar = images[2];
+		inputPrompt = images[3];
 
         // Disable input prompt image
         inputPrompt.enabled = false;
