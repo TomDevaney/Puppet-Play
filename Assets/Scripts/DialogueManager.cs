@@ -120,6 +120,10 @@ public class DialogueManager : MonoBehaviour
     // Canvas containing all the dialogue HUD
     Canvas canvas;
 
+	// The stamp on the name label has a different color for different people
+	public Sprite[] nameLabels;
+	Image nameLabel;
+
 	// I'm not going to use this currently as I would need 2D art
 	// Instead, I'm doing a name instead
 	// Image of the person's avatar
@@ -236,7 +240,8 @@ public class DialogueManager : MonoBehaviour
 		// Set avatar and input prompt
 		Image[] images = canvas.GetComponentsInChildren<Image>();
 
-		// images[0] is the background and image[1] is nameLabel so offset by 2
+		// images[0] is the background so offset by 1
+		nameLabel = images[1];
 		avatar = images[2];
 		inputPrompt = images[3];
 
@@ -370,6 +375,9 @@ public class DialogueManager : MonoBehaviour
 		// Disable input prompt image
 		inputPrompt.enabled = false;
 		inputPrompt.GetComponent<Animator>().SetBool("Bounce", false);
+
+		// Change name label's sprite
+		nameLabel.sprite = nameLabels[personDictionary[currentDialogue.GetPerson().GetName()]];
 
 		// Clear text
 		dialogueText.text = "";
