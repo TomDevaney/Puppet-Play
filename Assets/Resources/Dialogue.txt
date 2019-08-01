@@ -269,7 +269,7 @@ But enough of that, let's get going. The castle should be right ahead.
 // End of dialogue
 
 Knight
-What do you think of the castle your majesty
+What do you think of the castle your majesty?
 
 Princess
 It's so beautiful!
